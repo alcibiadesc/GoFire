@@ -1,3 +1,34 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+	--background: #2a2c31;
+	--primary: #ffffff;
+	--secondary: #e84c2b;
+	--tertiary: #7e858d;
+}
+
+body {
+	background: var(--background);
+	margin: 0;
+}
+
+h1,
+h2,
+p {
+	color: var(--primary);
+}
+
+h3,
+h4,
+h5,
+h6 {
+	color: var(--tertiary);
+}
+
+@layer base {
+	p {
+		@apply text-2xl font-semibold;
+	}
+}
