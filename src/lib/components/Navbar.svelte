@@ -3,7 +3,7 @@
 	import Avatar from "./../atoms/Avatar.svelte";
 </script>
 
-<div class="fixed w-screen p-8">
+<div class="w-screen p-8">
 	<div class="float-right">
 		<Avatar />
 	</div>

@@ -12,6 +12,8 @@
 body {
 	background: var(--background);
 	margin: 0;
+	display: grid;
+	place-items: center;
 }
 
 h1,
@@ -27,8 +29,25 @@ h6 {
 	color: var(--tertiary);
 }
 
+h1 {
+	font-size: 2em;
+}
+
 @layer base {
 	p {
 		@apply text-2xl font-semibold;
 	}
+}
+
+.card__background {
+	background: linear-gradient(to bottom, #3b4044, #2f3138);
+	border-radius: 50px;
+}
+
+.euros:after {
+	content: "€";
+}
+
+.percent:after {
+	content: "%";
 }
