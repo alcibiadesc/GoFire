@@ -8,10 +8,8 @@
 		{ icon: "bell", style: "secondary", selected: false },
 	];
 
-	let current = "profile";
-	const selectedBtn = (icon) => {
-		current = icon;
-	};
+	export let current = "Home";
+	export let selectedBtn = () => {};
 </script>
 
 <div class="container">
@@ -23,6 +21,7 @@
 <style>
 	.container {
 		display: flex;
+		position: absolute;
 		justify-content: space-around;
 		background: linear-gradient(#383e43, var(--background));
 		padding: 25px;

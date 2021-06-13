@@ -1,11 +1,10 @@
 <script>
 	import Balance from "../components/Balance.svelte";
-	import FooterMenu from "../components/FooterMenu.svelte";
 	import DetailGrid from "../organisms/DetailGrid.svelte";
-	import Navbar from "./../components/Navbar.svelte";
+	import { data } from "./../../stores/data.js";
+
+	let { goal, balance } = $data;
 </script>
 
-<Navbar />
-<Balance />
+<Balance {goal} {balance} />
 <DetailGrid />
-<FooterMenu />

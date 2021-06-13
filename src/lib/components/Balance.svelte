@@ -1,15 +1,15 @@
 <script>
 	import { format } from "./../../scripts.js";
 	import Goal from "./../atoms/Goal.svelte";
+	import Card from "../atoms/Card.svelte";
+
 	let name = "crack";
-	let balance = 0;
-	let goal = 100000;
+	export let balance = 0;
+	export let goal = 100000;
 	let road = goal - balance;
 </script>
 
-<div
-	class="h-auto   sm:w-96 w-9/12 mb-20  shadow-2xl card__background p-8 relative"
->
+<Card>
 	<h1>
 		{`Hola ${name}`}
 	</h1>
@@ -21,4 +21,4 @@
 	</p>
 
 	<Goal {goal} {road} />
-</div>
+</Card>
