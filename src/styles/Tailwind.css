@@ -44,10 +44,6 @@ h1 {
 	border-radius: 50px;
 }
 
-.euros:after {
-	content: "€";
-}
-
 .percent:after {
 	content: "%";
 }
