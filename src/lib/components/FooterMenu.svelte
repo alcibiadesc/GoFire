@@ -23,12 +23,10 @@
 <style>
 	.container {
 		display: flex;
-		position: fixed;
 		justify-content: space-around;
 		background: linear-gradient(#383e43, var(--background));
 		padding: 25px;
 		border-radius: 50px;
-		position: absolute;
 		bottom: 0;
 		left: 0;
 		right: 0;
