@@ -11,7 +11,7 @@
 	let { title, number, percent, hightlight } = props;
 </script>
 
-<div class="w-64 m-3 " class:hightlight>
+<div class="w-64 m-3 relative" class:hightlight>
 	<h6>{title}</h6>
 	<div class="data">
 		<p class="euros">{format(number)}</p>

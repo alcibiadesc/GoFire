@@ -21,4 +21,8 @@
 		height: 2rem;
 		align-self: flex-end;
 	}
+
+	#my-chart {
+		--color: var(--secondary);
+	}
 </style>
