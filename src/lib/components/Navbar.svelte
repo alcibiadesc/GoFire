@@ -1,6 +1,10 @@
 <script>
 	import Button from "../atoms/Button.svelte";
 	import Avatar from "./../atoms/Avatar.svelte";
+	const buttom = {
+		icon: "menu",
+		style: "primary",
+	};
 </script>
 
 <div class="w-screen p-8">
@@ -8,6 +12,6 @@
 		<Avatar />
 	</div>
 	<div class="float-left">
-		<Button type="menu" />
+		<Button props={buttom} />
 	</div>
 </div>

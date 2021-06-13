@@ -39,6 +39,24 @@ h1 {
 	}
 }
 
+button {
+	outline: none;
+}
+*:focus {
+	outline: 0 !important;
+}
+
+.noselect,
+button {
+	-webkit-touch-callout: none; /* iOS Safari */
+	-webkit-user-select: none; /* Safari */
+	-khtml-user-select: none; /* Konqueror HTML */
+	-moz-user-select: none; /* Old versions of Firefox */
+	-ms-user-select: none; /* Internet Explorer/Edge */
+	user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
 .card__background {
 	background: linear-gradient(to bottom, #3b4044, #2f3138);
 	border-radius: 50px;
