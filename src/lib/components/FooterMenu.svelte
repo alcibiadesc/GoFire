@@ -23,6 +23,7 @@
 <style>
 	.container {
 		display: flex;
+		position: fixed;
 		justify-content: space-around;
 		background: linear-gradient(#383e43, var(--background));
 		padding: 25px;
