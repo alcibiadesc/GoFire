@@ -4,15 +4,30 @@
 	import { formatBasic } from "./../../scripts";
 	export let placeholder = "objetivo";
 	export let value = "";
+	export let label = "";
 </script>
 
-<input bind:value class="input__{style} inp-icon" {placeholder} />
+<div>
+	<label>
+		{label}
+	</label>
+	<br />
+	<input bind:value class="input__{style} inp-icon" {placeholder} />
+</div>
 
 <style>
-	.input__primary {
+	label {
+		color: var(--secondary);
+		font-size: 0.75rem;
+		margin-left: 1rem;
+	}
+	div {
 		margin-top: 2rem;
+	}
+	.input__primary {
 		height: 2rem;
 		padding: 1rem;
+
 		padding-right: 50px;
 		border-radius: 15px;
 	}

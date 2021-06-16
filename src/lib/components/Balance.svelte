@@ -2,8 +2,8 @@
 	import { format } from "./../../scripts.js";
 	import Goal from "./../atoms/Goal.svelte";
 	import Card from "../atoms/Card.svelte";
-
 	let name = "crack";
+
 	export let balance = 0;
 	export let goal = 100_000;
 	let road = goal - balance;

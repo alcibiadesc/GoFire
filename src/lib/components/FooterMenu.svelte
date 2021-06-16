@@ -12,7 +12,7 @@
 	export let selectedBtn = () => {};
 </script>
 
-<div class="container">
+<div class="container fixed">
 	{#each buttons as props}
 		<Button {props} {current} on:click={() => selectedBtn(props.icon)} />
 	{/each}
@@ -21,7 +21,6 @@
 <style>
 	.container {
 		display: flex;
-		position: absolute;
 		justify-content: space-around;
 		background: linear-gradient(#383e43, var(--background));
 		padding: 25px;
