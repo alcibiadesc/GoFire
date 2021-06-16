@@ -34,7 +34,7 @@
 
 	<div class="data">
 		{#if edit}
-			<input bind:value={row.number} type="text" />
+			<input bind:value={row.number} type="number" />
 		{:else}
 			<p class="euros">{format(number)}</p>
 		{/if}
@@ -53,6 +53,17 @@
 </div>
 
 <style>
+	/* Chrome, Safari, Edge, Opera */
+	input::-webkit-outer-spin-button,
+	input::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+
+	/* Firefox */
+	input[type="number"] {
+		-moz-appearance: textfield;
+	}
 	.title {
 		border: none;
 		width: 100%;

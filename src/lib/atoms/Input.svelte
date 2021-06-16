@@ -5,6 +5,7 @@
 	export let placeholder = "objetivo";
 	export let value = "";
 	export let label = "";
+	export let type = "number";
 </script>
 
 <div>
@@ -12,7 +13,12 @@
 		{label}
 	</label>
 	<br />
-	<input bind:value class="input__{style} inp-icon" {placeholder} />
+	<input
+		bind:value
+		type="number"
+		class="input__{style} inp-icon"
+		{placeholder}
+	/>
 </div>
 
 <style>
@@ -28,7 +34,6 @@
 		height: 2rem;
 		padding: 1rem;
 
-		padding-right: 50px;
 		border-radius: 15px;
 	}
 
@@ -41,5 +46,16 @@
 		background: url(icons/goal.svg) no-repeat 98%;
 		background-size: 26px;
 		background-color: #656565;
+	}
+
+	input::-webkit-outer-spin-button,
+	input::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+
+	/* Firefox */
+	input[type="number"] {
+		-moz-appearance: textfield;
 	}
 </style>
