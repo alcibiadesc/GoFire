@@ -1,6 +1,6 @@
 import { writable } from "svelte/store";
 
 export const data = writable({
-	goal: 1,
-	balance: 2,
+	goal: 100_000,
+	balance: 82_000,
 });

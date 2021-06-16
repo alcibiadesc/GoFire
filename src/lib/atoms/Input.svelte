@@ -1,6 +1,7 @@
 <script>
 	export let icon = "menu";
 	export let style = "primary";
+	import { formatBasic } from "./../../scripts";
 	export let placeholder = "objetivo";
 	export let value = "";
 </script>
@@ -23,8 +24,7 @@
 
 	.inp-icon {
 		background: url(icons/goal.svg) no-repeat 98%;
-		filter: grayscale(100%);
 		background-size: 26px;
-		background-color: teal;
+		background-color: #656565;
 	}
 </style>

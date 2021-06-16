@@ -5,7 +5,7 @@
 
 	let name = "crack";
 	export let balance = 0;
-	export let goal = 100000;
+	export let goal = 100_000;
 	let road = goal - balance;
 </script>
 
@@ -20,5 +20,5 @@
 		{format(balance)}
 	</p>
 
-	<Goal {goal} {road} />
+	<Goal {balance} {goal} {road} />
 </Card>
