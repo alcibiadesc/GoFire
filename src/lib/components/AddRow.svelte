@@ -1,22 +1,24 @@
 <script>
 	import Button from "./../atoms/Button.svelte";
-	import { details } from "./../../stores/data.js";
 	import { v4 as uuidv4 } from "uuid";
 
-	const props = { icon: "add", style: "secondary" };
+	export let details = [];
 	const addRow = () =>
 		($details = [
 			...$details,
 			{
 				id: uuidv4(),
-				title: "añade un título",
+				title: "Título",
 				number: 0,
+				revenue: 0,
 				percent: 0,
 				hightlight: false,
 			},
 		]);
+
+	const button = { icon: "add", style: "secondary" };
 </script>
 
 <div class="mb-8">
-	<Button on:click={addRow} {props} />
+	<Button on:click={addRow} props={button} />
 </div>

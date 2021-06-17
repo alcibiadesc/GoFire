@@ -2,15 +2,15 @@
 	import Card from "../atoms/Card.svelte";
 	import Input from "../atoms/Input.svelte";
 	import DetailGrid from "../organisms/DetailGrid.svelte";
-	import { data } from "./../../stores/data.js";
+	import { data, details } from "./../../stores/data.js";
 	import AddRow from "./../components/AddRow.svelte";
 </script>
 
 <Card>
 	<h1>Opciones</h1>
 	<h3>Aquí puedes configurar tu perfil</h3>
-	<Input label="objetivo" type={"number"} bind:value={$data.goal} />
+	<Input label="Objetivo" type="number" bind:value={$data.goal} />
 </Card>
 
-<AddRow />
+<AddRow {details} />
 <DetailGrid edit={true} />

@@ -1,28 +1,35 @@
 <script>
 	import { format } from "./../../scripts.js";
-	import { details } from "./../../stores/data.js";
+	import Modal from "./../components/Modal.svelte";
 	import ChartLine from "./../atoms/ChartLine.svelte";
+
+	export let edit = false;
 	export let props = {
 		id: "9c72c81f-480d-4575-bdff-45e50afc7a33",
 		title: "Total Title",
+		revenue: 0,
 		number: 0,
 		percent: 0,
 		hightlight: false,
 	};
 
-	let { title, number, percent, hightlight, id } = props;
-	export let edit = false;
+	export let details = [{}];
+
+	let { title, number, percent, hightlight, id, revenue } = props;
+
+	const row = $details.filter((element) => element.id === id)[0];
+	const toogleHightlight = () => {
+		row.hightlight = !row.hightlight;
+		hightlight = !hightlight;
+	};
 
 	const deleteRow = () => {
 		$details = $details.filter((element) => element.id !== id);
 	};
 
-	const row = $details.filter((ele) => ele.id === id)[0];
+	let hideModal = true;
 
-	const toogleHightlight = () => {
-		row.hightlight = !row.hightlight;
-		hightlight = !hightlight;
-	};
+	const toogleModal = () => (hideModal = !hideModal);
 </script>
 
 <div class="w-64 m-3 relative" class:hightlight>
@@ -37,6 +44,7 @@
 		<div class=" flex flex-col rounded-lg float-right">
 			<button on:click={deleteRow}>eliminar</button>
 			<button on:click={toogleHightlight}>resaltar</button>
+			<button on:click={toogleModal}>añadir fondos</button>
 		</div>
 	{:else}
 		<h6>{title}</h6>
@@ -46,7 +54,12 @@
 			<p class="percent">{percent}</p>
 		</div>
 	{/if}
+	{#if revenue}
+		<h3 class="mt-1 revenue text-sm">Rentabilidad: {format(revenue)}</h3>
+	{/if}
 </div>
+
+<Modal {hideModal} />
 
 <style>
 	/* Chrome, Safari, Edge, Opera */

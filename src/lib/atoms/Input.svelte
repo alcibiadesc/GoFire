@@ -9,10 +9,9 @@
 </script>
 
 <div>
-	<label>
+	<h3 class="mt-8 mb-1">
 		{label}
-	</label>
-	<br />
+	</h3>
 	<input
 		bind:value
 		type="number"
@@ -22,18 +21,12 @@
 </div>
 
 <style>
-	label {
-		color: var(--secondary);
-		font-size: 0.75rem;
-		margin-left: 1rem;
-	}
 	div {
 		margin-top: 2rem;
 	}
 	.input__primary {
 		height: 2rem;
 		padding: 1rem;
-
 		border-radius: 15px;
 	}
 
