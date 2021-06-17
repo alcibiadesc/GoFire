@@ -7,14 +7,15 @@
 	export let current = "profile";
 
 	let { icon, style } = props;
+	export let onClick = () => console.log("click");
 </script>
 
 <div class={style} on:click class:selected={current === icon}>
-	<button>
+	<button on:click={onClick}>
 		<img
 			class:selected__icon={current === icon}
 			src={`icons/${icon}.svg`}
-			alt=""
+			alt={icon}
 		/>
 	</button>
 </div>
@@ -31,8 +32,19 @@
 	.secondary {
 		padding: 0.5rem;
 		display: grid;
-		place-items: center;
+		place-items: center center;
 		border-radius: 10px;
+	}
+
+	.tertiary {
+		display: grid;
+		place-items: center center;
+		width: 1.5rem;
+	}
+
+	.tertiary:hover {
+		filter: invert(52%) sepia(73%) saturate(4792%) hue-rotate(343deg)
+			brightness(92%) contrast(99%);
 	}
 
 	img {

@@ -2,6 +2,7 @@
 	import { format } from "./../../scripts.js";
 	import Modal from "./../components/Modal.svelte";
 	import ChartLine from "./../atoms/ChartLine.svelte";
+	import Button from "./../atoms/Button.svelte";
 
 	export let edit = false;
 	export let props = {
@@ -30,6 +31,12 @@
 	let hideModal = true;
 
 	const toogleModal = () => (hideModal = !hideModal);
+
+	const editBtns = [
+		{ icon: "delete", style: "tertiary", onClick: deleteRow },
+		{ icon: "highlight", style: "tertiary", onClick: toogleHightlight },
+		{ icon: "saving", style: "tertiary", onClick: toogleModal },
+	];
 </script>
 
 <div class="w-64 m-3 relative" class:hightlight>
@@ -41,10 +48,12 @@
 			<ChartLine />
 			<p class="percent">{percent}</p>
 		</div>
-		<div class=" flex flex-col rounded-lg float-right">
-			<button on:click={deleteRow}>eliminar</button>
-			<button on:click={toogleHightlight}>resaltar</button>
-			<button on:click={toogleModal}>añadir fondos</button>
+		<div class=" flex flex-row float-right">
+			{#each editBtns as props}
+				<div>
+					<Button {props} onClick={props.onClick} />
+				</div>
+			{/each}
 		</div>
 	{:else}
 		<h6>{title}</h6>
