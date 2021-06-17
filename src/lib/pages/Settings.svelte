@@ -3,7 +3,7 @@
 	import Input from "../atoms/Input.svelte";
 	import DetailGrid from "../organisms/DetailGrid.svelte";
 	import { data } from "./../../stores/data.js";
-	import AddRow from "./../atoms/AddRow.svelte";
+	import AddRow from "./../components/AddRow.svelte";
 </script>
 
 <Card>

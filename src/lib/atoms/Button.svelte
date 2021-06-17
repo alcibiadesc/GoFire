@@ -5,6 +5,7 @@
 	};
 
 	export let current = "profile";
+
 	let { icon, style } = props;
 </script>
 

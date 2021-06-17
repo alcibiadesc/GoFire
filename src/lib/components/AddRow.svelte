@@ -1,9 +1,9 @@
 <script>
-	import Button from "./Button.svelte";
+	import Button from "./../atoms/Button.svelte";
 	import { details } from "./../../stores/data.js";
 	import { v4 as uuidv4 } from "uuid";
-	const props = { icon: "add", style: "secondary" };
 
+	const props = { icon: "add", style: "secondary" };
 	const addRow = () =>
 		($details = [
 			...$details,
