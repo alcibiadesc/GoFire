@@ -68,7 +68,7 @@
 	{/if}
 </div>
 
-<Modal {hideModal} />
+<Modal {hideModal} {title} />
 
 <style>
 	/* Chrome, Safari, Edge, Opera */

@@ -3,6 +3,7 @@
 	import Card from "./../atoms/Card.svelte";
 	import Input from "./../atoms/Input.svelte";
 	import Button from "./../atoms/Button.svelte";
+	export let title = "Title";
 
 	const toogleModal = () => (hideModal = !hideModal);
 	const btnSave = {
@@ -19,7 +20,7 @@
 		<div class="btn--close">
 			<Button props={btnClose} />
 		</div>
-		<h1>Añade un importe</h1>
+		<h1>{title}</h1>
 		<Input label="añade la cantidad" />
 		<input class="my-5" type="date" />
 
