@@ -7,6 +7,8 @@
 	--primary: #ffffff;
 	--secondary: #e84c2b;
 	--tertiary: #7e858d;
+	--filter: invert(52%) sepia(73%) saturate(4792%) hue-rotate(343deg)
+		brightness(92%) contrast(99%);
 }
 
 body {

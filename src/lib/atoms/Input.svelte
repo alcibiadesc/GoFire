@@ -2,7 +2,7 @@
 	export let icon = "menu";
 	export let style = "primary";
 	import { formatBasic } from "./../../scripts";
-	export let placeholder = "objetivo";
+	export let placeholder = "0€";
 	export let value = "";
 	export let label = "";
 	export let type = "number";

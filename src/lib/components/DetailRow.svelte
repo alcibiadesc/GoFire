@@ -51,12 +51,12 @@
 		<div class=" flex flex-row float-right">
 			{#each editBtns as props}
 				<div>
-					<Button {props} onClick={props.onClick} />
+					<Button {props} />
 				</div>
 			{/each}
 		</div>
 	{:else}
-		<h6>{title}</h6>
+		<h6 class="mb-1">{title}</h6>
 		<div class="data">
 			<p class="euros">{format(number)}</p>
 			<ChartLine />

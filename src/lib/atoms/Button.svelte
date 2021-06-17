@@ -2,12 +2,12 @@
 	export let props = {
 		icon: "menu",
 		style: "primary",
+		onClick: () => console.log("click"),
 	};
 
 	export let current = "profile";
 
-	let { icon, style } = props;
-	export let onClick = () => console.log("click");
+	let { icon, style, onClick } = props;
 </script>
 
 <div class={style} on:click class:selected={current === icon}>
@@ -21,6 +21,10 @@
 </div>
 
 <style>
+	img {
+		width: 2rem;
+		height: 2rem;
+	}
 	.primary {
 		padding: 0.5rem;
 		display: grid;
@@ -37,27 +41,20 @@
 	}
 
 	.tertiary {
-		display: grid;
-		place-items: center center;
 		width: 1.5rem;
-	}
-
-	.tertiary:hover {
-		filter: invert(52%) sepia(73%) saturate(4792%) hue-rotate(343deg)
-			brightness(92%) contrast(99%);
-	}
-
-	img {
-		width: 2rem;
-		height: 2rem;
 	}
 
 	.selected {
 		background: linear-gradient(to bottom, #202227, var(--background));
 		border-radius: 50%;
 	}
-	.selected__icon {
-		filter: invert(52%) sepia(73%) saturate(4792%) hue-rotate(343deg)
-			brightness(92%) contrast(99%);
+
+	.selected:hover {
+		display: none;
+	}
+	.selected__icon,
+	.tertiary:hover,
+	.secondary:hover {
+		filter: var(--filter);
 	}
 </style>
