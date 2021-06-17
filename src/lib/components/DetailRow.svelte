@@ -28,26 +28,22 @@
 <div class="w-64 m-3 relative" class:hightlight>
 	{#if edit}
 		<input class="title w-64" bind:value={row.title} type="text" />
-	{:else}
-		<h6>{title}</h6>
-	{/if}
 
-	<div class="data">
-		{#if edit}
+		<div class="data">
 			<input bind:value={row.number} type="number" />
-		{:else}
-			<p class="euros">{format(number)}</p>
-		{/if}
-
-		<ChartLine />
-
-		<p class="percent">{percent}</p>
-	</div>
-
-	{#if edit}
+			<ChartLine />
+			<p class="percent">{percent}</p>
+		</div>
 		<div class=" flex flex-col rounded-lg float-right">
 			<button on:click={deleteRow}>eliminar</button>
 			<button on:click={toogleHightlight}>resaltar</button>
+		</div>
+	{:else}
+		<h6>{title}</h6>
+		<div class="data">
+			<p class="euros">{format(number)}</p>
+			<ChartLine />
+			<p class="percent">{percent}</p>
 		</div>
 	{/if}
 </div>
