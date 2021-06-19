@@ -17,48 +17,53 @@ const createDetails = () => {
 			id: "78907323-3151-4439-b9b1-6653b4cd84c1",
 			title: "Criptos",
 			number: 2_000,
-			revenue: 2,
 			percent: 0,
 			hightlight: false,
-			saving: [
-				{ date: "2020/02/01", amount: 30 },
-				{ date: "2018/01/02", amount: 5 },
-			],
+			saving: [],
 		},
 		{
 			id: "78907698-3151-4439-b9b1-6653b4cd84c1",
 			title: "ETF + Plan de Pensiones",
 			number: 3_000,
-			revenue: 1,
 			percent: 0,
 			hightlight: false,
-			saving: [{ date: "2019/01/02", amount: 20 }],
+			saving: [],
 		},
 	]);
+
+	const getArray = () => {
+		let array = [];
+		subscribe((n) => (array = n));
+		return array;
+	};
 
 	const add = () => update((n) => [...n, { ...template, id: uuidv4() }]);
 	const remove = (id) => update((n) => n.filter((ele) => ele.id !== id));
 	const change = (id, key, value) => {
-		let array = [];
-		subscribe((n) => (array = n));
+		let array = getArray();
 		array.map((ele) => (ele.id === id ? (ele[key] = value) : ""));
 		set(array);
 	};
 
-	const balance = () => {
-		let array = [];
+	const revenue = () => {
+		let array = getArray();
 		let arrayBalance = [];
-		subscribe((n) => (array = n));
 		array.map((ele) =>
 			ele.saving.map((m) => (arrayBalance = [...arrayBalance, m.amount]))
 		);
 		let result = arrayBalance.reduce((acc, crt) => acc + crt, 0);
+		console.log(result);
+		return result;
+	};
+
+	const balance = () => {
+		let array = getArray();
+		let result = array.reduce((acc, crt) => acc + crt.number, 0);
 		return result;
 	};
 
 	const saving = (id, today, amount) => {
-		let array = [];
-		subscribe((n) => (array = n));
+		let array = getArray();
 		array.map((ele) =>
 			ele.id === id ? (ele.saving = [...ele.saving, { today, amount }]) : ""
 		);
@@ -74,6 +79,7 @@ const createDetails = () => {
 		change,
 		balance,
 		saving,
+		revenue,
 	};
 };
 

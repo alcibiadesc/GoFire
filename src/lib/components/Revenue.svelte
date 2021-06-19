@@ -4,25 +4,21 @@
 	import ChartLine from "./../atoms/ChartLine.svelte";
 	import Button from "./../atoms/Button.svelte";
 
-	export let edit = false;
-	export let details = [];
+	export let revenue = 0;
 	export let props = {
-		id: "9c72c81f-480d-4575-bdff-45e50afc7a33",
 		title: "Beneficios",
-		revenue: 0,
-		number: 0,
+		number: 10,
 		percent: 0,
 		hightlight: true,
-		saving: [{ date: "2020-02-08", amount: 0 }],
 	};
 
-	let { id, title, revenue, number, percent, hightlight, saving } = props;
+	let { title, number, percent, hightlight } = props;
 </script>
 
 <div class="w-64 m-3 relative m-6" class:hightlight>
 	<h6 class="mb-1">{title}</h6>
 	<div class="data">
-		<p class="euros">{format(number)}</p>
+		<p class="euros">{format(revenue)}</p>
 		<ChartLine />
 		<p class="percent">{percent}</p>
 	</div>

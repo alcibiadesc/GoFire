@@ -5,7 +5,6 @@
 	export let edit = false;
 </script>
 
-<Revenue />
 {#each $details as props (props.id)}
 	<Row {edit} {props} {details} />
 {/each}

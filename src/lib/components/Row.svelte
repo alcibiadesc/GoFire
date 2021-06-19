@@ -9,14 +9,13 @@
 	export let props = {
 		id: "9c72c81f-480d-4575-bdff-45e50afc7a33",
 		title: "Total Title",
-		revenue: 0,
 		number: 0,
 		percent: 0,
 		hightlight: false,
-		saving: [{ date: "2020-02-08", amount: 0 }],
+		saving: [],
 	};
 
-	let { id, title, revenue, number, percent, hightlight, saving } = props;
+	let { id, title, number, percent, hightlight, saving } = props;
 
 	let hideModal = true;
 	const toogleModal = () => (hideModal = !hideModal);
@@ -38,6 +37,9 @@
 		{ icon: "highlight", style: "tertiary", onClick: toogleHigh },
 		{ icon: "saving", style: "tertiary", onClick: toogleModal },
 	];
+
+	$: getSaving = saving.reduce((acc, crt) => acc + crt.amount, 0);
+	$: revenue = number - getSaving;
 </script>
 
 <ModalSavings {hideModal} {title} {id} onClick={details.saving} />
@@ -77,7 +79,7 @@
 			<p class="percent">{percent}</p>
 		</div>
 	{/if}
-	{#if revenue}
+	{#if saving.length > 0 && !edit}
 		<h3 class="mt-1 revenue text-sm">Rentabilidad: {format(revenue)}</h3>
 	{/if}
 </div>
