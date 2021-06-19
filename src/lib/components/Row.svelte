@@ -21,17 +21,17 @@
 	let hideModal = true;
 	const toogleModal = () => (hideModal = !hideModal);
 
-	const onClick = () => console.log("click");
-
-	const changeName = () => details.change(id, "title", title);
-	const changeNumber = () => details.change(id, "number", number);
-	const changeHigh = () => details.change(id, "hightlight", hightlight);
-
-	const remove = () => details.remove(id);
-	const toogleHigh = () => {
-		hightlight = !hightlight;
-		changeHigh();
+	const actions = {
+		remove: () => details.remove(id),
+		changeName: () => details.change(id, "title", title),
+		changeNumber: () => details.change(id, "number", number),
+		changeHigh: () => details.change(id, "hightlight", hightlight),
+		toogleHigh: () => {
+			hightlight = !hightlight;
+			changeHigh();
+		},
 	};
+	const { changeName, changeNumber, changeHigh, remove, toogleHigh } = actions;
 
 	const btns = [
 		{ icon: "delete", style: "tertiary", onClick: remove },
