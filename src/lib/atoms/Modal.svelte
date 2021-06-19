@@ -1,17 +1,8 @@
 <script>
 	export let hideModal = true;
 	import Card from "./../atoms/Card.svelte";
-	import Input from "./../atoms/Input.svelte";
 	import Button from "./../atoms/Button.svelte";
-	export let title = "Title";
-
 	const toogleModal = () => (hideModal = !hideModal);
-	const btnSave = {
-		icon: "saving",
-		style: "secondary",
-		onClick: toogleModal,
-	};
-
 	const btnClose = { icon: "delete", style: "tertiary", onClick: toogleModal };
 </script>
 
@@ -20,13 +11,7 @@
 		<div class="btn--close">
 			<Button props={btnClose} />
 		</div>
-		<h1>{title}</h1>
-		<Input label="añade la cantidad" />
-		<input class="my-5" type="date" />
-
-		<div class="btn--save">
-			<Button props={btnSave} />
-		</div>
+		<slot />
 	</Card>
 </div>
 
@@ -49,21 +34,8 @@
 		place-items: center;
 	}
 
-	input {
-		border-radius: 50px;
-		text-align: center;
-		font-size: 1rem;
-		background: var(--background);
-		color: var(--primary);
-	}
-
 	.btn--close {
 		display: grid;
 		place-items: end;
-	}
-
-	.btn--save {
-		display: grid;
-		place-items: center;
 	}
 </style>

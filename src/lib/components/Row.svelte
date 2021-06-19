@@ -1,10 +1,11 @@
 <script>
 	import { format } from "./../../scripts.js";
-	import Modal from "./../components/Modal.svelte";
+	import ModalSavings from "./../components/ModalSavings.svelte";
 	import ChartLine from "./../atoms/ChartLine.svelte";
 	import Button from "./../atoms/Button.svelte";
 
 	export let edit = false;
+	export let details = [];
 	export let props = {
 		id: "9c72c81f-480d-4575-bdff-45e50afc7a33",
 		title: "Total Title",
@@ -12,46 +13,59 @@
 		number: 0,
 		percent: 0,
 		hightlight: false,
+		saving: [{ date: "2020-02-08", amount: 0 }],
 	};
 
-	export let details = [{}];
-
-	let { title, number, percent, hightlight, id, revenue } = props;
-
-	const row = $details.filter((element) => element.id === id)[0];
-	const toogleHightlight = () => {
-		row.hightlight = !row.hightlight;
-		hightlight = !hightlight;
-	};
-
-	const deleteRow = () => {
-		$details = $details.filter((element) => element.id !== id);
-	};
+	let { id, title, revenue, number, percent, hightlight, saving } = props;
 
 	let hideModal = true;
-
 	const toogleModal = () => (hideModal = !hideModal);
 
-	const editBtns = [
-		{ icon: "delete", style: "tertiary", onClick: deleteRow },
-		{ icon: "highlight", style: "tertiary", onClick: toogleHightlight },
+	const onClick = () => console.log("click");
+
+	const changeName = () => details.change(id, "title", title);
+	const changeNumber = () => details.change(id, "number", number);
+	const changeHigh = () => details.change(id, "hightlight", hightlight);
+
+	const remove = () => details.remove(id);
+	const toogleHigh = () => {
+		hightlight = !hightlight;
+		changeHigh();
+	};
+
+	const btns = [
+		{ icon: "delete", style: "tertiary", onClick: remove },
+		{ icon: "highlight", style: "tertiary", onClick: toogleHigh },
 		{ icon: "saving", style: "tertiary", onClick: toogleModal },
 	];
 </script>
 
+<ModalSavings {hideModal} {title} />
+
 <div class="w-64 m-3 relative" class:hightlight>
 	{#if edit}
-		<input class="title w-64" bind:value={row.title} type="text" />
+		<input
+			name="title"
+			on:change={changeName}
+			bind:value={title}
+			class="title w-64"
+			type="text"
+		/>
 
 		<div class="data">
-			<input bind:value={row.number} type="number" />
+			<input
+				name="number"
+				on:change={changeNumber}
+				bind:value={number}
+				type="number"
+			/>
 			<ChartLine />
 			<p class="percent">{percent}</p>
 		</div>
 		<div class=" flex flex-row float-right">
-			{#each editBtns as props}
+			{#each btns as btn}
 				<div>
-					<Button {props} />
+					<Button props={btn} />
 				</div>
 			{/each}
 		</div>
@@ -67,8 +81,6 @@
 		<h3 class="mt-1 revenue text-sm">Rentabilidad: {format(revenue)}</h3>
 	{/if}
 </div>
-
-<Modal {hideModal} {title} />
 
 <style>
 	/* Chrome, Safari, Edge, Opera */

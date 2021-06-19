@@ -49,12 +49,9 @@
 		border-radius: 50%;
 	}
 
-	.selected:hover {
-		display: none;
-	}
 	.selected__icon,
 	.tertiary:hover,
-	.secondary:hover {
+	.modal:hover {
 		filter: var(--filter);
 	}
 </style>

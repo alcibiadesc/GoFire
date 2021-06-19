@@ -1,7 +1,7 @@
 <script>
 	import Home from "./lib/pages/Home.svelte";
 	import User from "./lib/pages/User.svelte";
-	import FooterMenu from "./lib/components/FooterMenu.svelte";
+	import Menu from "./lib/components/Menu.svelte";
 	import Settings from "./lib/pages/Settings.svelte";
 	import Navbar from "./lib/components/Navbar.svelte";
 	let current = "home";
@@ -15,4 +15,4 @@
 
 <Navbar />
 <svelte:component this={page} />
-<FooterMenu {current} {selectedBtn} />
+<Menu {current} {selectedBtn} />
