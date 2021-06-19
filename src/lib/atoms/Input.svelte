@@ -1,7 +1,6 @@
 <script>
 	export let icon = "menu";
 	export let style = "primary";
-	import { formatBasic } from "./../../scripts";
 	export let placeholder = "0€";
 	export let value = "";
 	export let label = "";
@@ -12,35 +11,57 @@
 	<h3 class="mt-8 mb-1">
 		{label}
 	</h3>
-	<input
-		bind:value
-		type="number"
-		class="input__{style} inp-icon"
-		{placeholder}
-	/>
+
+	{#if type === "number"}
+		<input
+			bind:value
+			type="number"
+			class="input__{style} inp-icon"
+			{placeholder}
+		/>
+	{:else if type === "date"}
+		<input bind:value type="date" class="input__{style}" {placeholder} />
+	{:else if type === "text"}
+		<input
+			bind:value
+			type="text"
+			class="input__{style} inp-icon"
+			{placeholder}
+		/>
+	{/if}
 </div>
 
 <style>
 	div {
 		margin-top: 2rem;
 	}
+	.inp-icon {
+		background: url(icons/goal.svg) no-repeat 90%;
+		background-size: 26px;
+		background-color: var(--background__input);
+	}
+
 	.input__primary {
 		height: 2rem;
 		padding: 1rem;
 		border-radius: 15px;
+		width: 12rem;
 	}
 
 	input,
 	textarea {
 		color: var(--primary);
+		background-color: var(--background__input);
 	}
 
-	.inp-icon {
-		background: url(icons/goal.svg) no-repeat 98%;
-		background-size: 26px;
-		background-color: #656565;
+	input[type="date"]::-webkit-calendar-picker-indicator {
+		filter: invert(1);
+		opacity: 0.8;
 	}
 
+	input[type="date"]::-webkit-calendar-picker-indicator:hover {
+		opacity: 1;
+	}
 	input::-webkit-outer-spin-button,
 	input::-webkit-inner-spin-button {
 		-webkit-appearance: none;

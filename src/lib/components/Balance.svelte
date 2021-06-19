@@ -4,7 +4,7 @@
 	import Card from "../atoms/Card.svelte";
 	let name = "crack";
 
-	export let balance = 0;
+	export let balance = 100;
 	export let goal = 100_000;
 	let road = goal - balance;
 </script>

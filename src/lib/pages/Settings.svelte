@@ -3,16 +3,16 @@
 	import Card from "../atoms/Card.svelte";
 	import Input from "../atoms/Input.svelte";
 	import Grid from "../organisms/Grid.svelte";
-	import { data, details } from "./../../stores/data.js";
+	import { goal, details } from "./../../stores/data.js";
 </script>
 
 <Card>
 	<h1>Opciones</h1>
-	<h3>Aquí puedes configurar tu perfil</h3>
-	<Input label="Objetivo" type="number" bind:value={$data.goal} />
+	<h3>Configura tus fuentes de ingresos</h3>
+	<Input label="Objetivo" type="number" bind:value={$goal} />
 </Card>
 
-<div class="mb-8">
+<div>
 	<Button on:click={details.add} props={{ icon: "add", style: "secondary" }} />
 </div>
 

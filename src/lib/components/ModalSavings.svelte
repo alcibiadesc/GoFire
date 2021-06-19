@@ -2,11 +2,12 @@
 	import Modal from "./../atoms/Modal.svelte";
 	import { today } from "./../../scripts.js";
 	export let hideModal = true;
-	export let onClick = () => console.log("click");
+	export let onClick;
 
 	import Input from "./../atoms/Input.svelte";
 	import Button from "./../atoms/Button.svelte";
 	export let title = "Title";
+	export let id = "0";
 
 	let amount = 0;
 	const toogleModal = () => (hideModal = !hideModal);
@@ -15,7 +16,7 @@
 		style: "modal",
 		onClick: () => {
 			toogleModal();
-			onClick(today, amount);
+			onClick(id, today, amount);
 		},
 	};
 
@@ -23,11 +24,11 @@
 </script>
 
 <Modal {hideModal}>
-	<h1 class="noselect">{title}</h1>
-	<Input bind:value={amount} label="añade la cantidad" />
-	<input bind:value={date} class="my-5" type="date" />
+	<h1 class="noselect text-2xl">{title}</h1>
+	<Input bind:value={amount} label="añade la cantidad" type="number" />
+	<Input bind:value={date} label="¿Cuándo añadiste los fondos?" type="date" />
 
-	<div class="btn--save">
+	<div class="btn--save mt-9">
 		<Button props={btnSave} />
 	</div>
 </Modal>
@@ -37,7 +38,7 @@
 		border-radius: 50px;
 		text-align: center;
 		font-size: 1rem;
-		background: var(--background);
+		background: var(--background__input);
 		color: var(--primary);
 	}
 
