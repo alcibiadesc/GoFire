@@ -7,11 +7,13 @@
 	export let balance = 100;
 	export let goal = 100_000;
 	let road = goal - balance;
+
+	let name = $user.name ? $user.name.split(" ")[0] : "crack";
 </script>
 
 <Card>
 	<h1>
-		{`Hola ${$user.name}`}
+		Hola {name}
 	</h1>
 	<h3>Bienvenido de nuevo</h3>
 

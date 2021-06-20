@@ -4,22 +4,18 @@ import { v4 as uuidv4 } from "uuid";
 
 // User Profile
 
-const STORE_PREFIX = "user_";
-const userProfile = localStorage.getItem(`${STORE_PREFIX}items`);
+const STORE_PREFIX_USER = "user_";
+const userProfile = localStorage.getItem(`${STORE_PREFIX_USER}items`);
 
 const user = writable(
-	JSON.parse(userProfile) || { name: "Crack", img: "icons/user.svg" }
+	JSON.parse(userProfile) || { name: "", img: "icons/user.svg", uid: "" }
 );
 
 user.subscribe((value) => {
 	if (userProfile !== value) {
-		localStorage.setItem(`${STORE_PREFIX}items`, JSON.stringify(value));
+		localStorage.setItem(`${STORE_PREFIX_USER}items`, JSON.stringify(value));
 	}
 });
-
-export const reset = () => {
-	user.set({ name: "Crack", img: "icons/user.svg" });
-};
 
 // Data
 let template = {
@@ -31,25 +27,11 @@ let template = {
 	saving: [],
 };
 
+const STORE_PREFIX_DETAILS = "details_";
+const detailsItems = localStorage.getItem(`${STORE_PREFIX_DETAILS}items`);
+
 const createDetails = () => {
-	const { subscribe, update, set } = writable([
-		{
-			id: "78907323-3151-4439-b9b1-6653b4cd84c1",
-			title: "Criptos",
-			number: 2_000,
-			percent: 0,
-			hightlight: false,
-			saving: [],
-		},
-		{
-			id: "78907698-3151-4439-b9b1-6653b4cd84c1",
-			title: "ETF + Plan de Pensiones",
-			number: 3_000,
-			percent: 0,
-			hightlight: false,
-			saving: [],
-		},
-	]);
+	const { subscribe, update, set } = writable(JSON.parse(detailsItems) || []);
 
 	const getArray = () => {
 		let array = [];
@@ -102,7 +84,19 @@ const createDetails = () => {
 	};
 };
 
-const goal = writable(100_000);
 const details = createDetails();
 
-export { details, goal, user };
+details.subscribe((value) => {
+	if (detailsItems !== value) {
+		localStorage.setItem(`${STORE_PREFIX_DETAILS}items`, JSON.stringify(value));
+	}
+});
+
+const goal = writable(100_000);
+
+const reset = () => {
+	user.set({ name: "Crack", img: "icons/user.svg" });
+	details.set([]);
+};
+
+export { details, goal, user, reset };

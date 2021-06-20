@@ -1,10 +1,11 @@
 <script>
-	import { actionSignOut } from "./../../firebase.js";
+	import { actionSignOut, signIn } from "./../../firebase.js";
 	import Button from "./../atoms/Button.svelte";
 	import Card from "./../atoms/Card.svelte";
 	import Tooltip from "./../atoms/Tooltip.svelte";
+	import { user } from "./../../stores/data.js";
 
-	const buttons = [
+	const btnsLogin = [
 		{
 			name: "SignOut",
 			label: "Cerrar sesión",
@@ -13,14 +14,33 @@
 			onClick: actionSignOut,
 		},
 	];
+
+	const btnSignin = {
+		icon: "login",
+		style: "primary",
+		onClick: signIn,
+	};
 </script>
 
 <Card>
-	{#each buttons as { label, icon, style, onClick, name } (name)}
+	{#if $user.uid}
+		<img class="mx-auto rounded-lg" src={$user.img} alt="user" />
+		<div class="my-8">
+			<h2>{$user.name}</h2>
+			<h3>uid: {$user.uid}</h3>
+		</div>
+		{#each btnsLogin as { label, icon, style, onClick, name } (name)}
+			<div class="m-2 flex flex-col">
+				<Tooltip {label}>
+					<Button props={{ icon, style, onClick }} />
+				</Tooltip>
+			</div>
+		{/each}
+	{:else}
 		<div class="m-2 flex flex-col">
-			<Tooltip {label}>
-				<Button props={{ icon, style, onClick }} />
+			<Tooltip label="Iniciar sesión">
+				<Button props={btnSignin} />
 			</Tooltip>
 		</div>
-	{/each}
+	{/if}
 </Card>

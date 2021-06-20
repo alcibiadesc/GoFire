@@ -29,11 +29,11 @@ const provider = new GoogleAuthProvider();
 
 const auth = getAuth();
 
-export const signIn = () => signInWithRedirect(auth, provider);
+const signIn = () => signInWithRedirect(auth, provider);
 
 let userStore = user;
 
-export const getToken = () =>
+const getToken = () =>
 	getRedirectResult(auth)
 		.then((result) => {
 			// This gives you a Google Access Token. You can use it to access Google APIs.
@@ -45,8 +45,9 @@ export const getToken = () =>
 
 			// send data to the store
 			let userData = {
-				name: user.displayName.split(" ")[0],
+				name: user.displayName,
 				img: user.photoURL,
+				uid: user.uid,
 			};
 			userStore.set(userData);
 		})
@@ -61,7 +62,7 @@ export const getToken = () =>
 			// ...
 		});
 
-export const actionSignOut = () =>
+const actionSignOut = () =>
 	signOut(auth)
 		.then(() => {
 			// Sign-out successful.
@@ -72,3 +73,5 @@ export const actionSignOut = () =>
 		.catch((error) => {
 			// An error happened.
 		});
+
+export { actionSignOut, signIn, getToken };
