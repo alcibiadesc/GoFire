@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { user } from "./stores/data";
+import { user, reset } from "./stores/data";
 
 import {
 	GoogleAuthProvider,
@@ -23,6 +23,8 @@ const firebaseConfig = {
 };
 
 const firebaseApp = initializeApp(firebaseConfig);
+
+// AUTH
 const provider = new GoogleAuthProvider();
 
 const auth = getAuth();
@@ -64,6 +66,8 @@ export const actionSignOut = () =>
 		.then(() => {
 			// Sign-out successful.
 			console.log("Sign-out successful");
+			reset();
+			location.reload();
 		})
 		.catch((error) => {
 			// An error happened.

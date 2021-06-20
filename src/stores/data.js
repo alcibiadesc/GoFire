@@ -2,8 +2,26 @@ import { writable } from "svelte/store";
 
 import { v4 as uuidv4 } from "uuid";
 
-const user = writable({ name: "Crack", img: "icons/user.svg" });
+// User Profile
 
+const STORE_PREFIX = "user_";
+const userProfile = localStorage.getItem(`${STORE_PREFIX}items`);
+
+const user = writable(
+	JSON.parse(userProfile) || { name: "Crack", img: "icons/user.svg" }
+);
+
+user.subscribe((value) => {
+	if (userProfile !== value) {
+		localStorage.setItem(`${STORE_PREFIX}items`, JSON.stringify(value));
+	}
+});
+
+export const reset = () => {
+	user.set({ name: "Crack", img: "icons/user.svg" });
+};
+
+// Data
 let template = {
 	title: "Título",
 	number: 0,
