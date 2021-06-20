@@ -1,8 +1,26 @@
 import { writable } from "svelte/store";
 import { v4 as uuidv4 } from "uuid";
 import { db } from "./../firebase.js";
+import { doc, setDoc, addDoc, collection } from "firebase/firestore";
 
 // Test
+
+const test = async () => {
+	try {
+		const docRef = await setDoc(doc(db, "details", "la"), {
+			first: "Alan",
+			middle: "Mathison",
+			last: "Turing",
+			born: 1912,
+		});
+
+		console.log("Document written");
+	} catch (error) {
+		console.error("Error adding document: ", error);
+	}
+};
+
+test();
 
 // User Profile
 
