@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { user, reset } from "./stores/data";
+import { getFirestore } from "firebase/firestore";
 
 import {
 	GoogleAuthProvider,
@@ -72,4 +73,5 @@ const actionSignOut = () =>
 			// An error happened.
 		});
 
-export { actionSignOut, signIn, getToken };
+const db = getFirestore();
+export { actionSignOut, signIn, getToken, db };
