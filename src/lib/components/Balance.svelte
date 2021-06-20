@@ -2,7 +2,7 @@
 	import { format } from "./../../scripts.js";
 	import Goal from "./../atoms/Goal.svelte";
 	import Card from "../atoms/Card.svelte";
-	import { user } from "./../../stores/data.js";
+	import { user } from "./../../stores/user.js";
 
 	export let balance = 100;
 	export let goal = 100_000;

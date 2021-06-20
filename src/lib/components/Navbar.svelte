@@ -1,6 +1,6 @@
 <script>
 	import Button from "../atoms/Button.svelte";
-	import { user } from "../../stores/data.js";
+	import { user } from "../../stores/user.js";
 	import { signIn, getToken } from "./../../firebase.js";
 	import Avatar from "./../atoms/Avatar.svelte";
 	const buttom = {

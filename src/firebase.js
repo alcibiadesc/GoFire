@@ -1,6 +1,12 @@
 import { initializeApp } from "firebase/app";
-import { user, reset } from "./stores/data";
+import { user, userReset } from "./stores/user.js";
+import { goalReset } from "./stores/goal.js";
 import { getFirestore, doc, setDoc } from "firebase/firestore";
+
+const reset = () => {
+	goalReset();
+	userReset();
+};
 
 import {
 	GoogleAuthProvider,

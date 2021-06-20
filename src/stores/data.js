@@ -1,32 +1,8 @@
 import { writable } from "svelte/store";
 import { v4 as uuidv4 } from "uuid";
 import { db } from "./../firebase.js";
-import { doc, setDoc, addDoc, collection } from "firebase/firestore";
-
-// Test
-
-let uid = "";
-
-// User Profile
-
-const STORE_PREFIX_USER = "user_";
-const userProfile = localStorage.getItem(`${STORE_PREFIX_USER}items`);
-
-const user = writable(
-	JSON.parse(userProfile) || {
-		name: "",
-		img: "icons/user.svg",
-		uid: "",
-		email: "",
-	}
-);
-
-user.subscribe((value) => {
-	if (userProfile !== value) {
-		localStorage.setItem(`${STORE_PREFIX_USER}items`, JSON.stringify(value));
-		uid = value.uid;
-	}
-});
+import { doc, setDoc, addDoc, collection, getDoc } from "firebase/firestore";
+import { user, uid } from "./user";
 
 // Data
 let template = {
@@ -40,7 +16,6 @@ let template = {
 
 const STORE_PREFIX_DETAILS = "details_";
 const detailsItems = localStorage.getItem(`${STORE_PREFIX_DETAILS}items`);
-
 const createDetails = () => {
 	const { subscribe, update, set } = writable(JSON.parse(detailsItems) || []);
 
@@ -83,9 +58,9 @@ const createDetails = () => {
 	};
 	//
 
-	const test = async (array) => {
+	const updateBBDD = async (array) => {
 		try {
-			await addDoc(collection(db, "users"), array[0]);
+			await setDoc(doc(db, "details", uid), { array });
 
 			console.log("Document written");
 		} catch (e) {
@@ -94,8 +69,7 @@ const createDetails = () => {
 	};
 
 	subscribe((arr) => {
-		console.log(arr);
-		test(arr);
+		updateBBDD(arr);
 	});
 
 	return {
@@ -119,11 +93,8 @@ details.subscribe((value) => {
 	}
 });
 
-const goal = writable(100_000);
-
 const reset = () => {
-	user.set({ name: "Crack", img: "icons/user.svg" });
 	details.set([]);
 };
 
-export { details, goal, user, reset };
+export { details, reset };

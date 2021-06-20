@@ -3,7 +3,8 @@
 	import Card from "../atoms/Card.svelte";
 	import Input from "../atoms/Input.svelte";
 	import Grid from "../organisms/Grid.svelte";
-	import { goal, details } from "./../../stores/data.js";
+	import { details } from "./../../stores/data.js";
+	import { goal } from "./../../stores/goal.js";
 </script>
 
 <Card>

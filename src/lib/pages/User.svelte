@@ -3,7 +3,7 @@
 	import Button from "./../atoms/Button.svelte";
 	import Card from "./../atoms/Card.svelte";
 	import Tooltip from "./../atoms/Tooltip.svelte";
-	import { user } from "./../../stores/data.js";
+	import { user } from "./../../stores/user.js";
 
 	const btnsLogin = [
 		{
