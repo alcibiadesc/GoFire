@@ -5,22 +5,7 @@ import { doc, setDoc, addDoc, collection } from "firebase/firestore";
 
 // Test
 
-const test = async () => {
-	try {
-		const docRef = await setDoc(doc(db, "details", "la"), {
-			first: "Alan",
-			middle: "Mathison",
-			last: "Turing",
-			born: 1912,
-		});
-
-		console.log("Document written");
-	} catch (error) {
-		console.error("Error adding document: ", error);
-	}
-};
-
-test();
+let uid = "";
 
 // User Profile
 
@@ -39,6 +24,7 @@ const user = writable(
 user.subscribe((value) => {
 	if (userProfile !== value) {
 		localStorage.setItem(`${STORE_PREFIX_USER}items`, JSON.stringify(value));
+		uid = value.uid;
 	}
 });
 
@@ -95,6 +81,22 @@ const createDetails = () => {
 		);
 		set(array);
 	};
+	//
+
+	const test = async (array) => {
+		try {
+			await addDoc(collection(db, "users"), array[0]);
+
+			console.log("Document written");
+		} catch (e) {
+			console.error("Error adding document: ", e);
+		}
+	};
+
+	subscribe((arr) => {
+		console.log(arr);
+		test(arr);
+	});
 
 	return {
 		subscribe,
