@@ -9,9 +9,6 @@ import {
 	signOut,
 } from "firebase/auth";
 
-import "firebase/analytics";
-import "firebase/auth";
-
 const firebaseConfig = {
 	apiKey: "AIzaSyDWiDgqYUOUq1tsA8C5zY3eJR170KRa3qA",
 	authDomain: "finanzas-cfeb0.firebaseapp.com",
