@@ -2,6 +2,8 @@ import { writable } from "svelte/store";
 
 import { v4 as uuidv4 } from "uuid";
 
+const user = writable({ name: "Crack", img: "icons/user.svg" });
+
 let template = {
 	title: "Título",
 	number: 0,
@@ -52,7 +54,6 @@ const createDetails = () => {
 			ele.saving.map((m) => (arrayBalance = [...arrayBalance, m.amount]))
 		);
 		let result = arrayBalance.reduce((acc, crt) => acc + crt, 0);
-		console.log(result);
 		return result;
 	};
 
@@ -86,4 +87,4 @@ const createDetails = () => {
 const goal = writable(100_000);
 const details = createDetails();
 
-export { details, goal };
+export { details, goal, user };

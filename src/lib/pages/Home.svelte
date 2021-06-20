@@ -9,6 +9,5 @@
 </script>
 
 <Balance goal={$goal} {balance} />
-
 <Revenue {revenue} />
 <Grid />

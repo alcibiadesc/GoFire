@@ -2,7 +2,7 @@
 	import { format } from "./../../scripts.js";
 	import Goal from "./../atoms/Goal.svelte";
 	import Card from "../atoms/Card.svelte";
-	let name = "crack";
+	import { user } from "./../../stores/data.js";
 
 	export let balance = 100;
 	export let goal = 100_000;
@@ -11,7 +11,7 @@
 
 <Card>
 	<h1>
-		{`Hola ${name}`}
+		{`Hola ${$user.name}`}
 	</h1>
 	<h3>Bienvenido de nuevo</h3>
 
