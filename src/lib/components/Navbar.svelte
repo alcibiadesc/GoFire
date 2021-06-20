@@ -8,7 +8,7 @@
 		style: "primary",
 	};
 
-	getToken();
+	getToken(user);
 </script>
 
 <div class="w-screen p-8">

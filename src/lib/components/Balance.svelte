@@ -8,7 +8,7 @@
 	export let goal = 100_000;
 	let road = goal - balance;
 
-	let name = $user.name ? $user.name.split(" ")[0] : "crack";
+	$: name = $user.name ? $user.name.split(" ")[0] : "crack";
 </script>
 
 <Card>

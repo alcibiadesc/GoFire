@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { user, reset } from "./stores/data";
-import { getFirestore } from "firebase/firestore";
+import { getFirestore, doc, setDoc } from "firebase/firestore";
 
 import {
 	GoogleAuthProvider,
@@ -29,9 +29,7 @@ const auth = getAuth();
 
 const signIn = () => signInWithRedirect(auth, provider);
 
-let userStore = user;
-
-const getToken = () =>
+const getToken = (userStore) =>
 	getRedirectResult(auth)
 		.then((result) => {
 			// This gives you a Google Access Token. You can use it to access Google APIs.
@@ -73,5 +71,8 @@ const actionSignOut = () =>
 			// An error happened.
 		});
 
+//STORE
 const db = getFirestore();
+
+//
 export { actionSignOut, signIn, getToken, db };

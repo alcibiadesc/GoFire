@@ -1,5 +1,8 @@
 import { writable } from "svelte/store";
 import { v4 as uuidv4 } from "uuid";
+import { db } from "./../firebase.js";
+
+// Test
 
 // User Profile
 
