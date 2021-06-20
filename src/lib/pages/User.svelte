@@ -27,6 +27,7 @@
 		<img class="mx-auto rounded-lg" src={$user.img} alt="user" />
 		<div class="my-8">
 			<h2>{$user.name}</h2>
+			<h2>{$user.email}</h2>
 			<h3>uid: {$user.uid}</h3>
 		</div>
 		{#each btnsLogin as { label, icon, style, onClick, name } (name)}

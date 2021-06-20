@@ -8,7 +8,12 @@ const STORE_PREFIX_USER = "user_";
 const userProfile = localStorage.getItem(`${STORE_PREFIX_USER}items`);
 
 const user = writable(
-	JSON.parse(userProfile) || { name: "", img: "icons/user.svg", uid: "" }
+	JSON.parse(userProfile) || {
+		name: "",
+		img: "icons/user.svg",
+		uid: "",
+		email: "",
+	}
 );
 
 user.subscribe((value) => {

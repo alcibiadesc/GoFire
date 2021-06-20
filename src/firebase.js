@@ -48,6 +48,7 @@ const getToken = () =>
 				name: user.displayName,
 				img: user.photoURL,
 				uid: user.uid,
+				email: user.email,
 			};
 			userStore.set(userData);
 		})
