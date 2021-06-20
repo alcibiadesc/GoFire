@@ -6,6 +6,7 @@ import {
 	getAuth,
 	signInWithRedirect,
 	getRedirectResult,
+	signOut,
 } from "firebase/auth";
 
 import "firebase/analytics";
@@ -39,9 +40,8 @@ export const getToken = () =>
 
 			// The signed-in user info.
 			const user = result.user;
-			console.log(user);
-			console.log(user.displayName);
 
+			// send data to the store
 			let userData = {
 				name: user.displayName.split(" ")[0],
 				img: user.photoURL,
@@ -57,4 +57,14 @@ export const getToken = () =>
 			// The AuthCredential type that was used.
 			const credential = GoogleAuthProvider.credentialFromError(error);
 			// ...
+		});
+
+export const actionSignOut = () =>
+	signOut(auth)
+		.then(() => {
+			// Sign-out successful.
+			console.log("Sign-out successful");
+		})
+		.catch((error) => {
+			// An error happened.
 		});
