@@ -1,8 +1,8 @@
 import { writable } from "svelte/store";
 import { v4 as uuidv4 } from "uuid";
-import { db } from "./../firebase.js";
+import { db } from "./../firebase-firestore.js";
 import { doc, setDoc, addDoc, collection, getDoc } from "firebase/firestore";
-import { user, uid } from "./user";
+import { user, uid } from "./user.js";
 
 // Data
 let template = {

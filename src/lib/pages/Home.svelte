@@ -5,7 +5,7 @@
 	import { goal } from "./../../stores/goal.js";
 	import { details } from "./../../stores/data.js";
 
-	$: balance = details.balance();
+	let balance = details.balance();
 	let revenue = details.balance() - details.revenue();
 </script>
 

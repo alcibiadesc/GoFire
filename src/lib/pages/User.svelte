@@ -1,5 +1,5 @@
 <script>
-	import { actionSignOut, signIn } from "./../../firebase.js";
+	import { actionSignOut, signIn } from "./../../firebase-auth.js";
 	import Button from "./../atoms/Button.svelte";
 	import Card from "./../atoms/Card.svelte";
 	import Tooltip from "./../atoms/Tooltip.svelte";
@@ -11,7 +11,7 @@
 			label: "Cerrar sesión",
 			icon: "logout",
 			style: "primary",
-			onClick: actionSignOut,
+			onClick: () => actionSignOut,
 		},
 	];
 
