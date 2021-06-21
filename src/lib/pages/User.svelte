@@ -11,7 +11,7 @@
 			label: "Cerrar sesión",
 			icon: "logout",
 			style: "primary",
-			onClick: () => actionSignOut,
+			onClick: actionSignOut,
 		},
 	];
 
