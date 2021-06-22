@@ -38,6 +38,7 @@
 			</div>
 		{/each}
 	{:else}
+		<h2 class="text-center">Haz click para iniciar sesión</h2>
 		<div class="m-2 flex flex-col">
 			<Tooltip label="Iniciar sesión">
 				<Button props={btnSignin} />

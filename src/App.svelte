@@ -5,6 +5,7 @@
 	import Settings from "./lib/pages/Settings.svelte";
 	import Navbar from "./lib/components/Navbar.svelte";
 	let current = "home";
+
 	const selectedBtn = (icon) => {
 		current = icon;
 	};
