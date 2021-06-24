@@ -15,7 +15,10 @@
 	<div on:click={signIn} class="float-right">
 		<Avatar img={$user.img} />
 	</div>
+
+	<!--
 	<div class="float-left">
 		<Button props={buttom} />
 	</div>
+	-->
 </div>
