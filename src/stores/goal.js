@@ -27,12 +27,12 @@ const getGoal = () => {
 	if (docSnap.exists()) {
 		goal.set(docSnap.data().goal);
 	} else {
-		// doc.data() will be undefined in this case
 		console.log("No such document!");
 	}
 };
 
 const setGoal = collection(db, "goal");
+
 const refreshGoal = async (goal) => {
 	await setDoc(doc(setGoal, uidGoal), { goal });
 };
@@ -40,5 +40,4 @@ const refreshGoal = async (goal) => {
 goal.subscribe((goal) => {
 	refreshGoal(goal);
 });
-
 export { goal, resetGoal, getGoal };

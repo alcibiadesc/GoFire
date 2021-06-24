@@ -2,9 +2,9 @@ import { writable } from "svelte/store";
 import { v4 as uuidv4 } from "uuid";
 import { db } from "./../firebase-firestore.js";
 import { doc, setDoc, addDoc, collection, getDoc } from "firebase/firestore";
-import { user, uid } from "./user.js";
+import { user } from "./user.js";
+import { uid } from "./uid.js";
 
-// Data
 let template = {
 	title: "Título",
 	number: 0,
@@ -57,20 +57,6 @@ const createDetails = () => {
 		set(array);
 	};
 	//
-
-	const updateBBDD = async (array) => {
-		try {
-			await setDoc(doc(db, "details", uid), { array });
-
-			console.log("Document written");
-		} catch (e) {
-			console.error("Error adding document: ", e);
-		}
-	};
-
-	subscribe((arr) => {
-		updateBBDD(arr);
-	});
 
 	return {
 		subscribe,

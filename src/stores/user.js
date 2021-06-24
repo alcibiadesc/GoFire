@@ -20,4 +20,4 @@ user.subscribe((value) => {
 
 const resetUser = () => user.set({ name: "Crack", img: "icons/user.svg" });
 
-export { user, resetUser, uid };
+export { user, resetUser };
