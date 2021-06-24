@@ -4,6 +4,7 @@
 	import Card from "./../atoms/Card.svelte";
 	import Tooltip from "./../atoms/Tooltip.svelte";
 	import { user } from "./../../stores/user.js";
+	import { uid } from "./../../stores/uid.js";
 
 	const btnsLogin = [
 		{
@@ -28,7 +29,7 @@
 		<div class="my-8">
 			<h2>{$user.name}</h2>
 			<h2>{$user.email}</h2>
-			<h3>uid: {$user.uid}</h3>
+			<h3>uid: {$uid}</h3>
 		</div>
 		{#each btnsLogin as { label, icon, style, onClick, name } (name)}
 			<div class="m-2 flex flex-col">

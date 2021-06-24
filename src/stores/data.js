@@ -93,8 +93,8 @@ details.subscribe((value) => {
 	}
 });
 
-const reset = () => {
+const resetData = () => {
 	details.set([]);
 };
 
-export { details, reset };
+export { details, resetData };

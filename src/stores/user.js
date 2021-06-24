@@ -7,7 +7,6 @@ const user = writable(
 	JSON.parse(userProfile) || {
 		name: "",
 		img: "icons/user.svg",
-		uid: "",
 		email: "",
 	}
 );
@@ -19,6 +18,6 @@ user.subscribe((value) => {
 	}
 });
 
-const userReset = () => user.set({ name: "Crack", img: "icons/user.svg" });
+const resetUser = () => user.set({ name: "Crack", img: "icons/user.svg" });
 
-export { user, userReset, uid };
+export { user, resetUser, uid };

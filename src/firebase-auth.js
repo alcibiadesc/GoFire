@@ -6,10 +6,19 @@ import {
 	getRedirectResult,
 	signOut,
 } from "firebase/auth";
-import { user, userReset } from "./stores/user.js";
+import { user, resetUser } from "./stores/user.js";
+import { resetGoal, getGoal } from "./stores/goal.js";
+import { resetData } from "./stores/data.js";
+import { uid } from "./stores/uid.js";
 
 const reset = () => {
-	userReset();
+	resetUser();
+	resetGoal();
+	resetData();
+};
+
+const get = () => {
+	getGoal();
 };
 
 const provider = new GoogleAuthProvider();
@@ -32,10 +41,11 @@ const getToken = (userStore) =>
 			let userData = {
 				name: user.displayName,
 				img: user.photoURL,
-				uid: user.uid,
 				email: user.email,
 			};
 			userStore.set(userData);
+			uid.set(user.uid);
+			get();
 		})
 		.catch((error) => {
 			// Handle Errors here.
