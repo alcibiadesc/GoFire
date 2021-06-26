@@ -10,7 +10,7 @@
 	data.subscribe((val) => {
 		if (val) {
 			balance = data.balance();
-			revenue = data.balance() - data.revenue();
+			revenue = data.balance() - data.revenue() - data.detectNoSavings();
 		}
 	});
 </script>

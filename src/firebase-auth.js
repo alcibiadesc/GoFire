@@ -36,13 +36,13 @@ const get = (uid) => {
 
 onAuthStateChanged(auth, (user) => {
 	if (user) {
-		console.log("you are logged");
+		console.log("👌 you are logged 👌");
 		profile(user);
 		get(user.uid);
 		goal.subscribe((value) => setData("goal", user.uid, value));
 		data.subscribe((value) => setData("data", user.uid, value));
 	} else {
-		console.log("you are not logged");
+		console.log("👋 you are not logged 👋");
 		reset();
 	}
 });

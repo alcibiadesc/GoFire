@@ -42,7 +42,13 @@
 	$: revenue = number - getSaving;
 </script>
 
-<ModalSavings {hideModal} {title} {id} onClick={data.saving} />
+<ModalSavings
+	{hideModal}
+	{title}
+	{id}
+	onClick={data.saving}
+	savings={props.saving}
+/>
 
 <div class="w-64 m-3 relative" class:hightlight>
 	{#if edit}

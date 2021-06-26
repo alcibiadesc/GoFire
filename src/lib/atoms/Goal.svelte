@@ -4,7 +4,7 @@
 	export let road = 0;
 	export let balance = 0;
 
-	let checkGoal = () => goal > balance;
+	$: checkGoal = () => goal > balance;
 </script>
 
 <div class="goal  float-right bg-red-500 p-5 ">

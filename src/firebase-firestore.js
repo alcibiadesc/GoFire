@@ -16,7 +16,6 @@ const getData = async (collectName, uid) => {
 	let result = "";
 	if (docSnap.exists()) {
 		result = docSnap.data();
-		console.log(result);
 	} else {
 		console.log("No such document!");
 	}

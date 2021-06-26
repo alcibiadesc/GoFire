@@ -5,9 +5,8 @@
 	import { user } from "./../../stores/user.js";
 	import { goal } from "./../../stores/goal.js";
 
-	export let balance = 100;
-	let road = $goal - balance;
-
+	export let balance = 0;
+	$: road = $goal - balance;
 	$: name = $user.displayName ? $user.displayName.split(" ")[0] : "crack";
 </script>
 

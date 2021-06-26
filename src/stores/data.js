@@ -36,12 +36,7 @@ const createData = () => {
 			ele.saving.map((m) => (arrayBalance = [...arrayBalance, m.amount]))
 		);
 		let result = arrayBalance.reduce((acc, crt) => acc + crt, 0);
-		return result;
-	};
 
-	const balance = () => {
-		let array = getArray();
-		let result = array.reduce((acc, crt) => acc + crt.number, 0);
 		return result;
 	};
 
@@ -51,6 +46,24 @@ const createData = () => {
 			ele.id === id ? (ele.saving = [...ele.saving, { today, amount }]) : ""
 		);
 		set(array);
+	};
+
+	const balance = () => {
+		let array = getArray();
+		let result = array.reduce((acc, crt) => acc + crt.number, 0);
+		return result;
+	};
+
+	const detectNoSavings = () => {
+		let array = getArray();
+		let arrayMerge = [];
+
+		array.map((ele) =>
+			ele.saving.length === 0 ? (arrayMerge = [...arrayMerge, ele.number]) : ""
+		);
+
+		let result = arrayMerge.reduce((acc, crt) => acc + crt, 0);
+		return result;
 	};
 	//
 
@@ -64,6 +77,7 @@ const createData = () => {
 		balance,
 		saving,
 		revenue,
+		detectNoSavings,
 	};
 };
 
