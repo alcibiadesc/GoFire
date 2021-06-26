@@ -42,8 +42,11 @@ const createData = () => {
 
 	const saving = (id, today, amount) => {
 		let array = getArray();
+		let id_saving = uuidv4();
 		array.map((ele) =>
-			ele.id === id ? (ele.saving = [...ele.saving, { today, amount }]) : ""
+			ele.id === id
+				? (ele.saving = [...ele.saving, { id_saving, today, amount }])
+				: ""
 		);
 		set(array);
 	};
@@ -65,7 +68,16 @@ const createData = () => {
 		let result = arrayMerge.reduce((acc, crt) => acc + crt, 0);
 		return result;
 	};
-	//
+
+	const removeSaving = (id, id_saving) => {
+		let array = getArray();
+		let thisArray = array.filter((m) => m.id === id);
+		let newArr = thisArray[0].saving.filter((x) => x.id_saving != id_saving);
+
+		update((ele) =>
+			ele.map((n) => (n.id == id ? { ...n, saving: newArr } : n))
+		);
+	};
 
 	return {
 		subscribe,
@@ -78,6 +90,7 @@ const createData = () => {
 		saving,
 		revenue,
 		detectNoSavings,
+		removeSaving,
 	};
 };
 

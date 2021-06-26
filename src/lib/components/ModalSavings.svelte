@@ -4,6 +4,7 @@
 	export let hideModal = true;
 	export let save = () => {};
 	export let savings = [];
+	export let removeSaving = () => {};
 
 	import Input from "./../atoms/Input.svelte";
 	import Button from "./../atoms/Button.svelte";
@@ -29,7 +30,6 @@
 			label: "Guardar Datos",
 			style: "modal",
 			onClick: () => {
-				toogleModal();
 				save(id, date, amount);
 			},
 		},
@@ -37,13 +37,11 @@
 
 	let date = today;
 
-	let savingsSorted = savings.sort((a, b) => {
-		a.today.split("-").join("");
-		b.today.split("-").join("");
-		return b + a;
+	$: savingsSorted = savings.sort((a, b) => {
+		a = a.today.split("-").join("");
+		b = b.today.split("-").join("");
+		return b - a;
 	});
-
-	console.log(savingsSorted);
 </script>
 
 <Modal {hideModal}>
@@ -61,7 +59,7 @@
 		</div>
 
 		<div class:hide={!historial} class="mt-20">
-			<Table savings={savingsSorted.reverse()} />
+			<Table savings={savingsSorted} {removeSaving} {id} />
 		</div>
 	{:else}
 		<div class="float-right  mt-5 flex flex-row">

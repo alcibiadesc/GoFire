@@ -2,8 +2,9 @@
 	import Button from "./Button.svelte";
 	import { formatBasic } from "./../../scripts.js";
 
+	export let removeSaving = () => {};
 	export let savings = [];
-	const btn = { icon: "delete", style: "tertiary" };
+	export let id = 0;
 </script>
 
 <table class="text-center w-full">
@@ -16,12 +17,18 @@
 	</thead>
 
 	<tbody>
-		{#each savings as { today, amount }}
+		{#each savings as { today, amount, id_saving }}
 			<tr>
 				<td> {today}</td>
 				<td> {formatBasic(amount)}</td>
 				<td>
-					<Button props={btn} />
+					<Button
+						props={{
+							icon: "delete",
+							style: "tertiary",
+							onClick: () => removeSaving(id, id_saving),
+						}}
+					/>
 				</td>
 			</tr>
 		{/each}

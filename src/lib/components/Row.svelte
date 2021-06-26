@@ -48,6 +48,7 @@
 	{id}
 	save={data.saving}
 	savings={props.saving}
+	removeSaving={data.removeSaving}
 />
 
 <div class="w-64 m-3 relative" class:hightlight>
