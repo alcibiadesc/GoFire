@@ -2,7 +2,7 @@
 	import Modal from "./../atoms/Modal.svelte";
 	import { today } from "./../../scripts.js";
 	export let hideModal = true;
-	export let onClick = () => {};
+	export let save = () => {};
 	export let savings = [];
 
 	import Input from "./../atoms/Input.svelte";
@@ -30,12 +30,20 @@
 			style: "modal",
 			onClick: () => {
 				toogleModal();
-				onClick(id, today, amount);
+				save(id, date, amount);
 			},
 		},
 	];
 
 	let date = today;
+
+	let savingsSorted = savings.sort((a, b) => {
+		a.today.split("-").join("");
+		b.today.split("-").join("");
+		return b + a;
+	});
+
+	console.log(savingsSorted);
 </script>
 
 <Modal {hideModal}>
@@ -53,7 +61,7 @@
 		</div>
 
 		<div class:hide={!historial} class="mt-20">
-			<Table {savings} />
+			<Table savings={savingsSorted.reverse()} />
 		</div>
 	{:else}
 		<div class="float-right  mt-5 flex flex-row">

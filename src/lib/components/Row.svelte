@@ -46,7 +46,7 @@
 	{hideModal}
 	{title}
 	{id}
-	onClick={data.saving}
+	save={data.saving}
 	savings={props.saving}
 />
 

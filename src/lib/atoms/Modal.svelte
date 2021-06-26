@@ -26,13 +26,14 @@
 		left: 0;
 		margin: 0;
 		width: 100vw;
-		height: 100%;
+		height: 90%;
 		justify-content: center;
 		align-items: center;
 		background: var(--background);
 		z-index: 2;
 		display: grid;
 		place-items: center;
+		overflow-y: scroll;
 	}
 
 	.btn--close {
