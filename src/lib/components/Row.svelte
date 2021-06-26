@@ -5,7 +5,7 @@
 	import Button from "./../atoms/Button.svelte";
 
 	export let edit = false;
-	export let details = [];
+	export let data = [];
 	export let props = {
 		id: "9c72c81f-480d-4575-bdff-45e50afc7a33",
 		title: "Total Title",
@@ -21,10 +21,10 @@
 	const toogleModal = () => (hideModal = !hideModal);
 
 	const actions = {
-		remove: () => details.remove(id),
-		changeName: () => details.change(id, "title", title),
-		changeNumber: () => details.change(id, "number", number),
-		changeHigh: () => details.change(id, "hightlight", hightlight),
+		remove: () => data.remove(id),
+		changeName: () => data.change(id, "title", title),
+		changeNumber: () => data.change(id, "number", number),
+		changeHigh: () => data.change(id, "hightlight", hightlight),
 		toogleHigh: () => {
 			hightlight = !hightlight;
 			changeHigh();
@@ -42,7 +42,7 @@
 	$: revenue = number - getSaving;
 </script>
 
-<ModalSavings {hideModal} {title} {id} onClick={details.saving} />
+<ModalSavings {hideModal} {title} {id} onClick={data.saving} />
 
 <div class="w-64 m-3 relative" class:hightlight>
 	{#if edit}

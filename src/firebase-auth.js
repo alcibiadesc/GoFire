@@ -5,68 +5,29 @@ import {
 	signInWithRedirect,
 	getRedirectResult,
 	signOut,
+	onAuthStateChanged,
 } from "firebase/auth";
 import { user, resetUser } from "./stores/user.js";
-import { resetGoal, getGoal } from "./stores/goal.js";
-import { resetData } from "./stores/data.js";
-import { uid } from "./stores/uid.js";
-
-const reset = () => {
-	resetUser();
-	resetGoal();
-	resetData();
-};
-
-const get = () => {
-	getGoal();
-};
-
-const provider = new GoogleAuthProvider();
+import { getData } from "./firebase-firestore.js";
 
 const auth = getAuth();
-
+const provider = new GoogleAuthProvider();
 const signIn = () => signInWithRedirect(auth, provider);
 
-const getToken = (userStore) =>
-	getRedirectResult(auth)
-		.then((result) => {
-			// This gives you a Google Access Token. You can use it to access Google APIs.
-			const credential = GoogleAuthProvider.credentialFromResult(result);
-			const token = credential.accessToken;
+const actionSignOut = () => signOut(auth);
 
-			// The signed-in user info.
-			const user = result.user;
+onAuthStateChanged(auth, (userData) => {
+	if (userData) {
+		const { displayName, photoURL, email, uid } = userData;
 
-			// send data to the store
-			let userData = {
-				name: user.displayName,
-				img: user.photoURL,
-				email: user.email,
-			};
-			userStore.set(userData);
-			uid.set(user.uid);
-			get();
-		})
-		.catch((error) => {
-			// Handle Errors here.
-			const errorCode = error.code;
-			const errorMessage = error.message;
-			// The email of the user's account used.
-			const email = error.email;
-			// The AuthCredential type that was used.
-			const credential = GoogleAuthProvider.credentialFromError(error);
-			// ...
-		});
+		console.log("you are logged");
+		user.set({ displayName, photoURL, email, uid });
 
-const actionSignOut = () =>
-	signOut(auth)
-		.then(() => {
-			// Sign-out successful.
-			console.log("Sign-out successful");
-			reset();
-			location.reload();
-		})
-		.catch((error) => {
-			// An error happened.
-		});
-export { actionSignOut, signIn, getToken };
+		// ...
+	} else {
+		console.log("you are not logged");
+		resetUser();
+	}
+});
+
+export { actionSignOut, signIn, auth };

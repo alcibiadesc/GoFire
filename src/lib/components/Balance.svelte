@@ -3,12 +3,12 @@
 	import Goal from "./../atoms/Goal.svelte";
 	import Card from "../atoms/Card.svelte";
 	import { user } from "./../../stores/user.js";
+	import { goal } from "./../../stores/goal.js";
 
 	export let balance = 100;
-	export let goal = 100_000;
-	let road = goal - balance;
+	let road = $goal - balance;
 
-	$: name = $user.name ? $user.name.split(" ")[0] : "crack";
+	$: name = $user.displayName ? $user.displayName.split(" ")[0] : "crack";
 </script>
 
 <Card>
@@ -22,5 +22,5 @@
 		{format(balance)}
 	</p>
 
-	<Goal {balance} {goal} {road} />
+	<Goal {balance} goal={$goal} {road} />
 </Card>

@@ -1,9 +1,6 @@
 import { writable } from "svelte/store";
 import { v4 as uuidv4 } from "uuid";
 import { db } from "./../firebase-firestore.js";
-import { doc, setDoc, addDoc, collection, getDoc } from "firebase/firestore";
-import { user } from "./user.js";
-import { uid } from "./uid.js";
 
 let template = {
 	title: "Título",
@@ -14,10 +11,8 @@ let template = {
 	saving: [],
 };
 
-const STORE_PREFIX_DETAILS = "details_";
-const detailsItems = localStorage.getItem(`${STORE_PREFIX_DETAILS}items`);
-const createDetails = () => {
-	const { subscribe, update, set } = writable(JSON.parse(detailsItems) || []);
+const createData = () => {
+	const { subscribe, update, set } = writable([]);
 
 	const getArray = () => {
 		let array = [];
@@ -26,7 +21,9 @@ const createDetails = () => {
 	};
 
 	const add = () => update((n) => [...n, { ...template, id: uuidv4() }]);
+
 	const remove = (id) => update((n) => n.filter((ele) => ele.id !== id));
+
 	const change = (id, key, value) => {
 		let array = getArray();
 		array.map((ele) => (ele.id === id ? (ele[key] = value) : ""));
@@ -71,16 +68,10 @@ const createDetails = () => {
 	};
 };
 
-const details = createDetails();
-
-details.subscribe((value) => {
-	if (detailsItems !== value) {
-		localStorage.setItem(`${STORE_PREFIX_DETAILS}items`, JSON.stringify(value));
-	}
-});
+const data = createData();
 
 const resetData = () => {
-	details.set([]);
+	data.set([]);
 };
 
-export { details, resetData };
+export { data, resetData };
