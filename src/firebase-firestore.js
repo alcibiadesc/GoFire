@@ -1,15 +1,34 @@
 import { firebaseApp } from "./firebase";
-import { getFirestore, getDocs, collection } from "firebase/firestore";
+import {
+	getFirestore,
+	doc,
+	getDoc,
+	setDoc,
+	collection,
+} from "firebase/firestore";
 
 const db = getFirestore();
 
-const getData = async (collectName) => {
-	const querySnapshot = await getDocs(collection(db, "goal"));
-	let result;
-	querySnapshot.forEach((doc) => {
-		// doc.data() is never undefined for query doc snapshots
-		result = doc.data();
-	});
+const getData = async (collectName, uid) => {
+	const docRef = doc(db, collectName, uid);
+	const docSnap = await getDoc(docRef);
+
+	let result = "";
+	if (docSnap.exists()) {
+		result = docSnap.data();
+		console.log(result);
+	} else {
+		console.log("No such document!");
+	}
+
 	return result;
 };
-export { getData };
+
+const setData = async (collectName, uid, value) => {
+	const docRef = collection(db, collectName);
+	if (value && value.length > 0) {
+		await setDoc(doc(docRef, uid), { [collectName]: value });
+	}
+};
+
+export { getData, setData };

@@ -8,8 +8,8 @@ import {
 	onAuthStateChanged,
 } from "firebase/auth";
 import { user, resetUser } from "./stores/user.js";
-import { getData } from "./firebase-firestore.js";
-import { resetData } from "./stores/data.js";
+import { getData, setData } from "./firebase-firestore.js";
+import { resetData, data } from "./stores/data.js";
 
 import { goal, resetGoal } from "./stores/goal.js";
 
@@ -29,15 +29,18 @@ const profile = (userData) => {
 	user.set(userData);
 };
 
-const get = () => {
-	getData("goal").then((value) => goal.set(value.goal));
+const get = (uid) => {
+	getData("goal", uid).then((value) => (value ? goal.set(value.goal) : ""));
+	getData("data", uid).then((array) => (array ? data.set(array.data) : ""));
 };
 
 onAuthStateChanged(auth, (user) => {
 	if (user) {
 		console.log("you are logged");
 		profile(user);
-		get();
+		get(user.uid);
+		goal.subscribe((value) => setData("goal", user.uid, value));
+		data.subscribe((value) => setData("data", user.uid, value));
 	} else {
 		console.log("you are not logged");
 		reset();
