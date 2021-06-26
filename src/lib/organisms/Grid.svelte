@@ -4,6 +4,8 @@
 	export let edit = false;
 </script>
 
-{#each $data as props (props.id)}
-	<Row {edit} {props} {data} />
-{/each}
+{#if $data}
+	{#each $data as props (props.id)}
+		<Row {edit} {props} {data} />
+	{/each}
+{/if}

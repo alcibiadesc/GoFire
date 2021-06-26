@@ -26,7 +26,7 @@ const getData = async (collectName, uid) => {
 
 const setData = async (collectName, uid, value) => {
 	const docRef = collection(db, collectName);
-	if (value && value.length > 0) {
+	if (value) {
 		await setDoc(doc(docRef, uid), { [collectName]: value });
 	}
 };

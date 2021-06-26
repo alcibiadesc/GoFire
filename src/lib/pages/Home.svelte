@@ -8,8 +8,10 @@
 	let revenue = 0;
 
 	data.subscribe((val) => {
-		balance = data.balance();
-		revenue = data.balance() - data.revenue();
+		if (val) {
+			balance = data.balance();
+			revenue = data.balance() - data.revenue();
+		}
 	});
 </script>
 
