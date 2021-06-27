@@ -1,18 +1,17 @@
 <script>
-	import { format } from "./../../scripts.js";
+	import { format, formatPercent } from "./../../scripts.js";
 	import ModalSavings from "./../components/ModalSavings.svelte";
 	import ChartLine from "./../atoms/ChartLine.svelte";
 	import Button from "./../atoms/Button.svelte";
 
 	export let revenue = 0;
+	export let percent = 0;
 	export let props = {
 		title: "Beneficios",
-		number: 10,
-		percent: 0,
 		hightlight: true,
 	};
 
-	let { title, number, percent, hightlight } = props;
+	let { title, hightlight } = props;
 </script>
 
 <div class="w-64 m-3 relative m-6" class:hightlight>
@@ -20,7 +19,7 @@
 	<div class="data">
 		<p class="euros">{format(revenue)}</p>
 		<ChartLine />
-		<p class="percent">{percent}</p>
+		<p class="percent">{formatPercent(percent)}</p>
 	</div>
 </div>
 

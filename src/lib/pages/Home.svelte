@@ -6,15 +6,19 @@
 
 	let balance = 0;
 	let revenue = 0;
+	let percent = 0;
 
 	data.subscribe((val) => {
 		if (val) {
 			balance = data.balance();
 			revenue = data.balance() - data.revenue() - data.detectNoSavings();
+			percent =
+				(data.balance() - data.revenue() - data.detectNoSavings()) /
+				data.revenue();
 		}
 	});
 </script>
 
 <Balance {balance} />
-<Revenue {revenue} />
+<Revenue {revenue} {percent} />
 <Grid />
