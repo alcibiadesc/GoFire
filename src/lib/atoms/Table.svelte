@@ -19,7 +19,7 @@
 	<tbody>
 		{#each savings as { today, amount, id_saving }}
 			<tr>
-				<td> {today}</td>
+				<td class="text-xs"> {today}</td>
 				<td> {formatBasic(amount)}</td>
 				<td>
 					<Button
