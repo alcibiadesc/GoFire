@@ -48,10 +48,13 @@
 		background: linear-gradient(to bottom, #202227, var(--background));
 		border-radius: 50%;
 	}
-
+	.move {
+		width: 1.2rem;
+	}
 	.selected__icon,
 	.tertiary:hover,
-	.modal:hover {
+	.modal:hover,
+	.move:hover {
 		filter: var(--filter);
 	}
 </style>

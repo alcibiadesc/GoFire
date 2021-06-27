@@ -31,7 +31,7 @@ const profile = (userData) => {
 
 const get = (uid) => {
 	getData("goal", uid).then((value) => (value ? goal.set(value.goal) : ""));
-  getData("data", uid).then((array) => (array.length > 0 ? data.set(array.data) : ""));
+	getData("data", uid).then((array) => (array ? data.set(array.data) : ""));
 };
 
 onAuthStateChanged(auth, (user) => {

@@ -39,6 +39,8 @@
 	$: getSaving = saving.reduce((acc, crt) => acc + crt.amount, 0);
 	$: revenue = number - getSaving;
 	$: percent = (number - getSaving) / getSaving;
+
+
 </script>
 
 <ModalSavings
