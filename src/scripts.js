@@ -13,4 +13,10 @@ export const formatBasic = (num) => {
 	}).format(num);
 };
 
+export const formatPercent = (num) => {
+	return new Intl.NumberFormat("en", {
+		style: "percent",
+	}).format(num);
+};
+
 export const today = new Date().toISOString().slice(0, 10);

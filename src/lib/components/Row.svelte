@@ -1,5 +1,5 @@
 <script>
-	import { format } from "./../../scripts.js";
+	import { format, formatPercent } from "./../../scripts.js";
 	import ModalSavings from "./../components/ModalSavings.svelte";
 	import ChartLine from "./../atoms/ChartLine.svelte";
 	import Button from "./../atoms/Button.svelte";
@@ -10,12 +10,11 @@
 		id: "9c72c81f-480d-4575-bdff-45e50afc7a33",
 		title: "Total Title",
 		number: 0,
-		percent: 0,
 		hightlight: false,
 		saving: [],
 	};
 
-	let { id, title, number, percent, hightlight, saving } = props;
+	let { id, title, number, hightlight, saving } = props;
 
 	let hideModal = true;
 	const toogleModal = () => (hideModal = !hideModal);
@@ -40,6 +39,7 @@
 
 	$: getSaving = saving.reduce((acc, crt) => acc + crt.amount, 0);
 	$: revenue = number - getSaving;
+	$: percent = (number - getSaving) / getSaving;
 </script>
 
 <ModalSavings
@@ -69,7 +69,9 @@
 				type="number"
 			/>
 			<ChartLine />
-			<p class="percent">{percent}</p>
+			{#if isFinite(percent)}
+				<p class="percent">{formatPercent(percent)}</p>
+			{/if}
 		</div>
 		<div class=" flex flex-row float-right">
 			{#each btns as btn}
@@ -82,8 +84,11 @@
 		<h6 class="mb-1">{title}</h6>
 		<div class="data">
 			<p class="euros">{format(number)}</p>
+
 			<ChartLine />
-			<p class="percent">{percent}</p>
+			{#if isFinite(percent)}
+				<p class="percent">{formatPercent(percent)}</p>
+			{/if}
 		</div>
 	{/if}
 	{#if saving.length > 0 && !edit}

@@ -65,9 +65,3 @@ button {
 	background: linear-gradient(to bottom, #3b4044, #2f3138);
 	border-radius: 50px;
 }
-
-.percent:after {
-	content: "%";
-}
-
-
