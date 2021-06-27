@@ -4,8 +4,6 @@ import { v4 as uuidv4 } from "uuid";
 let template = {
 	title: "Título",
 	number: 0,
-	revenue: 0,
-	percent: 0,
 	hightlight: false,
 	saving: [],
 };
