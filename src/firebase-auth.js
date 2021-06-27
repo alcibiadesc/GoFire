@@ -40,7 +40,9 @@ onAuthStateChanged(auth, (user) => {
 		profile(user);
 		get(user.uid);
 		goal.subscribe((value) => setData("goal", user.uid, value));
-		data.subscribe((value) => setData("data", user.uid, value));
+		data.subscribe((value) =>
+			value.length > 0 ? setData("data", user.uid, value) : ""
+		);
 	} else {
 		console.log("👋 you are not logged 👋");
 		reset();

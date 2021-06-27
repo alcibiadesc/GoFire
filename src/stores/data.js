@@ -11,7 +11,7 @@ let template = {
 };
 
 const createData = () => {
-	const { subscribe, update, set } = writable();
+	const { subscribe, update, set } = writable([]);
 
 	const getArray = () => {
 		let array = [];
