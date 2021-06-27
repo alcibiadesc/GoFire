@@ -46,7 +46,7 @@
 			<Row {edit} {props} {data} />
 		</div>
 	{/each}
-{:else if $data}
+{:else if $data && !edit} 
 	{#each $data as props (props.id)}
 		<div>
 			<Row {edit} {props} {data} />
