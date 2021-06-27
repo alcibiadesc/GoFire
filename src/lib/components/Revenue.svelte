@@ -1,7 +1,6 @@
 <script>
 	import { format, formatPercent } from "./../../scripts.js";
 	import ModalSavings from "./../components/ModalSavings.svelte";
-	import ChartLine from "./../atoms/ChartLine.svelte";
 	import Button from "./../atoms/Button.svelte";
 
 	export let revenue = 0;
@@ -18,7 +17,6 @@
 	<h6 class="mb-1">{title}</h6>
 	<div class="data">
 		<p class="euros">{format(revenue)}</p>
-		<ChartLine />
 		<p class="percent">{formatPercent(percent)}</p>
 	</div>
 </div>
@@ -46,7 +44,7 @@
 
 	.data {
 		display: flex;
-		justify-content: center;
+		justify-content: left;
 		flex-direction: row;
 	}
 

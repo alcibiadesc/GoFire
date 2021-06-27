@@ -1,7 +1,6 @@
 <script>
 	import { format, formatPercent } from "./../../scripts.js";
 	import ModalSavings from "./../components/ModalSavings.svelte";
-	import ChartLine from "./../atoms/ChartLine.svelte";
 	import Button from "./../atoms/Button.svelte";
 
 	export let edit = false;
@@ -53,41 +52,40 @@
 
 <div class="w-64 m-3 relative" class:hightlight>
 	{#if edit}
-		<input
-			name="title"
-			on:change={changeName}
-			bind:value={title}
-			class="title w-64"
-			type="text"
-		/>
-
-		<div class="data">
+		<div draggable="true">
 			<input
-				name="number"
-				on:change={changeNumber}
-				bind:value={number}
-				type="number"
+				name="title"
+				on:change={changeName}
+				bind:value={title}
+				class="title w-64"
+				type="text"
 			/>
-			<ChartLine />
-			{#if isFinite(percent)}
-				<p class="percent">{formatPercent(percent)}</p>
-			{/if}
-		</div>
-		<div class=" flex flex-row float-right">
-			{#each btns as btn}
-				<div>
-					<Button props={btn} />
-				</div>
-			{/each}
+			<div class="data">
+				<input
+					name="number"
+					on:change={changeNumber}
+					bind:value={number}
+					type="number"
+				/>
+				{#if isFinite(percent)}
+					<p class=" percent">{formatPercent(percent)}</p>
+				{/if}
+			</div>
+			<div class=" flex flex-row float-right">
+				{#each btns as btn}
+					<div>
+						<Button props={btn} />
+					</div>
+				{/each}
+			</div>
 		</div>
 	{:else}
 		<h6 class="mb-1">{title}</h6>
 		<div class="data">
 			<p class="euros">{format(number)}</p>
 
-			<ChartLine />
 			{#if isFinite(percent)}
-				<p class="percent">{formatPercent(percent)}</p>
+				<p class=" percent">{formatPercent(percent)}</p>
 			{/if}
 		</div>
 	{/if}
@@ -137,7 +135,7 @@
 
 	.data {
 		display: flex;
-		justify-content: center;
+		justify-content: left;
 		flex-direction: row;
 	}
 
