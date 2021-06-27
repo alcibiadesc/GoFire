@@ -17,7 +17,7 @@
 	<h6 class="mb-1">{title}</h6>
 	<div class="data">
 		<p class="euros">{format(revenue)}</p>
-		<p class="percent">{formatPercent(percent)}</p>
+		<p class="percent">{formatPercent(isNaN(percent) ? 0 : percent)}</p>
 	</div>
 </div>
 
