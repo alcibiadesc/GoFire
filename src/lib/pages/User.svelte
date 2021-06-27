@@ -28,7 +28,7 @@
 		<div class="my-8">
 			<h2>{$user.displayName}</h2>
 			<h2>{$user.email}</h2>
-			<h3>uid: {$user.uid}</h3>
+			<!--	<h3>uid: {$user.uid}</h3> -->
 		</div>
 		{#each btnsLogin as { label, icon, style, onClick, name } (name)}
 			<div class="m-2 flex flex-col">
