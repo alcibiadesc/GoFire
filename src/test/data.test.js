@@ -62,4 +62,16 @@ describe("data store", () => {
 
 		expect(result).toEqual(expect.arrayContaining(expected));
 	});
+
+
+	test("add saving", () => {
+	  resetData(); 
+	  data.add(); 
+	  const id = get(data)[0].id;
+
+	  const result = get(data);
+	  const expected = [{}]; 
+
+	  expect(result).toEqual(expected); 
+	})
 });
