@@ -1,5 +1,5 @@
 import { get } from "svelte/store";
-import { goal, resetGoal } from "./../stores/goal.js";
+import { goal, resetGoal } from "./goal.js";
 
 describe("Goal Store", () => {
 	test("store is undefined", () => {

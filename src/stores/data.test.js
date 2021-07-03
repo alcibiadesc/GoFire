@@ -1,14 +1,17 @@
 import { get } from "svelte/store";
-import { data, resetData } from "./../stores/data.js";
+import { data, resetData } from "./data.js";
 
-const resetAndID = () => {
-	resetData();
+const getID = () => {
 	data.add();
 	let id = get(data)[0].id;
 	return id;
 };
 
 describe("data store", () => {
+	beforeEach(() => {
+		resetData();
+	});
+
 	test("store is an array empty", () => {
 		const result = get(data);
 		const expected = [];
@@ -24,7 +27,6 @@ describe("data store", () => {
 	});
 
 	test("add an item", () => {
-		resetData();
 		data.add();
 		const result = get(data);
 		const expected = [
@@ -40,7 +42,7 @@ describe("data store", () => {
 		expect(result).toEqual(expected);
 	});
 
-	test("delete an item", (id = resetAndID()) => {
+	test("delete an item", (id = getID()) => {
 		expect(id).toEqual(expect.any(String));
 		data.remove(id);
 		const result = get(data);
@@ -48,7 +50,7 @@ describe("data store", () => {
 		expect(result).toEqual(expected);
 	});
 
-	test("change a value", (id = resetAndID()) => {
+	test("change a value", (id = getID()) => {
 		data.change(id, "title", "Esparrago");
 		const result = get(data)[0];
 		const expected = { title: "Esparrago" };
@@ -56,7 +58,7 @@ describe("data store", () => {
 		expect(result).toEqual(expect.objectContaining(expected));
 	});
 
-	test("add a saving", (id = resetAndID()) => {
+	test("add a saving", (id = getID()) => {
 		data.saving(id, "2021-12-05", 40);
 
 		const result = get(data)[0].saving;
@@ -71,7 +73,7 @@ describe("data store", () => {
 		expect(result).toEqual(expect.arrayContaining(expected));
 	});
 
-	test("delete a saving", (id = resetAndID()) => {
+	test("delete a saving", (id = getID()) => {
 		data.saving(id, "2021-12-05", 220);
 		let id_saving = get(data)[0].saving[0].id_saving;
 		data.removeSaving(id, id_saving);
@@ -81,7 +83,7 @@ describe("data store", () => {
 		expect(result).toEqual(expected);
 	});
 
-	test("calculate revenue", (id = resetAndID()) => {
+	test("calculate revenue", (id = getID()) => {
 		data.saving(id, "2021-12-05", 10);
 		data.saving(id, "2021-09-05", 20);
 
@@ -92,8 +94,6 @@ describe("data store", () => {
 	});
 
 	test("calculate balance", (array = get(data)) => {
-		resetData();
-
 		for (let step = 0; step < 9; step++) {
 			data.add();
 			let id = get(data)[step].id;
@@ -107,8 +107,6 @@ describe("data store", () => {
 	});
 
 	test("detect no savings", () => {
-		resetData();
-
 		for (let step = 0; step < 9; step++) {
 			data.add();
 			let id = get(data)[step].id;

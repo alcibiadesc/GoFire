@@ -1,5 +1,5 @@
 import { get } from "svelte/store";
-import { user, resetUser } from "./../stores/user.js";
+import { user, resetUser } from "./user.js";
 
 describe("User Store", () => {
 	test("store have an object", () => {

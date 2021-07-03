@@ -1,4 +1,4 @@
-import { format, formatBasic, formatPercent } from "./../scripts.js";
+import { format, formatBasic, formatPercent } from "./scripts.js";
 
 describe("Format Number", () => {
 	test("format a number with €", () => {
