@@ -1,4 +1,4 @@
-import { writable } from "svelte/store";
+import { writable, get } from "svelte/store";
 import { v4 as uuidv4 } from "uuid";
 
 let template = {
@@ -11,18 +11,15 @@ let template = {
 const createData = () => {
 	const { subscribe, update, set } = writable([]);
 
-	const getArray = () => {
-		let array = [];
+	const getArray = (array = []) => {
 		subscribe((n) => (array = n));
 		return array;
 	};
 
 	const add = () => update((n) => [...n, { ...template, id: uuidv4() }]);
-
 	const remove = (id) => update((n) => n.filter((ele) => ele.id !== id));
 
-	const change = (id, key, value) => {
-		let array = getArray();
+	const change = (id, key, value, array = getArray()) => {
 		array.map((ele) => (ele.id === id ? (ele[key] = value) : ""));
 		set(array);
 	};
