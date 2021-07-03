@@ -5463,12 +5463,12 @@
   "resolved" "https://registry.npmjs.org/prelude-ls/-/prelude-ls-1.1.2.tgz"
   "version" "1.1.2"
 
-"prettier-plugin-svelte@^2.1.2":
+"prettier-plugin-svelte@^2.3.0":
   "integrity" "sha512-HTzXvSq7lWFuLsSaxYOUkGkVNCl3RrSjDCOgQjkBX5FQGmWjL8o3IFACSGhjPMMfWKADpapAr0zdbBWkND9mqw=="
   "resolved" "https://registry.npmjs.org/prettier-plugin-svelte/-/prettier-plugin-svelte-2.3.0.tgz"
   "version" "2.3.0"
 
-"prettier@^1.16.4 || ^2.0.0", "prettier@^2.2.1":
+"prettier@^1.16.4 || ^2.0.0", "prettier@^2.3.0":
   "integrity" "sha512-p+vNbgpLjif/+D+DwAZAbndtRrR0md0MwfmOVN9N+2RgyACMT+7tfaRnT+WDPkqnuVwleyuBIG2XBxKDme3hPA=="
   "resolved" "https://registry.npmjs.org/prettier/-/prettier-2.3.1.tgz"
   "version" "2.3.1"
