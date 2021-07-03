@@ -1,12 +1,14 @@
 import { writable } from "svelte/store";
 
-const user = writable({
+const template = {
 	displayName: "",
 	photoURL: "icons/user.svg",
 	email: "",
 	uid: "",
-});
+};
 
-const resetUser = () => user.set(0);
+const user = writable(template);
+
+const resetUser = () => user.set(template);
 
 export { user, resetUser };
