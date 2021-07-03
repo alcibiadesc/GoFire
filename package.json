@@ -4,7 +4,8 @@
 		"build": "snowpack build",
 		"prod": "npm run build && vercel --prod",
 		"ts-check": "svelte-check",
-		"test": "jest --watch --verbose"
+		"test": "jest  --verbose --watch",
+		"coverage": "jest --coverage"
 	},
 	"dependencies": {
 		"charts.css": "^0.9.0",
