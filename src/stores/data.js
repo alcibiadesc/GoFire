@@ -44,10 +44,7 @@ const createData = () => {
 	const balance = (array = getArray()) =>
 		array.reduce((acc, crt) => acc + crt.number, 0);
 
-	const detectNoSavings = () => {
-		let array = getArray();
-		let arrayMerge = [];
-
+	const detectNoSavings = (array = getArray(), arrayMerge = []) => {
 		array.map((ele) =>
 			ele.saving.length === 0 ? (arrayMerge = [...arrayMerge, ele.number]) : ""
 		);
@@ -56,21 +53,20 @@ const createData = () => {
 		return result;
 	};
 
-	const removeSaving = (id, id_saving) => {
-		let array = getArray();
-		let thisArray = array.filter((m) => m.id === id);
-		let newArr = thisArray[0].saving.filter((x) => x.id_saving != id_saving);
+	const removeSaving = (id, id_saving, array = getArray()) => {
+		const object = array.find((value) => value.id === id);
+		let newArray = object.saving.filter((x) => x.id_saving !== id_saving);
 
 		update((ele) =>
-			ele.map((n) => (n.id == id ? { ...n, saving: newArr } : n))
+			ele.map((n) => (n.id === id ? { ...n, saving: newArray } : n))
 		);
 	};
 
 	return {
 		subscribe,
 		update,
-		add,
 		set,
+		add,
 		remove,
 		change,
 		balance,

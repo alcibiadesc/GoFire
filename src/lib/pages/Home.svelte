@@ -3,8 +3,6 @@
 	import Grid from "../organisms/Grid.svelte";
 	import Revenue from "./../components/Revenue.svelte";
 	import { data } from "./../../stores/data.js";
-	import SortableList from "./../atoms/SortableList.svelte";
-	import Row from "../components/Row.svelte";
 
 	let balance = 0;
 	let revenue = 0;
