@@ -1,4 +1,4 @@
-export const format = (num) => {
+export const format = (num = 0) => {
 	return new Intl.NumberFormat("es", {
 		notation: "compact",
 		style: "currency",
@@ -6,14 +6,14 @@ export const format = (num) => {
 	}).format(num);
 };
 
-export const formatBasic = (num) => {
+export const formatBasic = (num = 0) => {
 	return new Intl.NumberFormat("es", {
 		style: "currency",
 		currency: "EUR",
 	}).format(num);
 };
 
-export const formatPercent = (num) => {
+export const formatPercent = (num = 0) => {
 	return new Intl.NumberFormat("en", {
 		style: "percent",
 	}).format(num);
