@@ -7,11 +7,17 @@ describe("Goal Store", () => {
 		expect(result).toBeUndefined();
 	});
 
+	test("add a value", () => {
+		goal.set(89);
+		const result = get(goal);
+		const expected = 89;
+		expect(result).toBe(expected);
+	});
+
 	test("store reset", () => {
-		goal.set(1);
+		goal.set(12312);
 		resetGoal();
 		const result = get(goal);
-
-		expect(result).toBe(0);
+		expect(result).toBeUndefined();
 	});
 });

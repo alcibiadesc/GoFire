@@ -50,18 +50,10 @@ describe("data store", () => {
 
 	test("change a value", (id = resetAndID()) => {
 		data.change(id, "title", "Esparrago");
-		const result = get(data);
-		const expected = [
-			{
-				title: "Esparrago",
-				number: expect.any(Number),
-				hightlight: expect.any(Boolean),
-				id: expect.any(String),
-				saving: expect.any(Array),
-			},
-		];
+		const result = get(data)[0];
+		const expected = { title: "Esparrago" };
 
-		expect(result).toEqual(expect.arrayContaining(expected));
+		expect(result).toEqual(expect.objectContaining(expected));
 	});
 
 	test("add a saving", (id = resetAndID()) => {
@@ -91,7 +83,7 @@ describe("data store", () => {
 
 	test("calculate revenue", (id = resetAndID()) => {
 		data.saving(id, "2021-12-05", 10);
-		data.saving(id, "2021-12-05", 20);
+		data.saving(id, "2021-09-05", 20);
 
 		const result = data.revenue();
 		const expected = 30;

@@ -23,7 +23,7 @@
 </script>
 
 <Card>
-	{#if $user}
+	{#if $user.uid}
 		<img class="mx-auto rounded-lg" src={$user.photoURL} alt="user" />
 		<div class="my-8">
 			<h2>{$user.displayName}</h2>
