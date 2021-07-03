@@ -24,33 +24,25 @@ const createData = () => {
 		set(array);
 	};
 
-	const revenue = () => {
-		let array = getArray();
-		let arrayBalance = [];
-		array.map((ele) =>
-			ele.saving.map((m) => (arrayBalance = [...arrayBalance, m.amount]))
-		);
-		let result = arrayBalance.reduce((acc, crt) => acc + crt, 0);
-
-		return result;
-	};
-
-	const saving = (id, today, amount) => {
-		let array = getArray();
-		let id_saving = uuidv4();
+	const saving = (id, today, amount, array = getArray()) => {
 		array.map((ele) =>
 			ele.id === id
-				? (ele.saving = [...ele.saving, { id_saving, today, amount }])
+				? (ele.saving = [...ele.saving, { id_saving: uuidv4(), today, amount }])
 				: ""
 		);
 		set(array);
 	};
 
-	const balance = () => {
-		let array = getArray();
-		let result = array.reduce((acc, crt) => acc + crt.number, 0);
+	const revenue = (array = getArray(), arrayBalance = []) => {
+		array.map((ele) =>
+			ele.saving.map((m) => (arrayBalance = [...arrayBalance, m.amount]))
+		);
+		const result = arrayBalance.reduce((acc, crt) => acc + crt, 0);
 		return result;
 	};
+
+	const balance = (array = getArray()) =>
+		array.reduce((acc, crt) => acc + crt.number, 0);
 
 	const detectNoSavings = () => {
 		let array = getArray();
