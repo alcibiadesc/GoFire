@@ -3,6 +3,8 @@
 	import { data } from "./../../stores/data.js";
 	import { flip } from "svelte/animate";
 	import Button from "./../atoms/Button.svelte";
+	import { fade } from "svelte/transition";
+
 	export let edit = false;
 
 	let hovering = false;
@@ -51,7 +53,7 @@
 
 {#if $data && edit}
 	{#each $data as props, index (props.id)}
-		<div animate:flip class="relative">
+		<div animate:flip in:fade class="relative">
 			<div
 				class="list-item"
 				draggable={true}
@@ -89,7 +91,7 @@
 	{/each}
 {:else if $data && !edit}
 	{#each $data as props (props.id)}
-		<div>
+		<div in:fade>
 			<Row {edit} {props} {data} />
 		</div>
 	{/each}
