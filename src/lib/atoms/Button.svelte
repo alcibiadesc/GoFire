@@ -1,5 +1,5 @@
 <script>
-	export let props = {
+	export let prop = {
 		icon: "menu",
 		style: "primary",
 		onClick: () => console.log("click"),
@@ -7,7 +7,7 @@
 
 	export let current = "profile";
 
-	let { icon, style, onClick } = props;
+	let { icon, style, onClick } = prop;
 </script>
 
 <div class={style} on:click class:selected={current === icon}>
