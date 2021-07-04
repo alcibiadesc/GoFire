@@ -1,5 +1,6 @@
 <script>
 	import { format } from "./../../scripts.js";
+	import { fade } from "svelte/transition";
 	export let goal = 0;
 	export let road = 0;
 	export let balance = 0;
@@ -7,7 +8,7 @@
 	$: checkGoal = () => goal > balance;
 </script>
 
-<div class="goal  float-right bg-red-500 p-5 ">
+<div in:fade class="goal  float-right bg-red-500 p-5 ">
 	<img class="m-auto" src="icons/goal.svg" alt="goal" />
 
 	{#if checkGoal()}
