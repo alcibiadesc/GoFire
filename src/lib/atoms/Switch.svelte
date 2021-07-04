@@ -1,9 +1,9 @@
 <script>
 	import { theme } from "./../../stores/theme.js";
 
-	const selectTheme = () => ($theme === "dark" ? false : true);
+	const selectTheme = () => ($theme === "light" ? false : true);
 	let checked = selectTheme();
-	$: checked ? theme.set("light") : theme.set("dark");
+	$: checked ? theme.set("dark") : theme.set("light");
 </script>
 
 <input type="checkbox" bind:checked id="toggle" class="toggle--checkbox" />
