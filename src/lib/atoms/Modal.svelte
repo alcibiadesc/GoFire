@@ -9,7 +9,7 @@
 <div class={hideModal ? "hideModal" : "modal"}>
 	<Card>
 		<div class="btn--close">
-			<Button props={btnClose} />
+			<Button prop={btnClose} />
 		</div>
 		<slot />
 	</Card>

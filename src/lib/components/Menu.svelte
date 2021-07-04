@@ -13,8 +13,8 @@
 </script>
 
 <div class="container fixed">
-	{#each buttons as props}
-		<Button {props} {current} on:click={() => selectedBtn(props.icon)} />
+	{#each buttons as prop}
+		<Button {prop} {current} on:click={() => selectedBtn(prop.icon)} />
 	{/each}
 </div>
 

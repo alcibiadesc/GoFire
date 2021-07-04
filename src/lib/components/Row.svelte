@@ -5,7 +5,7 @@
 
 	export let edit = false;
 	export let data = [];
-	export let props = {
+	export let prop = {
 		id: "9c72c81f-480d-4575-bdff-45e50afc7a33",
 		title: "Total Title",
 		number: 0,
@@ -13,7 +13,7 @@
 		saving: [],
 	};
 
-	let { id, title, number, hightlight, saving } = props;
+	let { id, title, number, hightlight, saving } = prop;
 
 	let hideModal = true;
 	const toogleModal = () => (hideModal = !hideModal);
@@ -39,8 +39,6 @@
 	$: getSaving = saving.reduce((acc, crt) => acc + crt.amount, 0);
 	$: revenue = number - getSaving;
 	$: percent = (number - getSaving) / getSaving;
-
-
 </script>
 
 <ModalSavings
@@ -48,7 +46,7 @@
 	{title}
 	{id}
 	save={data.saving}
-	savings={props.saving}
+	savings={prop.saving}
 	removeSaving={data.removeSaving}
 />
 
@@ -76,7 +74,7 @@
 			<div class=" flex flex-row float-right">
 				{#each btns as btn}
 					<div>
-						<Button props={btn} />
+						<Button prop={btn} />
 					</div>
 				{/each}
 			</div>

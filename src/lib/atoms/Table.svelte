@@ -23,7 +23,7 @@
 				<td> {formatBasic(amount)}</td>
 				<td>
 					<Button
-						props={{
+						prop={{
 							icon: "delete",
 							style: "tertiary",
 							onClick: () => removeSaving(id, id_saving),

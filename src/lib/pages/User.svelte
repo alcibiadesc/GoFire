@@ -33,7 +33,7 @@
 		{#each btnsLogin as { label, icon, style, onClick, name } (name)}
 			<div class="m-2 flex flex-col">
 				<Tooltip {label}>
-					<Button props={{ icon, style, onClick }} />
+					<Button prop={{ icon, style, onClick }} />
 				</Tooltip>
 			</div>
 		{/each}
@@ -41,7 +41,7 @@
 		<h2 class="text-center">Haz click para iniciar sesión</h2>
 		<div class="m-2 flex flex-col">
 			<Tooltip label="Iniciar sesión">
-				<Button props={btnSignin} />
+				<Button prop={btnSignin} />
 			</Tooltip>
 		</div>
 	{/if}

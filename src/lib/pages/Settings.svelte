@@ -14,7 +14,7 @@
 </Card>
 
 <div>
-	<Button on:click={data.add} props={{ icon: "add", style: "secondary" }} />
+	<Button on:click={data.add} prop={{ icon: "add", style: "secondary" }} />
 </div>
 
 <Grid edit={true} />

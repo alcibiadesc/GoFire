@@ -17,7 +17,6 @@
 	const toogleHistorial = () => (historial = !historial);
 
 	let amount = 0;
-	const toogleModal = () => (hideModal = !hideModal);
 	const btns = [
 		{
 			icon: "history",
@@ -53,7 +52,7 @@
 		<div class="float-right  mt-5 flex flex-row">
 			{#each btns as { label, icon, style, onClick }}
 				<Tooltip {label}>
-					<Button props={{ icon, style, onClick }} />
+					<Button prop={{ icon, style, onClick }} />
 				</Tooltip>
 			{/each}
 		</div>
@@ -63,7 +62,7 @@
 		</div>
 	{:else}
 		<div class="float-right  mt-5 flex flex-row">
-			<Button props={btns[1]} />
+			<Button prop={btns[1]} />
 		</div>
 	{/if}
 </Modal>

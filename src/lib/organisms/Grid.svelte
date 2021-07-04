@@ -52,7 +52,7 @@
 </script>
 
 {#if $data && edit}
-	{#each $data as props, index (props.id)}
+	{#each $data as prop, index (prop.id)}
 		<div animate:flip in:fade class="relative">
 			<div
 				class="list-item"
@@ -63,13 +63,13 @@
 				on:dragenter={() => (hovering = index)}
 				class:is-active={hovering === index}
 			>
-				<Row {edit} {props} {data} {index} />
+				<Row {edit} {prop} {data} {index} />
 			</div>
 
 			<div class="move_btns">
 				{#if index !== 0}
 					<Button
-						props={{
+						prop={{
 							icon: "up",
 							style: "move",
 							onClick: () => moveUp(index),
@@ -79,7 +79,7 @@
 
 				{#if index !== $data.length - 1}
 					<Button
-						props={{
+						prop={{
 							icon: "down",
 							style: "move",
 							onClick: () => moveDown(index),
@@ -90,9 +90,9 @@
 		</div>
 	{/each}
 {:else if $data && !edit}
-	{#each $data as props (props.id)}
+	{#each $data as prop (prop.id)}
 		<div in:fade>
-			<Row {edit} {props} {data} />
+			<Row {edit} {prop} {data} />
 		</div>
 	{/each}
 {/if}
