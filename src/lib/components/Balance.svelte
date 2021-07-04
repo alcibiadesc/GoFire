@@ -6,7 +6,6 @@
 	import { goal } from "./../../stores/goal.js";
 
 	export let balance = 0;
-	$: road = $goal - balance;
 	$: name = $user.displayName ? $user.displayName.split(" ")[0] : "crack";
 </script>
 
@@ -21,5 +20,5 @@
 		{format(balance)}
 	</p>
 
-	<Goal {balance} goal={$goal} {road} />
+	<Goal {balance} goal={$goal} />
 </Card>

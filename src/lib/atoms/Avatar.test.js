@@ -1,40 +1,34 @@
 import { fireEvent, render, cleanup } from "@testing-library/svelte";
 
-import Button from "./Button.svelte";
+import Avatar from "./Avatar.svelte";
 
-describe("Component-Atom | Button", () => {
+describe("Component-Atom | Avatar", () => {
 	let component;
 	const mockClick = jest.fn();
 
 	beforeEach(() => {
-		const prop = {
-			icon: "menu",
-			style: "primary",
-			onClick: mockClick,
-		};
-		let rendered = render(Button, { prop });
-
+		let rendered = render(Avatar, { onClick: mockClick });
 		component = rendered.getByRole("button");
 	});
 
-	afterEach(cleanup);
-	test("Render Button", () => {
+	afterEach(() => {
+		cleanup();
+	});
+
+	test("Render Avatar", () => {
 		expect(component).toBeDefined();
 	});
 
 	test("check click works", () => {
 		fireEvent.click(component);
-
 		const result = mockClick;
 		const expected = 1;
-
 		expect(result).toHaveBeenCalledTimes(expected);
 	});
-
 	test("img text alt exist", () => {
 		cleanup();
-		let rendered = render(Button, { prop: { icon: "goal" } });
-		let result = rendered.getByAltText("goal");
+		let rendered = render(Avatar);
+		let result = rendered.getByAltText("Avatar");
 
 		expect(result).toBeDefined();
 	});

@@ -7,7 +7,7 @@
 </script>
 
 <div class="w-screen p-8">
-	<div on:click={signIn} class="float-right">
-		<Avatar {img} />
+	<div class="float-right">
+		<Avatar onClick={signIn} {img} />
 	</div>
 </div>

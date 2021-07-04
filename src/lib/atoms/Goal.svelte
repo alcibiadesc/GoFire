@@ -2,9 +2,9 @@
 	import { format } from "./../../scripts.js";
 	import { fade } from "svelte/transition";
 	export let goal = 0;
-	export let road = 0;
 	export let balance = 0;
 
+	$: road = goal - balance;
 	$: checkGoal = () => goal > balance;
 </script>
 
