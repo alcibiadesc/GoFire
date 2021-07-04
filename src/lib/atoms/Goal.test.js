@@ -32,5 +32,7 @@ describe("Component-Atom | Goal", () => {
 	test("Road works", () => {
 		let rendered = render(Goal, { goal: 90, balance: 30 });
 		let component = rendered.getByText("a 60", { exact: false });
+
+		expect(component).toBeDefined();
 	});
 });
