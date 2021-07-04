@@ -1,11 +1,55 @@
 import { get } from "svelte/store";
 import { data, resetData } from "./data.js";
 
-const getID = () => {
-	data.add();
-	let id = get(data)[0].id;
-	return id;
+const generateData = () => {
+	const randomNumber = (n) => Math.floor(Math.random() * n);
+	const randomAmount = (n) => Math.random() * n;
+
+	const randomDate = () =>
+		new Date(+new Date() - Math.floor(Math.random() * 10000000000))
+			.toISOString()
+			.substr(0, 10);
+
+	let index = 0;
+	let id = "";
+
+	let loop = randomNumber(100) + 1;
+	let stepReturn = randomNumber(loop);
+
+	let revenueArray = [];
+	let balanceArray = [];
+
+	for (let step = 0; step < loop; step++) {
+		data.add();
+		let id_inside = get(data)[step].id;
+		let numberAmount = randomAmount(100_000_000) + 0.01;
+
+		data.change(id_inside, "number", numberAmount);
+
+		balanceArray = [...balanceArray, numberAmount];
+
+		if (step === stepReturn) {
+			index = step;
+			id = id_inside;
+		} else if (step > stepReturn) {
+			let savingAmount = randomAmount(100_000_000) + 0.01;
+
+			data.saving(id_inside, randomDate, savingAmount);
+			revenueArray = [...revenueArray, savingAmount];
+		}
+	}
+
+	return { id, index, revenueArray, balanceArray };
 };
+
+describe("Generate Data", () => {
+	test("Generate more than 1 array item", () => {
+		generateData();
+		const result = get(data).length;
+
+		expect(result).toBeGreaterThan(1);
+	});
+});
 
 describe("data store", () => {
 	beforeEach(() => {
@@ -18,8 +62,8 @@ describe("data store", () => {
 		expect(result).toEqual(expected);
 	});
 
-	test("reset work", () => {
-		data.set([1]);
+	test("reset all data", () => {
+		generateData();
 		resetData();
 		const result = get(data);
 		const expected = [];
@@ -42,26 +86,26 @@ describe("data store", () => {
 		expect(result).toEqual(expected);
 	});
 
-	test("delete an item", (id = getID()) => {
+	test("delete an item", ({ id, index } = generateData()) => {
 		expect(id).toEqual(expect.any(String));
 		data.remove(id);
-		const result = get(data);
-		const expected = [];
-		expect(result).toEqual(expected);
+		const result = get(data).find((value) => value.id === id);
+
+		expect(result).toBeUndefined();
 	});
 
-	test("change a value", (id = getID()) => {
+	test("change a value", ({ id, index } = generateData()) => {
 		data.change(id, "title", "Esparrago");
-		const result = get(data)[0];
+		const result = get(data)[index];
 		const expected = { title: "Esparrago" };
 
 		expect(result).toEqual(expect.objectContaining(expected));
 	});
 
-	test("add a saving", (id = getID()) => {
+	test("add a saving", ({ id, index } = generateData()) => {
 		data.saving(id, "2021-12-05", 40);
 
-		const result = get(data)[0].saving;
+		const result = get(data)[index].saving;
 		const expected = [
 			{
 				id_saving: expect.any(String),
@@ -73,35 +117,26 @@ describe("data store", () => {
 		expect(result).toEqual(expect.arrayContaining(expected));
 	});
 
-	test("delete a saving", (id = getID()) => {
+	test("delete a saving", ({ id, index } = generateData()) => {
 		data.saving(id, "2021-12-05", 220);
-		let id_saving = get(data)[0].saving[0].id_saving;
+		let id_saving = get(data)[index].saving[0].id_saving;
 		data.removeSaving(id, id_saving);
 
-		const result = get(data)[0].saving;
+		const result = get(data)[index].saving;
 		const expected = [];
 		expect(result).toEqual(expected);
 	});
-
-	test("calculate revenue", (id = getID()) => {
-		data.saving(id, "2021-12-05", 10);
-		data.saving(id, "2021-09-05", 20);
-
+	test("calculate reveanue", ({ id, index, revenueArray } = generateData()) => {
 		const result = data.revenue();
-		const expected = 30;
+		const expected = revenueArray.reduce((a, b) => a + b, 0);
 
 		expect(result).toBe(expected);
+		expected;
 	});
 
-	test("calculate balance", (array = get(data)) => {
-		for (let step = 0; step < 9; step++) {
-			data.add();
-			let id = get(data)[step].id;
-			data.change(id, "number", 6);
-		}
-
+	test("calculate balance", ({ balanceArray } = generateData()) => {
 		const result = data.balance();
-		const expected = 54;
+		const expected = balanceArray.reduce((a, b) => a + b, 0);
 
 		expect(result).toBe(expected);
 	});
@@ -111,10 +146,14 @@ describe("data store", () => {
 			data.add();
 			let id = get(data)[step].id;
 			data.change(id, "number", step);
+
+			if (step > 4) {
+				data.saving(id, "2009-08-28", 5);
+			}
 		}
 
 		const result = data.detectNoSavings();
-		const expected = 36;
+		const expected = 10;
 
 		expect(result).toBe(expected);
 	});
