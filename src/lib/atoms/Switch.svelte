@@ -47,7 +47,7 @@
 		position: absolute;
 		left: 0;
 		top: 0;
-		background: var(--blue-background);
+		background: var(--background);
 		z-index: -10;
 		width: 100%;
 		height: 100vh;
@@ -101,9 +101,9 @@
 		/** Placeholder element, starting at blue **/
 		width: 100px;
 		height: 50px;
-		background: var(--blue-color);
+		background: #228ee4;
 		border-radius: 50px;
-		border: 2.5px solid var(--blue-border);
+		border: 2.5px solid var(--secondary);
 		display: flex;
 		position: relative;
 		transition: all 350ms ease-in;

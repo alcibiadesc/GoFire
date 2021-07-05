@@ -33,4 +33,8 @@
 	h6 {
 		color: var(--primary);
 	}
+
+	img {
+		filter: var(--filter_primary);
+	}
 </style>

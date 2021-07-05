@@ -22,7 +22,7 @@
 	.container {
 		display: flex;
 		justify-content: space-around;
-		background: linear-gradient(#383e43, var(--background));
+		background: var(--card__background);
 		padding: 25px;
 		border-radius: 50px;
 		bottom: 0;

@@ -30,7 +30,8 @@
 		display: grid;
 		place-items: center;
 		border-radius: 10px;
-		background: linear-gradient(to bottom, #202227, var(--background));
+
+		background: var(--card__background);
 	}
 
 	.secondary {
@@ -45,7 +46,7 @@
 	}
 
 	.selected {
-		background: linear-gradient(to bottom, #202227, var(--background));
+		background: var(--card__background);
 		border-radius: 50%;
 	}
 	.move {

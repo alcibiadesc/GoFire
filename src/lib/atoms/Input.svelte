@@ -36,7 +36,7 @@
 		margin-top: 2rem;
 	}
 	.inp-icon {
-		background: url(icons/goal.svg) no-repeat 90%;
+		background: url(icons/goal_two.svg) no-repeat 90%;
 		background-size: 26px;
 		background-color: var(--background__input);
 	}

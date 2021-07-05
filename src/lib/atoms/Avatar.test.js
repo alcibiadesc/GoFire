@@ -1,7 +1,6 @@
 import { fireEvent, render, cleanup } from "@testing-library/svelte";
 
 import Avatar from "./Avatar.svelte";
-
 describe("Component-Atom | Avatar", () => {
 	let component;
 	const mockClick = jest.fn();
