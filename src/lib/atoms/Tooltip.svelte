@@ -41,6 +41,7 @@
 	}
 
 	.tooltip:hover .tooltiptext {
+		transition: opacity 0s linear 1s;
 		visibility: visible;
 		opacity: 1;
 	}

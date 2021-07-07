@@ -16,15 +16,9 @@
 <style>
 	:root {
 		/** sunny side **/
-		--blue-background: #c2e9f6;
-		--blue-border: #72cce3;
-		--blue-color: #96dcee;
 		--yellow-background: #fffaa8;
 		--yellow-border: #f5eb71;
 		/** dark side **/
-		--indigo-background: #808fc7;
-		--indigo-border: #5d6baa;
-		--indigo-color: #6b7abb;
 		--gray-border: #e8e8ea;
 		--gray-dots: #e8e8ea;
 		/** general **/
@@ -101,7 +95,7 @@
 		/** Placeholder element, starting at blue **/
 		width: 100px;
 		height: 50px;
-		background: #228ee4;
+		background: #238ee4;
 		border-radius: 50px;
 		border: 2.5px solid var(--secondary);
 		display: flex;

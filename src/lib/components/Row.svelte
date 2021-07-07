@@ -2,6 +2,7 @@
 	import { format, formatPercent } from "./../../scripts.js";
 	import ModalSavings from "./../components/ModalSavings.svelte";
 	import Button from "./../atoms/Button.svelte";
+	import Tooltip from "./../atoms/Tooltip.svelte";
 
 	export let edit = false;
 	export let data = [];
@@ -31,9 +32,19 @@
 	const { changeName, changeNumber, changeHigh, remove, toogleHigh } = actions;
 
 	const btns = [
-		{ icon: "delete", style: "tertiary", onClick: remove },
-		{ icon: "highlight", style: "tertiary", onClick: toogleHigh },
-		{ icon: "saving", style: "tertiary", onClick: toogleModal },
+		{ icon: "delete", style: "tertiary", onClick: remove, label: "eliminar" },
+		{
+			icon: "highlight",
+			style: "tertiary",
+			onClick: toogleHigh,
+			label: "destacar",
+		},
+		{
+			icon: "saving",
+			style: "tertiary",
+			onClick: toogleModal,
+			label: "aportación",
+		},
 	];
 
 	$: getSaving = saving.reduce((acc, crt) => acc + crt.amount, 0);
@@ -73,9 +84,11 @@
 			</div>
 			<div class=" flex flex-row float-right">
 				{#each btns as btn}
-					<div>
-						<Button prop={btn} />
-					</div>
+					<Tooltip label={btn.label}>
+						<div>
+							<Button prop={btn} />
+						</div>
+					</Tooltip>
 				{/each}
 			</div>
 		</div>

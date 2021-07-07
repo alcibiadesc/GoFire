@@ -45,7 +45,11 @@
 
 <Modal {hideModal}>
 	<h1 class="noselect text-2xl">{title}</h1>
-	<Input bind:value={amount} label="añade la cantidad" type="number" />
+	<Input
+		bind:value={amount}
+		label="añade la aportación realizada"
+		type="number"
+	/>
 	<Input bind:value={date} label="¿Cuándo añadiste los fondos?" type="date" />
 
 	{#if savings.length > 0}
