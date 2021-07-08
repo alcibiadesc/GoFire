@@ -63,7 +63,7 @@
 				on:dragenter={() => (hovering = index)}
 				class:is-active={hovering === index}
 			>
-				<Row {edit} {prop} {data} {index} />
+				<Row {edit} {prop} {data} />
 			</div>
 
 			<div class="move_btns">

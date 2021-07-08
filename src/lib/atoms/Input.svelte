@@ -1,10 +1,10 @@
 <script>
-	export let icon = "menu";
 	export let style = "primary";
 	export let placeholder = "0€";
 	export let value = "";
 	export let label = "";
 	export let type = "number";
+	export let icon = true;
 </script>
 
 <div>
@@ -16,7 +16,8 @@
 		<input
 			bind:value
 			type="number"
-			class="input__{style} inp-icon"
+			class:inp-icon={icon}
+			class="input__{style} "
 			{placeholder}
 		/>
 	{:else if type === "date"}
@@ -25,7 +26,8 @@
 		<input
 			bind:value
 			type="text"
-			class="input__{style} inp-icon"
+			class:inp-icon={icon}
+			class="input__{style} "
 			{placeholder}
 		/>
 	{/if}

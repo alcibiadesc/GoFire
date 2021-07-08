@@ -3,7 +3,6 @@
 	import User from "./lib/pages/User.svelte";
 	import Menu from "./lib/components/Menu.svelte";
 	import Settings from "./lib/pages/Settings.svelte";
-	import Test from "./lib/pages/Test.svelte";
 	import Navbar from "./lib/components/Navbar.svelte";
 	let current = "home";
 
@@ -15,7 +14,6 @@
 		home: Home,
 		profile: User,
 		lightning: Settings,
-		bell: Test,
 	};
 	$: page = pages[current];
 </script>
