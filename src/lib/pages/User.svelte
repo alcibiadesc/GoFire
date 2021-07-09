@@ -47,7 +47,3 @@
 		</div>
 	{/if}
 </Card>
-
-{#if $user.uid}
-	<Apis />
-{/if}

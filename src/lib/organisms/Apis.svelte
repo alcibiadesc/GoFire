@@ -10,13 +10,6 @@
 			icon: false,
 			api: $apis.kraken,
 		},
-		{
-			label: "bing",
-			placeholder: "add your API",
-			type: "text",
-			icon: false,
-			api: $apis.bing,
-		},
 	];
 
 	let apiObj = {};
