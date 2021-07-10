@@ -6,7 +6,7 @@
   import { fade } from "svelte/transition";
 
   export let edit = false;
-  let hovering = false;
+  let hovering = -1;
 
   const drop = (event, target) => {
     event.dataTransfer.dropEffect = "move";
@@ -22,7 +22,7 @@
     }
     data.set(newTracklist);
 
-    hovering = false;
+    hovering = -1;
   };
 
   const dragstart = (event, i) => {
