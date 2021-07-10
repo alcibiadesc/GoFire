@@ -62,6 +62,24 @@ const createData = () => {
     );
   };
 
+  const moveDown = (index, array = getArray()) => {
+    if (index !== array.length - 1) {
+      let newTrackList = array;
+      newTrackList.splice(index + 2, 0, newTrackList[index]);
+      newTrackList.splice(index, 1);
+      set(newTrackList);
+    }
+  };
+
+  const moveUp = (index, array = getArray()) => {
+    if (index !== 0) {
+      let newTrackList = array;
+      newTrackList.splice(index - 1, 0, newTrackList[index]);
+      newTrackList.splice(index + 1, 1);
+      set(newTrackList);
+    }
+  };
+
   return {
     subscribe,
     update,
@@ -74,6 +92,8 @@ const createData = () => {
     revenue,
     detectNoSavings,
     removeSaving,
+    moveDown,
+    moveUp,
   };
 };
 
