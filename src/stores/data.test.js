@@ -157,4 +157,30 @@ describe("data store", () => {
 
     expect(result).toBe(expected);
   });
+
+  test("move down an array item", ({ id, index } = generateData()) => {
+    let result = 0;
+    const expected = index < get(data).length ? index + 1 : index;
+    data.moveDown(index);
+
+    get(data).map((value, index) => {
+      if (value.id === id) {
+        result = index;
+      }
+    });
+    expect(result).toEqual(expected);
+  });
+
+  test("move up an array item", ({ id, index } = generateData()) => {
+    let result = 0;
+    const expected = index > 0 ? index - 1 : index;
+    data.moveUp(index);
+
+    get(data).map((value, index) => {
+      if (value.id === id) {
+        result = index;
+      }
+    });
+    expect(result).toEqual(expected);
+  });
 });
