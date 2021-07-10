@@ -32,6 +32,7 @@
     const start = i;
     event.dataTransfer.setData("text/plain", start);
   };
+  /*
   const moveUp = (index) => {
     if (index !== 0) {
       const newTrackList = $data;
@@ -40,15 +41,7 @@
       data.set(newTrackList);
     }
   };
-
-  const moveDown = (index) => {
-    if (index !== $data.length - 1) {
-      const newTrackList = $data;
-      newTrackList.splice(index + 2, 0, newTrackList[index]);
-      newTrackList.splice(index, 1);
-      data.set(newTrackList);
-    }
-  };
+*/
 </script>
 
 {#if $data && edit}
@@ -72,7 +65,7 @@
             prop={{
               icon: "up",
               style: "move",
-              onClick: () => moveUp(index),
+              onClick: () => data.moveUp(index),
             }}
           />
         {/if}
@@ -82,7 +75,7 @@
             prop={{
               icon: "down",
               style: "move",
-              onClick: () => moveDown(index),
+              onClick: () => data.moveDown(index),
             }}
           />
         {/if}
