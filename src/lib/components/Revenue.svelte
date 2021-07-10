@@ -1,7 +1,5 @@
 <script>
 	import { format, formatPercent } from "./../../scripts.js";
-	import ModalSavings from "./../components/ModalSavings.svelte";
-	import Button from "./../atoms/Button.svelte";
 
 	export let revenue = 0;
 	export let percent = 0;
