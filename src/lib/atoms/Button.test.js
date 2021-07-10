@@ -2,40 +2,40 @@ import { fireEvent, render, cleanup } from "@testing-library/svelte";
 
 import Button from "./Button.svelte";
 
-describe("Component-Atom | Button", () => {
-	let component;
-	const mockClick = jest.fn();
+describe("Atom | Button", () => {
+  let component;
+  const mockClick = jest.fn();
 
-	beforeEach(() => {
-		const prop = {
-			icon: "menu",
-			style: "primary",
-			onClick: mockClick,
-		};
-		let rendered = render(Button, { prop });
+  beforeEach(() => {
+    const prop = {
+      icon: "menu",
+      style: "primary",
+      onClick: mockClick,
+    };
+    let rendered = render(Button, { prop });
 
-		component = rendered.getByRole("button");
-	});
+    component = rendered.getByRole("button");
+  });
 
-	afterEach(cleanup);
-	test("Render Button", () => {
-		expect(component).toBeDefined();
-	});
+  afterEach(cleanup);
+  test("Render Button", () => {
+    expect(component).toBeDefined();
+  });
 
-	test("check click works", () => {
-		fireEvent.click(component);
+  test("check click works", () => {
+    fireEvent.click(component);
 
-		const result = mockClick;
-		const expected = 1;
+    const result = mockClick;
+    const expected = 1;
 
-		expect(result).toHaveBeenCalledTimes(expected);
-	});
+    expect(result).toHaveBeenCalledTimes(expected);
+  });
 
-	test("img text alt exist", () => {
-		cleanup();
-		let rendered = render(Button, { prop: { icon: "goal" } });
-		let result = rendered.getByAltText("goal");
+  test("img text alt exist", () => {
+    cleanup();
+    let rendered = render(Button, { prop: { icon: "goal" } });
+    let result = rendered.getByAltText("goal");
 
-		expect(result).toBeDefined();
-	});
+    expect(result).toBeDefined();
+  });
 });
