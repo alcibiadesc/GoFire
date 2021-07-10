@@ -6,7 +6,6 @@
   import { fade } from "svelte/transition";
 
   export let edit = false;
-
   let hovering = false;
 
   const drop = (event, target) => {
@@ -32,16 +31,6 @@
     const start = i;
     event.dataTransfer.setData("text/plain", start);
   };
-  /*
-  const moveUp = (index) => {
-    if (index !== 0) {
-      const newTrackList = $data;
-      newTrackList.splice(index - 1, 0, newTrackList[index]);
-      newTrackList.splice(index + 1, 1);
-      data.set(newTrackList);
-    }
-  };
-*/
 </script>
 
 {#if $data && edit}
