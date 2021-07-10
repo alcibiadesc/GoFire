@@ -1,5 +1,5 @@
 <script>
-  import { format, formatPercent } from "./../../scripts.js";
+  import { format, formatPercent } from "./../../scripts/scripts.js";
   import ModalSavings from "./../components/ModalSavings.svelte";
   import Button from "./../atoms/Button.svelte";
   import Tooltip from "./../atoms/Tooltip.svelte";

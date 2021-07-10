@@ -1,7 +1,6 @@
 import { render, cleanup } from "@testing-library/svelte";
 import Balance from "./Balance.svelte";
 import { user } from "./../../stores/user.js";
-
 import { goal } from "./../../stores/goal.js";
 
 describe("Component | Balance", () => {
