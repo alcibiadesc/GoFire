@@ -11,6 +11,8 @@ describe("Pages | Home", () => {
     component = rendered.getByText("Hola crack");
   });
 
+  afterEach(cleanup);
+
   test("should render correctly", () => {
     expect(component).toBeDefined();
   });
