@@ -8,7 +8,7 @@
       placeholder: "add your API",
       type: "text",
       icon: false,
-      api: $apis.kraken,
+      api: "",
     },
   ];
 

@@ -30,13 +30,6 @@
 		padding: 0;
 	}
 
-	body {
-		display: grid;
-		place-items: center;
-		min-height: 100vh;
-		position: relative;
-	}
-
 	.background {
 		position: absolute;
 		left: 0;
@@ -69,7 +62,9 @@
 		left: 30px;
 		width: 2.5px;
 	}
-	.toggle--checkbox:checked + .toggle--label .toggle--label-background:before {
+	.toggle--checkbox:checked
+		+ .toggle--label
+		.toggle--label-background:before {
 		width: 2.5px;
 		height: 2.5px;
 		top: -12.5px;

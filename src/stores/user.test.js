@@ -1,29 +1,29 @@
-import { get } from "svelte/store";
-import { user, resetUser } from "./user.js";
+import {get} from 'svelte/store';
+import {user, resetUser} from './user.js';
 
-describe("User Store", () => {
-	test("store have an object", () => {
-		const result = get(user);
-		const expected = {
-			displayName: expect.any(String),
-			photoURL: expect.any(String),
-			email: expect.any(String),
-			uid: expect.any(String),
-		};
+describe('User Store', () => {
+  test('store have an object', () => {
+    const result = get(user);
+    const expected = {
+      displayName: expect.any(String),
+      photoURL: expect.any(String),
+      email: expect.any(String),
+      uid: expect.any(String),
+    };
 
-		expect(result).toMatchObject(expected);
-	});
+    expect(result).toMatchObject(expected);
+  });
 
-	test("store reset", () => {
-		user.set({ uid: 1123 });
-		resetUser();
-		const result = get(user);
-		const expected = {
-			displayName: expect.any(String),
-			photoURL: expect.any(String),
-			email: expect.any(String),
-			uid: expect.any(String),
-		};
-		expect(result).toMatchObject(expected);
-	});
+  test('store reset', () => {
+    user.set({uid: 1123});
+    resetUser();
+    const result = get(user);
+    const expected = {
+      displayName: expect.any(String),
+      photoURL: expect.any(String),
+      email: expect.any(String),
+      uid: expect.any(String),
+    };
+    expect(result).toMatchObject(expected);
+  });
 });

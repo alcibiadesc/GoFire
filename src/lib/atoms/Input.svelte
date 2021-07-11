@@ -50,12 +50,6 @@
 		width: 12rem;
 	}
 
-	input,
-	textarea {
-		color: var(--primary);
-		background-color: var(--background__input);
-	}
-
 	input[type="date"]::-webkit-calendar-picker-indicator {
 		filter: invert(1);
 		opacity: 0.8;

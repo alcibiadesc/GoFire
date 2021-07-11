@@ -16,7 +16,7 @@
 
 <Tooltip label="añadir nueva categoría ">
   <div>
-    <Button on:click={data.add} prop={{ icon: "add", style: "secondary" }} />
+    <Button  prop={{ icon: "add", style: "secondary", onClick: data.add }} />
   </div>
 </Tooltip>
 

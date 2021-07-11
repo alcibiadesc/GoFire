@@ -1,7 +1,7 @@
-import { writable } from "svelte/store";
+import {writable} from 'svelte/store';
 
 const goal = writable();
 
 const resetGoal = () => goal.set();
 
-export { goal, resetGoal };
+export {goal, resetGoal};
