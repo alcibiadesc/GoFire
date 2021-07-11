@@ -1,7 +1,7 @@
-import { writable } from "svelte/store";
+import {writable} from 'svelte/store';
 
 const apis = writable({});
 
 const resetApis = () => apis.set({});
 
-export { apis, resetApis };
+export {apis, resetApis};

@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import {writable} from 'svelte/store';
 
 const STORE_PREFIX = 'theme';
@@ -59,7 +60,7 @@ const light = (root) => {
 
 theme.subscribe((value) => {
   const root = document.documentElement.style;
-	value === 'dark' ? dark(root) : light(root);
+value === 'dark' ? dark(root) : light(root);
 });
 
 export {theme};

@@ -44,10 +44,7 @@
 	.toggle--checkbox {
 		display: none;
 	}
-	.toggle--checkbox:checked {
-		/** This will all flip from sun to moon **/
-		/** Change the label color **/
-	}
+
 	.toggle--checkbox:checked ~ .background {
 		background: var(--background);
 	}

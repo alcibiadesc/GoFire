@@ -1,17 +1,17 @@
-import { firebaseApp } from "./firebase.js";
+// eslint-disable-next-line no-unused-vars
+import {firebaseApp} from './firebase.js';
 import {
   GoogleAuthProvider,
   getAuth,
   signInWithRedirect,
-  getRedirectResult,
   signOut,
   onAuthStateChanged,
-} from "firebase/auth";
-import { user, resetUser } from "./../stores/user.js";
-import { getData, setData } from "./firebase-firestore.js";
-import { resetData, data } from "./../stores/data.js";
+} from 'firebase/auth';
+import {user, resetUser} from './../stores/user.js';
+import {getData, setData} from './firebase-firestore.js';
+import {resetData, data} from './../stores/data.js';
 
-import { goal, resetGoal } from "./../stores/goal.js";
+import {goal, resetGoal} from './../stores/goal.js';
 
 const auth = getAuth();
 const provider = new GoogleAuthProvider();
@@ -30,23 +30,23 @@ const profile = (userData) => {
 };
 
 const get = (uid) => {
-  getData("goal", uid).then((value) => (value ? goal.set(value.goal) : ""));
-  getData("data", uid).then((array) => (array ? data.set(array.data) : ""));
+  getData('goal', uid).then((value) => (value ? goal.set(value.goal) : ''));
+  getData('data', uid).then((array) => (array ? data.set(array.data) : ''));
 };
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
-    console.log("👌 you are logged 👌");
+    console.log('👌 you are logged 👌');
     profile(user);
     get(user.uid);
-    goal.subscribe((value) => setData("goal", user.uid, value));
+    goal.subscribe((value) => setData('goal', user.uid, value));
     data.subscribe((value) =>
-      value.length > 0 ? setData("data", user.uid, value) : ""
+      value.length > 0 ? setData('data', user.uid, value) : '',
     );
   } else {
-    console.log("👋 you are not logged 👋");
+    console.log('👋 you are not logged 👋');
     reset();
   }
 });
 
-export { actionSignOut, signIn, auth };
+export {actionSignOut, signIn, auth};
