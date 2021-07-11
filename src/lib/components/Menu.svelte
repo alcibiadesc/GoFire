@@ -4,6 +4,7 @@
 	const buttons = [
 		{ icon: "home", style: "secondary", selected: false },
 		{ icon: "lightning", style: "secondary", selected: false },
+		{ icon: "chart", style: "secondary", selected: false },
 		{ icon: "profile", style: "secondary", selected: false },
 	];
 

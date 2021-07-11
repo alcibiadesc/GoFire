@@ -4,6 +4,7 @@
   import Menu from "./lib/components/Menu.svelte";
   import Settings from "./lib/pages/Settings.svelte";
   import Navbar from "./lib/components/Navbar.svelte";
+  import Chart from "./lib/pages/Chart.svelte";
 
   let current = "home";
 
@@ -15,6 +16,7 @@
     home: Home,
     profile: User,
     lightning: Settings,
+    chart: Chart,
   };
 
   $: page = pages[current];
