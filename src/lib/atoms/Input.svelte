@@ -49,6 +49,9 @@
 		border-radius: 15px;
 		width: 12rem;
 	}
+	input {
+		color: var(--primary);
+	}
 
 	input[type="date"]::-webkit-calendar-picker-indicator {
 		filter: invert(1);
