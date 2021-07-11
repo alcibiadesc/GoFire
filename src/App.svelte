@@ -5,6 +5,11 @@
   import Settings from "./lib/pages/Settings.svelte";
   import Navbar from "./lib/components/Navbar.svelte";
   import Chart from "./lib/pages/Chart.svelte";
+  import { dict, locale } from "./i18n/i18n.js";
+  import translations from "./i18n/translations.js";
+
+  $: languages = Object.keys(translations);
+  $: dict.set(translations);
 
   let current = "home";
 

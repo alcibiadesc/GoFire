@@ -1,6 +1,7 @@
 <script>
   import { format } from "./../../scripts/scripts.js";
   import { fade } from "svelte/transition";
+  import { t } from "./../../i18n/i18n";
   export let goal = 0;
   export let balance = 0;
 
@@ -12,10 +13,14 @@
   <img class="m-auto" src="icons/goal.svg" alt="goal" />
 
   {#if checkGoal()}
-    <p class="euros text-sm text-center">a {format(road)}</p>
-    <h6 class="euros text-xs text-center">de {format(goal)}</h6>
+    <p class="euros text-sm text-center">
+      {$t("HOME.TO") + " " + format(road)}
+    </p>
+    <h6 class="euros text-xs text-center">
+      {$t("HOME.OF") + " " + format(goal)}
+    </h6>
   {:else}
-    <p class="euros text-xs text-center">Objetivo logrado</p>
+    <p class="euros text-xs text-center">{$t("HOME.GOAL")}</p>
     <h6 class="euros text-xs text-center">{format(goal)}</h6>
   {/if}
 </div>

@@ -2,10 +2,13 @@ export default {
 
   español: {
     HOME: {
+      HI: 'Hola',
       TITLE: 'Hola crack',
       SUBTITLE: 'Hoy será un gran día',
       BALANCE: 'Balance',
       GOAL: 'Objetivo Logrado',
+      TO: 'a',
+      OF: 'de',
       PROFIT: 'Beneficios',
       PROFITABILITY: 'Rentabilidad:',
 
@@ -13,6 +16,7 @@ export default {
     },
     SETTINGS: {
       TITLE: 'Edición',
+      HEADER: 'Título',
       SUBTITLE: 'Configura tus fuentes de ingresos',
       GOAL: 'Objetivo',
       TOOLTIPS: {
@@ -61,15 +65,19 @@ export default {
   },
   english: {
     HOME: {
+      HI: 'Hi',
       TITLE: 'Hello crack',
       SUBTITLE: 'Today will be a great day',
       BALANCE: 'Balance',
       GOAL: 'Goal reached',
+      TO: 'to',
+      OF: 'of',
       PROFIT: 'Profit',
       PROFITABILITY: 'Profitability:',
     },
     SETTINGS: {
       TITLE: 'Settings',
+      HEADER: 'Title',
       SUBTITLE: 'Configure your sources of income',
       GOAL: 'Goal',
       TOOLTIPS: {
@@ -117,15 +125,19 @@ export default {
   },
   français: {
     HOME: {
+      HI: 'Bonjour',
       TITLE: 'Bienvenue sur crack',
       SUBTITLE: 'Hier sera un grand jour',
       BALANCE: 'Balance',
       GOAL: 'Objetivo atteint',
+      TO: 'à',
+      OF: 'sur',
       PROFIT: 'Rentabilité',
       PROFITABILITY: 'Rentabilité:',
     },
     SETTINGS: {
       TITLE: 'Paramètres',
+      HEADER: 'Titre',
       SUBTITLE: 'Configurez vos sources d\'argent',
       GOAL: 'Objetif',
       TOOLTIPS: {
@@ -172,16 +184,20 @@ export default {
     },
   },
   deutsche: {
+    HI: 'Hallo',
     HOME: {
       TITLE: 'Willkommen auf crack',
       SUBTITLE: 'Heute wird ein großer Tag',
       BALANCE: 'Balance',
       GOAL: 'Ziel erreicht',
+      TO: 'bis',
+      OF: 'von',
       PROFIT: 'Gewinn',
       PROFITABILITY: 'Wahrscheinlichkeit:',
     },
     SETTINGS: {
       TITLE: 'Einstellungen',
+      HEADER: 'der Überschrift',
       SUBTITLE: 'Konfiguriere deine Einkommensquellen',
       GOAL: 'Ziel',
       TOOLTIPS: {
@@ -229,15 +245,19 @@ export default {
   },
   português: {
     HOME: {
+      HI: 'Olá',
       TITLE: 'Bem-vindo ao crack',
       SUBTITLE: 'Hoje será um grande dia',
       BALANCE: 'Saldo',
       GOAL: 'Objetivo alcançado',
+      TO: 'até',
+      OF: 'de',
       PROFIT: 'Lucro',
       PROFITABILITY: 'Lucro:',
     },
     SETTINGS: {
       TITLE: 'Configurações',
+      HEADER: 'título',
       SUBTITLE: 'Configure suas fontes de renda',
       GOAL: 'Objetivo',
       TOOLTIPS: {
@@ -285,15 +305,19 @@ export default {
   },
   русский: {
     HOME: {
+      HI: 'Привет',
       TITLE: 'Добро пожаловать на crack',
       SUBTITLE: 'Сегодня будет большой день',
       BALANCE: 'Баланс',
-      GOAL: 'Цель',
+      GOAL: 'цель достигнута',
+      TO: 'до',
+      OF: 'из',
       PROFIT: 'Доход',
       PROFITABILITY: 'Вероятность:',
     },
     SETTINGS: {
       TITLE: 'Настройки',
+      HEADER: 'заголовок',
       SUBTITLE: 'Настроить ваши доходы',
       GOAL: 'Цель',
       TOOLTIPS: {
@@ -340,16 +364,21 @@ export default {
     },
   },
   polskie: {
+    HI: 'Witaj',
     HOME: {
+      HI: 'Witaj',
       TITLE: 'Witamy w crack',
       SUBTITLE: 'Dziś będzie duży dzień',
       BALANCE: 'Saldo',
-      GOAL: 'Objetivo',
+      GOAL: 'Osiągnięto cel',
+      TO: 'do',
+      OF: 'z',
       PROFIT: 'Zysk',
       PROFITABILITY: 'Wydajność:',
     },
     SETTINGS: {
       TITLE: 'Ustawienia',
+      HEADER: 'nagłówek',
       SUBTITLE: 'Skonfiguruj swoje źródła dochodu',
       GOAL: 'Objetivo',
       TOOLTIPS: {

@@ -6,17 +6,24 @@
   import Grid from "../organisms/Grid.svelte";
   import { data } from "./../../stores/data.js";
   import { goal } from "./../../stores/goal.js";
+  import { t } from "./../../i18n/i18n";
 </script>
 
 <Card>
-  <h1>Edición</h1>
-  <h3>Configura tus fuentes de ingresos</h3>
-  <Input label="Objetivo" type="text" bind:value={$goal} />
+  <h1>{$t("SETTINGS.TITLE")}</h1>
+  <h3>{$t("SETTINGS.SUBTITLE")}</h3>
+  <Input label={$t("SETTINGS.GOAL")} type="text" bind:value={$goal} />
 </Card>
 
-<Tooltip label="añadir nueva categoría ">
+<Tooltip label="{$t('SETTINGS.TOOLTIPS.ADD')} ">
   <div>
-    <Button  prop={{ icon: "add", style: "secondary", onClick: data.add }} />
+    <Button
+      prop={{
+        icon: "add",
+        style: "secondary",
+        onClick: () => data.add($t("SETTINGS.HEADER")),
+      }}
+    />
   </div>
 </Tooltip>
 

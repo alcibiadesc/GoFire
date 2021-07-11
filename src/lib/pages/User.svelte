@@ -5,11 +5,12 @@
   import Tooltip from "./../atoms/Tooltip.svelte";
   import { user } from "./../../stores/user.js";
   import LangSelect from "./../atoms/LangSelect.svelte";
+  import { t } from "./../../i18n/i18n";
 
   const btnsLogin = [
     {
       name: "SignOut",
-      label: "Cerrar sesión",
+      label: $t("PROFILE.ONLINE.TOOLTIPS.LOGOUT"),
       icon: "logout",
       style: "primary",
       onClick: actionSignOut,
@@ -28,8 +29,8 @@
     <LangSelect />
   </div>
   {#if $user.uid}
-    <h1>Información</h1>
-    <h3 class="mb-5">Tus datos personales</h3>
+    <h1>{$t("PROFILE.ONLINE.TITLE")}</h1>
+    <h3 class="mb-5">{$t("PROFILE.ONLINE.SUBTITLE")}</h3>
     <img class="mx-auto rounded-lg" src={$user.photoURL} alt="user" />
     <div class="my-8">
       <h2>{$user.displayName}</h2>
@@ -44,9 +45,9 @@
       </div>
     {/each}
   {:else}
-    <h2 class="text-center">Haz click para iniciar sesión</h2>
+    <h2 class="text-center">{$t("PROFILE.OFFLINE.TITLE")}</h2>
     <div class="m-2 flex flex-col">
-      <Tooltip label="Iniciar sesión">
+      <Tooltip label={$t("PROFILE.OFFLINE.TOOLTIPS.LOGIN")}>
         <Button prop={btnSignin} />
       </Tooltip>
     </div>

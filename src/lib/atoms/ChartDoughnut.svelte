@@ -1,9 +1,10 @@
 <script>
   import Doughnut from "svelte-chartjs/src/Doughnut.svelte";
+  import { t } from "./../../i18n/i18n";
 
   export let metrics = [80, 20];
   export let data = {
-    labels: ["Aportaciones", "Rentabilidad"],
+    labels: [$t("CHARTS.DOUGHNUT.SAVINGS"), $t("CHARTS.DOUGHNUT.PROFIT")],
     datasets: [
       {
         data: metrics,

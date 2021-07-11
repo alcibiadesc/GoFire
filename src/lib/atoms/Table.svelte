@@ -1,6 +1,7 @@
 <script>
   import Button from "./Button.svelte";
   import { formatBasic } from "./../../scripts/scripts.js";
+  import { t } from "./../../i18n/i18n";
 
   export let removeSaving = () => {};
   export let savings = [];
@@ -10,9 +11,9 @@
 <table class="text-center w-full">
   <thead>
     <tr>
-      <th>FECHA</th>
+      <th>{$t("SETTINGS.MODAL.TABLE.DATE")}</th>
 
-      <th>CANTIDAD</th>
+      <th>{$t("SETTINGS.MODAL.TABLE.AMOUNT")}</th>
     </tr>
   </thead>
 

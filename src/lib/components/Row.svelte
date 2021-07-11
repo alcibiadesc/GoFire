@@ -3,6 +3,7 @@
   import ModalSavings from "./../components/ModalSavings.svelte";
   import Button from "./../atoms/Button.svelte";
   import Tooltip from "./../atoms/Tooltip.svelte";
+  import { t } from "./../../i18n/i18n";
 
   export let edit = false;
   export let data = [];
@@ -32,18 +33,23 @@
   const { changeName, changeNumber, changeHigh, remove, toogleHigh } = actions;
 
   const btns = [
-    { icon: "delete", style: "tertiary", onClick: remove, label: "eliminar" },
+    {
+      icon: "delete",
+      style: "tertiary",
+      onClick: remove,
+      label: $t("SETTINGS.TOOLTIPS.REMOVE"),
+    },
     {
       icon: "highlight",
       style: "tertiary",
       onClick: toogleHigh,
-      label: "destacar",
+      label: $t("SETTINGS.TOOLTIPS.HIGHLIGHT"),
     },
     {
       icon: "saving",
       style: "tertiary",
       onClick: toogleModal,
-      label: "aportación",
+      label: $t("SETTINGS.TOOLTIPS.SAVING"),
     },
   ];
 
@@ -103,7 +109,9 @@
     </div>
   {/if}
   {#if saving.length > 0 && !edit}
-    <h3 class="mt-1 revenue text-sm">Rentabilidad: {format(revenue)}</h3>
+    <h3 class="mt-1 revenue text-sm">
+      {$t("HOME.PROFITABILITY") + " " + format(revenue)}
+    </h3>
   {/if}
 </div>
 
