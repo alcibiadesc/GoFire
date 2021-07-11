@@ -24,6 +24,7 @@
 
 <Card>
   {#if $user.uid}
+    <h1 class="mb-4">Información</h1>
     <img class="mx-auto rounded-lg" src={$user.photoURL} alt="user" />
     <div class="my-8">
       <h2>{$user.displayName}</h2>
