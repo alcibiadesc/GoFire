@@ -6,7 +6,7 @@ export default {
       TITLE: 'Hola crack',
       SUBTITLE: 'Hoy será un gran día',
       BALANCE: 'Balance',
-      GOAL: 'Objetivo Logrado',
+      GOAL: 'Objetivo logrado',
       TO: 'a',
       OF: 'de',
       PROFIT: 'Beneficios',
@@ -184,8 +184,8 @@ export default {
     },
   },
   deutsche: {
-    HI: 'Hallo',
     HOME: {
+      HI: 'Hallo',
       TITLE: 'Willkommen auf crack',
       SUBTITLE: 'Heute wird ein großer Tag',
       BALANCE: 'Balance',
