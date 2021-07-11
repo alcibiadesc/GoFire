@@ -1,6 +1,5 @@
 /* eslint-disable camelcase */
 import {writable} from 'svelte/store';
-import {t} from './../i18n/i18n';
 import {v4 as uuidv4} from 'uuid';
 
 
