@@ -70,11 +70,11 @@ describe('data store', () => {
   });
 
   test('add an item', () => {
-    data.add();
+    data.add('Title');
     const result = get(data);
     const expected = [
       {
-        title: 'Título',
+        title: 'Title',
         number: 0,
         hightlight: false,
         saving: [],

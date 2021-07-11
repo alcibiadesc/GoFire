@@ -14,7 +14,7 @@ describe('Organisms | Grid', () => {
   afterEach(cleanup);
 
   test('should render', () => {
-    component = rendered.getAllByText('Título');
+    component = rendered.getAllByText('Title');
     expect(component).toBeDefined();
   });
 });
