@@ -4,12 +4,11 @@
 	const buttons = [
 		{ icon: "home", style: "secondary", selected: false },
 		{ icon: "lightning", style: "secondary", selected: false },
-		{ icon: "bell", style: "secondary", selected: false },
 		{ icon: "profile", style: "secondary", selected: false },
 	];
 
 	export let current = "Home";
-	export let selectedBtn = () => {};
+	export let selectedBtn = (icon: string) => {};
 </script>
 
 <div class="container fixed">
