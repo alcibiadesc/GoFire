@@ -20,6 +20,5 @@
 </script>
 
 <Balance {balance} />
-
 <Revenue {revenue} {percent} />
 <Grid />

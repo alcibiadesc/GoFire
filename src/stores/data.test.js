@@ -53,9 +53,7 @@ describe('Generate Data', () => {
 });
 
 describe('data store', () => {
-  beforeEach(() => {
-    resetData();
-  });
+  beforeEach(() => resetData());
 
   test('store is an array empty', () => {
     const result = get(data);
