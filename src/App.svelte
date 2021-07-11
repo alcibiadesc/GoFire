@@ -16,10 +16,10 @@
     profile: User,
     lightning: Settings,
   };
+
   $: page = pages[current];
 </script>
 
-/* eslint-disable */
 <Navbar />
 <svelte:component this={page} />
 <Menu {current} {selectedBtn} />
