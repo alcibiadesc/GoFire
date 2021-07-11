@@ -4,6 +4,7 @@
   import Card from "./../atoms/Card.svelte";
   import Tooltip from "./../atoms/Tooltip.svelte";
   import { user } from "./../../stores/user.js";
+  import LangSelect from "./../atoms/LangSelect.svelte";
 
   const btnsLogin = [
     {
@@ -23,6 +24,9 @@
 </script>
 
 <Card>
+  <div class="float-right">
+    <LangSelect />
+  </div>
   {#if $user.uid}
     <h1>Información</h1>
     <h3 class="mb-5">Tus datos personales</h3>
