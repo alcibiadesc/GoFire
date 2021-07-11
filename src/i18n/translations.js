@@ -103,7 +103,7 @@ export default {
       TITLE: 'Charts',
       SUBTITLE: 'Your financial data at a glance',
       DOUGHNUT: {
-        SAVINGS: 'Savings',
+        SAVING: 'Savings',
         PROFIT: 'Profit',
       },
     },
@@ -163,7 +163,7 @@ export default {
       TITLE: 'Graphiques',
       SUBTITLE: 'Votre argent en un coup d\'oeil',
       DOUGHNUT: {
-        SAVINGS: 'Dépenses',
+        SAVING: 'Dépenses',
         PROFIT: 'Rentabilité',
       },
     },
@@ -223,7 +223,7 @@ export default {
       TITLE: 'Charts',
       SUBTITLE: 'Deine Finanzdaten in einem Augenblick',
       DOUGHNUT: {
-        SAVINGS: 'Sparen',
+        SAVING: 'Sparen',
         PROFIT: 'Gewinn',
       },
     },
@@ -283,7 +283,7 @@ export default {
       TITLE: 'Gráficos',
       SUBTITLE: 'Seus dados financeiros em um instante',
       DOUGHNUT: {
-        SAVINGS: 'Despesas',
+        SAVING: 'Despesas',
         PROFIT: 'Lucro',
       },
     },
@@ -343,7 +343,7 @@ export default {
       TITLE: 'Графики',
       SUBTITLE: 'Ваши финансовые данные в одном момент',
       DOUGHNUT: {
-        SAVINGS: 'Списания',
+        SAVING: 'Списания',
         PROFIT: 'Доход',
       },
     },
@@ -404,7 +404,7 @@ export default {
       TITLE: 'Wykresy',
       SUBTITLE: 'Twoje dane finansowe w jednym momencie',
       DOUGHNUT: {
-        SAVINGS: 'Wydatki',
+        SAVING: 'Wydatki',
         PROFIT: 'Wynik',
       },
     },

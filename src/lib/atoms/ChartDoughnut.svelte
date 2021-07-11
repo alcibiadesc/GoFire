@@ -4,7 +4,7 @@
 
   export let metrics = [80, 20];
   export let data = {
-    labels: [$t("CHARTS.DOUGHNUT.SAVINGS"), $t("CHARTS.DOUGHNUT.PROFIT")],
+    labels: [$t("CHARTS.DOUGHNUT.SAVING"), $t("CHARTS.DOUGHNUT.PROFIT")],
     datasets: [
       {
         data: metrics,
