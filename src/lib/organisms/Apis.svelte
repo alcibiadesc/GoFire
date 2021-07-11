@@ -21,5 +21,5 @@
 
 <h1>Conecta tus plataformas</h1>
 {#each inputs as { label, placeholder, type, icon, api }}
-  <Input bind:value={api} {label} {placeholder} {type} {icon} />
+  <Input bind:value={api} {label} {placeholder} {type} />
 {/each}
