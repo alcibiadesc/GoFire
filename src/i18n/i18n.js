@@ -1,6 +1,10 @@
 import {writable, derived} from 'svelte/store';
+import translations from './translations';
 
 export const dict = writable();
+
+dict.set(translations);
+
 
 export const locale = writable('español');
 
