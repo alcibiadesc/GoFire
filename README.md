@@ -57,8 +57,12 @@ $ npm run test:watch
 </details>
 
 
-# Can I use it for my personal use?
+## Can I use it for my personal use?
 
 **short answer:** Yes.
 
 **long answer:** Zero problem, the data is associated with your google account and the database is protected in Firebase while the free firebase spark program exist I have no problem to share it use.
+
+## Why you build this app?
+😴 I was tired of using 300 excels to track my income sources and to see what is my real profits 😴
+ 
