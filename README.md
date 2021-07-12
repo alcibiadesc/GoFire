@@ -2,7 +2,7 @@
     <img src="https://github.com/Alci6/finanzas/blob/7cd16a57b5717561a49e0a34f796e122b27b1295/readme-attached/Banner.png" alt="drawing" width="600px"/>
 </p>
 
-# What is it? [<img src="https://img.shields.io/badge/early-access-red">](https://finanzas.vercel.live/)
+# What is it? [<img src="https://img.shields.io/badge/early-access-red">](https://finanzas.vercel.app/)
 Finanzapp is a performance budget tool your savings and invest. It give you a secure and secret space to add, edit and follow your invests in real time. 
 
 
