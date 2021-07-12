@@ -19,7 +19,7 @@ Finanzapp is a performance budget tool your savings and invest. It give you a se
 
 
   <p align="center">
-    <img src="https://github.com/Alci6/finanzas/blob/37de29e5539522e4149a7fc3b0e7b2a9a6fdcba5/finanz.gif" alt="drawing" width="300px"/>
+    <img src="https://github.com/Alci6/finanzas/blob/218779b64cfd156584798b2e2e7a0cae6de38fa0/readme-attached/finanz.gif" alt="drawing" width="300px"/>
 </p>
 
 # Usage
