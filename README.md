@@ -1,6 +1,6 @@
    <p align="center">
   <a href="http://finanzas.vercel.app/" target="_blank" >
- <img src="https://github.com/Alci6/finanzas/blob/7cd16a57b5717561a49e0a34f796e122b27b1295/readme-attached/Banner.png" alt="drawing" width="600px"/>
+ <img src="https://github.com/Alci6/finanzas/blob/7ace4e29bbeb450e4452f512fe1b6ba299fda9b4/readme-attached/Banner_grey.png" alt="drawing" width="600px"/>
   </a>
   </p>
 
