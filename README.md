@@ -18,6 +18,7 @@ Finanzapp is a performance budget tool your savings and invest. It give you a se
 * Add a goal and see how close you are to achieving it
 * Add, edit, hightligth and remove a category
   * Add and delete savings inside that category 
+* Light and Dark theme
 
 
   <p align="center">
