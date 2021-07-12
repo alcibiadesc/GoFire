@@ -29,8 +29,11 @@ Finanzapp is a performance budget tool your savings and invest. It give you a se
 ### Normal User
 You can enter to the 👉 [ **EARLY ACCESS**](https://finanzas.vercel.app/)
 
+*I have a suggest or a bug:*
+Tell me via [linkedin](https://es.linkedin.com/in/alcibiadesc) 
+
 ### Developer
-I want to install it and develop
+I want to install it, develop it and contribute to the new software increments.
 
 <details><summary><b>Show instructions</b></summary>
 1. Clone the repo:
