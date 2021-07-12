@@ -59,5 +59,6 @@ $ npm run test:watch
 
 # Can I use it for my personal use?
 
-short answer: Yes
-long answer: Zero problem, the data is associated with your google account and the database is protected in Firebase while the free firebase spark program exist I have no problem to share it use.
+**short answer:** Yes.
+
+**long answer:** Zero problem, the data is associated with your google account and the database is protected in Firebase while the free firebase spark program exist I have no problem to share it use.
