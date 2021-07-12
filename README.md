@@ -71,4 +71,7 @@ $ npm run test:watch
 
 ## Why you build this app?
 😴 I was tired of using 300 excels to track my income sources and to see what is my real profits 😴
+
+# LICENCE
+[📕 See the licence](https://github.com/Alci6/finanzas/blob/88631d231ac2a8f42bccfa5b254867a469afeafb/LICENSE)
  
