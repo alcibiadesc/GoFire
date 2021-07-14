@@ -9,10 +9,12 @@
 	];
 
 	export let current = "Home";
-	export let selectedBtn = (icon: string) => {};
+	export let selectedBtn = (icon) => {
+		console.log(icon);
+	};
 </script>
 
-<div class="container fixed">
+<div data-testid="menu" class="container fixed">
 	{#each buttons as prop}
 		<Button {prop} {current} on:click={() => selectedBtn(prop.icon)} />
 	{/each}
