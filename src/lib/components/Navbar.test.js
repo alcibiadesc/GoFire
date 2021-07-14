@@ -1,5 +1,5 @@
 import './../../test/matchMedia.mock';
-import {render} from '@testing-library/svelte';
+import {render, cleanup} from '@testing-library/svelte';
 import Navbar from './Navbar.svelte';
 
 jest.mock('firebase/auth');
@@ -11,6 +11,8 @@ describe('Components | Navbar', () => {
     const rendered = render(Navbar);
     component = rendered.getByAltText('Avatar');
   });
+
+  afterEach(cleanup);
 
   test('should render correctly', () => {
     expect(component).toBeDefined();
