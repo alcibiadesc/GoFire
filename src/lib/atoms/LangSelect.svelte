@@ -5,7 +5,7 @@
     $: languages = Object.keys(translations);
 </script>
 
-<select placeholder="Languague" bind:value={$locale}>
+<select placeholder="language" bind:value={$locale}>
     {#each languages as lang}
         <option value={lang}>{lang}</option>
     {/each}
