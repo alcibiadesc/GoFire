@@ -159,7 +159,7 @@ describe('data store', () => {
 
   test('move down an array item', ({id, index} = generateData()) => {
     let result = 0;
-    const expected = index < get(data).length ? index + 1 : index;
+    const expected = index < get(data).length -1 ? index + 1 : index;
     data.moveDown(index);
 
     get(data).map((value, index) => {
