@@ -3,6 +3,7 @@
     import Card from "./../atoms/Card.svelte";
     import { data } from "./../../stores/data.js";
     import { round } from "./../../scripts/scripts.js";
+    import { t } from "./../../i18n/i18n";
 
     let revenue = 0;
     let saving = 0;
@@ -21,8 +22,8 @@
 </script>
 
 <Card>
-    <h1>Gráficas</h1>
-    <h3>Tus finanzas a un vistazo</h3>
+    <h1>{$t("CHARTS.TITLE")}</h1>
+    <h3>{$t("CHARTS.SUBTITLE")}</h3>
 </Card>
 
 <ChartDoughnut {metrics} />

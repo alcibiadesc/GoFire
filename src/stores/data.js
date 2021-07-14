@@ -2,6 +2,7 @@
 import {writable} from 'svelte/store';
 import {v4 as uuidv4} from 'uuid';
 
+
 const template = {
   title: 'Título',
   number: 0,
@@ -17,7 +18,9 @@ const createData = () => {
     return array;
   };
 
-  const add = () => update((n) => [...n, {...template, id: uuidv4()}]);
+  const add = (title) => update((n ) => [
+    ...n, {...template, id: uuidv4(), title: title},
+  ]);
   const remove = (id) => update((n) => n.filter((ele) => ele.id !== id));
 
   const change = (id, key, value, array = getArray()) => {

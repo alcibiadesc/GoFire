@@ -1,20 +1,18 @@
+import './../../test/matchMedia.mock';
 import {render, cleanup} from '@testing-library/svelte';
-import Grid from './Grid.svelte';
-import {data} from './../../stores/data.js';
-
-describe('Organisms | Grid', () => {
+import Switch from './Switch.svelte';
+describe('Atoms | Switch', () => {
   let component;
   let rendered;
 
   beforeEach(() => {
-    data.add();
-    rendered = render(Grid);
+    rendered = render(Switch);
+    component = rendered.getByTestId('input');
   });
 
   afterEach(cleanup);
 
   test('should render', () => {
-    component = rendered.getAllByText('Title');
     expect(component).toBeDefined();
   });
 });

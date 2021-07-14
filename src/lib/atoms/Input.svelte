@@ -4,7 +4,6 @@
 	export let value = "";
 	export let label = "";
 	export let type = "number";
-	export let icon = true;
 </script>
 
 <div>
@@ -16,18 +15,21 @@
 		<input
 			bind:value
 			type="number"
-			class:inp-icon={icon}
-			class="input__{style} "
+			class="color input__{style} "
 			{placeholder}
 		/>
 	{:else if type === "date"}
-		<input bind:value type="date" class="input__{style}" {placeholder} />
+		<input
+			bind:value
+			type="date"
+			class="color input__{style}"
+			{placeholder}
+		/>
 	{:else if type === "text"}
 		<input
 			bind:value
 			type="text"
-			class:inp-icon={icon}
-			class="input__{style} "
+			class="color input__{style} "
 			{placeholder}
 		/>
 	{/if}
@@ -37,20 +39,12 @@
 	div {
 		margin-top: 2rem;
 	}
-	.inp-icon {
-		background: url(icons/goal_two.svg) no-repeat 90%;
-		background-size: 26px;
-		background-color: var(--background__input);
-	}
 
 	.input__primary {
 		height: 2rem;
 		padding: 1rem;
 		border-radius: 15px;
 		width: 12rem;
-	}
-	input {
-		color: var(--primary);
 	}
 
 	input[type="date"]::-webkit-calendar-picker-indicator {
@@ -70,5 +64,9 @@
 	/* Firefox */
 	input[type="number"] {
 		-moz-appearance: textfield;
+	}
+	.color {
+		color: var(--primary);
+		background: var(--background__input);
 	}
 </style>

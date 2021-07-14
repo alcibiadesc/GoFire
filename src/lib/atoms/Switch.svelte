@@ -6,7 +6,13 @@
 	$: checked ? theme.set("dark") : theme.set("light");
 </script>
 
-<input type="checkbox" bind:checked id="toggle" class="toggle--checkbox" />
+<input
+	data-testid="input"
+	type="checkbox"
+	bind:checked
+	id="toggle"
+	class="toggle--checkbox"
+/>
 
 <label for="toggle" class="toggle--label">
 	<span class="toggle--label-background" />

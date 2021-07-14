@@ -1,10 +1,11 @@
 <script>
   import { format, formatPercent } from "./../../scripts/scripts.js";
+  import { t } from "./../../i18n/i18n";
 
   export let revenue = 0;
   export let percent = 0;
   export let props = {
-    title: "Beneficios",
+    title: $t("HOME.PROFIT"),
     hightlight: true,
   };
 

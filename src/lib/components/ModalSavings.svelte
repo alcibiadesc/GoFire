@@ -1,6 +1,7 @@
 <script>
   import Modal from "./../atoms/Modal.svelte";
   import { today } from "./../../scripts/scripts.js";
+  import { t } from "./../../i18n/i18n";
   export let hideModal = true;
   export let save = () => {};
   export let savings = [];
@@ -20,13 +21,13 @@
   const btns = [
     {
       icon: "history",
-      label: "Ver el historial ",
+      label: $t("SETTINGS.MODAL.TOOLTIPS.HISTORY"),
       style: "modal",
       onClick: toogleHistorial,
     },
     {
       icon: "saving",
-      label: "Guardar Datos",
+      label: $t("SETTINGS.MODAL.TOOLTIPS.SAVE"),
       style: "modal",
       onClick: () => {
         save(id, date, amount);
@@ -47,10 +48,10 @@
   <h1 class="noselect text-2xl">{title}</h1>
   <Input
     bind:value={amount}
-    label="Añade la aportación realizada"
+    label={$t("SETTINGS.MODAL.ADD_SAVING")}
     type="number"
   />
-  <Input bind:value={date} label="¿Cuándo añadiste los fondos?" type="date" />
+  <Input bind:value={date} label={$t("SETTINGS.MODAL.DATE")} type="date" />
 
   {#if savings.length > 0}
     <div class="float-right  mt-5 flex flex-row">
