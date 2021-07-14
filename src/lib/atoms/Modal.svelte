@@ -3,12 +3,16 @@
 	import Card from "./../atoms/Card.svelte";
 	import Button from "./../atoms/Button.svelte";
 	const toogleModal = () => (hideModal = !hideModal);
-	const btnClose = { icon: "delete", style: "tertiary", onClick: toogleModal };
+	const btnClose = {
+		icon: "delete",
+		style: "tertiary",
+		onClick: toogleModal,
+	};
 </script>
 
-<div class={hideModal ? "hideModal" : "modal"}>
+<div data-testId="upper-div" class={hideModal ? "hideModal" : "modal"}>
 	<Card>
-		<div class="btn--close">
+		<div data-testId="close-modal" class="btn--close">
 			<Button prop={btnClose} />
 		</div>
 		<slot />
