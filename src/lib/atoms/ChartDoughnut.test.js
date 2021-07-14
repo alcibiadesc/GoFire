@@ -1,20 +1,18 @@
-import './test/matchMedia.mock';
 import {render, cleanup} from '@testing-library/svelte';
-import MockDonut from './test/MockDonut.svelte';
-import App from './App.svelte';
+import MockDonut from '../../test/MockDonut.svelte';
+import ChartDoughnut from './ChartDoughnut.svelte';
 
-jest.mock('firebase/auth');
 jest.mock('svelte-chartjs/src/Doughnut.svelte', () => ({
   default: MockDonut,
 }));
 
-describe('App', ()=> {
+describe('Atoms | ChartDoughnut', () => {
   let component;
   let rendered;
 
-  beforeEach( ()=> {
-    rendered = render(App);
-    component = rendered.getByText('Balance');
+  beforeEach(() => {
+    rendered = render(ChartDoughnut);
+    component = rendered.getByTestId('donut chart');
   });
 
   afterEach(cleanup);
