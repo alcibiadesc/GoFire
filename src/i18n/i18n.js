@@ -11,8 +11,20 @@ const getLocalLanguage = () => {
   return languageParts[0];
 };
 
-export const locale = writable( getLocalLanguage() || 'english');
+const STORE_PREFIX = 'language_';
+const languageItem = localStorage.getItem(STORE_PREFIX);
 
+
+export const locale = writable(
+    JSON.parse(languageItem) ||
+   getLocalLanguage() ||
+   'english');
+
+locale.subscribe((value) => {
+  if (languageItem !== value) {
+    localStorage.setItem(STORE_PREFIX, JSON.stringify(value));
+  }
+});
 const localizedDict = derived([dict, locale], ([$dict, $locale]) => {
   if (!$dict || !$locale) return;
   return ($dict[$locale]);
