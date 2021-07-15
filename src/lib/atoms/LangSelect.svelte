@@ -2,7 +2,7 @@
     import translations from "./../../i18n/translations";
     import { locale } from "./../../i18n/i18n.js";
 
-    $: languages = Object.keys(translations).sort();
+    const languages = Object.keys(translations).sort();
 
     const getTranslations = (lang = "en") => {
         let value = translations[lang].VALUE;

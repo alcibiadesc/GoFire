@@ -8,17 +8,18 @@ dict.set(translations);
 const getLocalLanguage = () => {
   const language = navigator.language || navigator.userLanguage;
   const languageParts = language.split('-');
-  return languageParts[0];
+  const languages = Object.keys(translations);
+  const checkLangExist = languages.find((lang) => lang == languageParts[0]);
+  return checkLangExist ? languageParts[0] : 'en';
 };
 
-const STORE_PREFIX = 'language_';
+const STORE_PREFIX = 'language';
 const languageItem = localStorage.getItem(STORE_PREFIX);
 
 
 export const locale = writable(
     JSON.parse(languageItem) ||
-   getLocalLanguage() ||
-   'english');
+    getLocalLanguage());
 
 locale.subscribe((value) => {
   if (languageItem !== value) {
