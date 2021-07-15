@@ -9,7 +9,7 @@ describe('Pages | User', () => {
 
   beforeEach(() => {
     rendered = render(User);
-    component = rendered.getByText('Haz click para iniciar sesión');
+    component = rendered.getByText('Click to log in');
   });
 
   afterEach(cleanup);

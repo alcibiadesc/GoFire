@@ -1,6 +1,7 @@
 export default {
 
-  español: {
+  es: {
+    VALUE: 'español',
     HOME: {
       HI: 'Hola',
       TITLE: 'Hola crack',
@@ -63,7 +64,8 @@ export default {
       },
     },
   },
-  english: {
+  en: {
+    VALUE: 'english',
     HOME: {
       HI: 'Hi',
       TITLE: 'Hello crack',
@@ -123,7 +125,8 @@ export default {
       },
     },
   },
-  français: {
+  fr: {
+    VALUE: 'français',
     HOME: {
       HI: 'Bonjour',
       TITLE: 'Bienvenue sur crack',
@@ -183,7 +186,8 @@ export default {
       },
     },
   },
-  deutsche: {
+  de: {
+    VALUE: 'deutsche',
     HOME: {
       HI: 'Hallo',
       TITLE: 'Willkommen auf crack',
@@ -243,7 +247,8 @@ export default {
       },
     },
   },
-  português: {
+  pt: {
+    VALUE: 'português',
     HOME: {
       HI: 'Olá',
       TITLE: 'Bem-vindo ao crack',
@@ -303,7 +308,8 @@ export default {
       },
     },
   },
-  русский: {
+  ru: {
+    VALUE: 'русский',
     HOME: {
       HI: 'Привет',
       TITLE: 'Добро пожаловать на crack',
@@ -363,7 +369,8 @@ export default {
       },
     },
   },
-  polskie: {
+  pl: {
+    VALUE: 'polskie',
     HI: 'Witaj',
     HOME: {
       HI: 'Witaj',
@@ -420,6 +427,67 @@ export default {
         SUBTITLE: 'Twoje informacje osobiste',
         TOOLTIPS: {
           LOGOUT: 'Wyloguj',
+        },
+      },
+    },
+  },
+  it: {
+    VALUE: 'italiano',
+    HOME: {
+      HI: 'Ciao',
+      TITLE: 'Benvenuto in crack',
+      SUBTITLE: 'Oggi sarà un giorno strano',
+      BALANCE: 'Saldo',
+      GOAL: 'Obiettivo',
+      TO: 'a',
+      OF: 'da',
+      PROFIT: 'Profit',
+      PROFITABILITY: 'Probabilità:',
+    },
+    SETTINGS: {
+      TITLE: 'Impostazioni',
+      HEADER: 'header',
+      SUBTITLE: 'Configura i tuoi flussi di denaro',
+      GOAL: 'Obiettivo',
+      TOOLTIPS: {
+        ADD: 'Aggiungi una nuova categoria',
+        REMOVE: 'Rimuovi',
+        HIGHLIGHT: 'Evidenzia',
+        SAVING: 'Saldo',
+      },
+      MODAL: {
+        ADD_SAVING: 'Aggiungi un saldo',
+        DATE: 'Dal quale hai aggiunto denaro?',
+        TOOLTIPS: {
+          HISTORY: 'Visualizza la storia',
+          SAVE: 'Salva i dati',
+        },
+        TABLE: {
+          DATE: 'DATA',
+          AMOUNT: 'QUANTITA',
+        },
+      },
+    },
+    CHARTS: {
+      TITLE: 'Grafici',
+      SUBTITLE: 'I tuoi dati finanziari in un momento',
+      DOUGHNUT: {
+        SAVING: 'Spese',
+        PROFIT: 'Profit',
+      },
+    },
+    PROFILE: {
+      OFFLINE: {
+        TITLE: 'Clicca per connettere',
+        TOOLTIPS: {
+          LOGIN: 'Connetti',
+        },
+      },
+      ONLINE: {
+        TITLE: 'Informazioni',
+        SUBTITLE: 'I tuoi dati personali',
+        TOOLTIPS: {
+          LOGOUT: 'Disconnetti',
         },
       },
     },

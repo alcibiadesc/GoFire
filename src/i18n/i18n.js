@@ -5,9 +5,13 @@ export const dict = writable();
 
 dict.set(translations);
 
+const getLocalLanguage = () => {
+  const language = navigator.language || navigator.userLanguage;
+  const languageParts = language.split('-');
+  return languageParts[0];
+};
 
-export const locale = writable('español');
-
+export const locale = writable( getLocalLanguage() || 'english');
 
 const localizedDict = derived([dict, locale], ([$dict, $locale]) => {
   if (!$dict || !$locale) return;

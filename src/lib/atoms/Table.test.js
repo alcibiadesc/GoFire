@@ -1,5 +1,7 @@
 import {render, cleanup} from '@testing-library/svelte';
 import Table from './Table.svelte';
+import {get} from 'svelte/store';
+import {t} from './../../i18n/i18n';
 
 describe('Atoms | Table', () => {
   let component;
@@ -13,7 +15,7 @@ describe('Atoms | Table', () => {
         {today: '1988-08-25', amount: 500},
       ]};
     rendered = render(Table, renderProps);
-    component = rendered.getByText('FECHA');
+    component = rendered.getByText('DATE');
   });
 
   afterEach(cleanup);

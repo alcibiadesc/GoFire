@@ -6,7 +6,7 @@ describe('Pages | Settings', () => {
   let rendered;
   beforeEach(() => {
     rendered = render(Settings);
-    component = rendered.getByText('Edición');
+    component = rendered.getByText('Settings');
   });
 
   afterEach(cleanup);

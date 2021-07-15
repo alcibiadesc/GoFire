@@ -8,7 +8,7 @@ describe('Pages | Home', () => {
 
   beforeEach(() => {
     rendered = render(Home);
-    component = rendered.getByText('Hola crack');
+    component = rendered.getByText('Hi crack');
   });
 
   afterEach(cleanup);

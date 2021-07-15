@@ -2,12 +2,17 @@
     import translations from "./../../i18n/translations";
     import { locale } from "./../../i18n/i18n.js";
 
-    $: languages = Object.keys(translations);
+    $: languages = Object.keys(translations).sort();
+
+    const getTranslations = (lang = "en") => {
+        let value = translations[lang].VALUE;
+        return value ? value : lang;
+    };
 </script>
 
 <select placeholder="language" bind:value={$locale}>
     {#each languages as lang}
-        <option value={lang}>{lang}</option>
+        <option value={lang}> {getTranslations(lang)}</option>
     {/each}
 </select>
 
