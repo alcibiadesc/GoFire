@@ -38,7 +38,16 @@ const getMessageFromLocalizedDict = (id, localizedDict) => {
   splitId.forEach((partialId) => {
     message = message[partialId];
   });
-  return message;
+
+  const defaultEng = () => {
+    message = {...translations.en};
+    splitId.forEach((partialId) => {
+      message = message[partialId];
+    });
+    return message;
+  };
+
+  return message !== undefined ? message : defaultEng();
 };
 
 const createMessageFormatter = (localizedDict) =>

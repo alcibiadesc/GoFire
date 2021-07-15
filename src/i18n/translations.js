@@ -1,4 +1,65 @@
 export default {
+  en: {
+    VALUE: 'english',
+    HOME: {
+      HI: 'Hi',
+      TITLE: 'Hello crack',
+      SUBTITLE: 'Today will be a great day',
+      BALANCE: 'Balance',
+      GOAL: 'Goal reached',
+      TO: 'to',
+      OF: 'of',
+      PROFIT: 'Profit',
+      PROFITABILITY: 'Profitability:',
+    },
+    SETTINGS: {
+      TITLE: 'Settings',
+      HEADER: 'Title',
+      SUBTITLE: 'Configure your sources of income',
+      GOAL: 'Goal',
+      TOOLTIPS: {
+        ADD: 'Add new category',
+        REMOVE: 'remove',
+        HIGHLIGHT: 'Highlight',
+        SAVING: 'Saving',
+      },
+      MODAL: {
+        ADD_SAVING: 'Add the saving done',
+        DATE: 'When did you add the funds?',
+        TOOLTIPS: {
+          HISTORY: 'View history',
+          SAVE: 'Save Data',
+        },
+        TABLE: {
+          DATE: 'DATE',
+          AMOUNT: 'AMOUNT',
+        },
+      },
+    },
+    CHARTS: {
+      TITLE: 'Charts',
+      SUBTITLE: 'Your financial data at a glance',
+      DOUGHNUT: {
+        SAVING: 'Savings',
+        PROFIT: 'Profit',
+      },
+    },
+    PROFILE: {
+      OFFLINE: {
+        TITLE: 'Click to log in',
+        TOOLTIPS: {
+          LOGIN: 'log in',
+        },
+      },
+      ONLINE: {
+        TITLE: 'Information',
+        SUBTITLE: 'Your personal data',
+        TOOLTIPS: {
+          LOGOUT: 'log out',
+        },
+      },
+    },
+  },
 
   es: {
     VALUE: 'español',
@@ -64,67 +125,7 @@ export default {
       },
     },
   },
-  en: {
-    VALUE: 'english',
-    HOME: {
-      HI: 'Hi',
-      TITLE: 'Hello crack',
-      SUBTITLE: 'Today will be a great day',
-      BALANCE: 'Balance',
-      GOAL: 'Goal reached',
-      TO: 'to',
-      OF: 'of',
-      PROFIT: 'Profit',
-      PROFITABILITY: 'Profitability:',
-    },
-    SETTINGS: {
-      TITLE: 'Settings',
-      HEADER: 'Title',
-      SUBTITLE: 'Configure your sources of income',
-      GOAL: 'Goal',
-      TOOLTIPS: {
-        ADD: 'Add new category',
-        REMOVE: 'remove',
-        HIGHLIGHT: 'Highlight',
-        SAVING: 'Saving',
-      },
-      MODAL: {
-        ADD_SAVING: 'Add the saving done',
-        DATE: 'When did you add the funds?',
-        TOOLTIPS: {
-          HISTORY: 'View history',
-          SAVE: 'Save Data',
-        },
-        TABLE: {
-          DATE: 'DATE',
-          AMOUNT: 'AMOUNT',
-        },
-      },
-    },
-    CHARTS: {
-      TITLE: 'Charts',
-      SUBTITLE: 'Your financial data at a glance',
-      DOUGHNUT: {
-        SAVING: 'Savings',
-        PROFIT: 'Profit',
-      },
-    },
-    PROFILE: {
-      OFFLINE: {
-        TITLE: 'Click to log in',
-        TOOLTIPS: {
-          LOGIN: 'log in',
-        },
-      },
-      ONLINE: {
-        TITLE: 'Information',
-        SUBTITLE: 'Your personal data',
-        TOOLTIPS: {
-          LOGOUT: 'log out',
-        },
-      },
-    },
-  },
+
   fr: {
     VALUE: 'français',
     HOME: {
