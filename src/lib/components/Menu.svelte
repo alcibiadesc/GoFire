@@ -5,7 +5,7 @@
 		{ icon: "home", style: "secondary", selected: false },
 		{ icon: "lightning", style: "secondary", selected: false },
 		{ icon: "chart", style: "secondary", selected: false },
-		{ icon: "profile", style: "secondary", selected: false },
+		{ icon: "tune", style: "secondary", selected: false },
 	];
 
 	export let current = "Home";
