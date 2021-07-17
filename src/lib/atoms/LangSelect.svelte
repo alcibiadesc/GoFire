@@ -21,7 +21,7 @@
         color: var(--primary);
         background: var(--background__input);
         padding-left: 0.5rem;
-        width: 7rem;
+        width: 12rem;
         height: 2rem;
         border: solid 0.25px var(--primary);
     }
