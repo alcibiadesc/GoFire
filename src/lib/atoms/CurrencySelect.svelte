@@ -9,7 +9,7 @@
         let symbol = value.symbol;
         let name = value.name;
 
-        return `${symbol} - ${name}`;
+        return `${curr} | ${name} - ${symbol}`;
     };
 </script>
 

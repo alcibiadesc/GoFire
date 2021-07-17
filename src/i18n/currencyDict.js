@@ -12,7 +12,7 @@ export default {
     name: 'US Dollar',
     code: 'USD',
     symbol_native: '$',
-    country: 'en-US',
+    country: 'en',
   },
   GBP: {
     symbol: '£',
@@ -21,5 +21,19 @@ export default {
     symbol_native: '£',
     country: 'gb',
   },
-};
 
+  RUB: {
+    symbol: '₽',
+    name: 'Russian Ruble',
+    code: 'RUB',
+    symbol_native: '₽',
+    country: 'ru',
+  },
+
+  PLN: {
+    symbol: 'zł',
+    name: 'Polish Zloty',
+    code: 'PLN',
+    symbol_native: 'zł',
+    country: 'pl',
+  }};
