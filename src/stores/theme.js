@@ -41,7 +41,7 @@ const dark = (root) => {
 const light = (root) => {
   root.setProperty('--background', '#e1eaf9');
   root.setProperty('--primary', '#12151a');
-  root.setProperty('--secondary', '#5573c2');
+  root.setProperty('--secondary', '#238EE4');
   root.setProperty('--tertiary', '#7d8ca2');
   root.setProperty('--background__input', '#eaf3fd');
   root.setProperty(
