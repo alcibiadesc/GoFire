@@ -25,12 +25,12 @@
      inkscape:document-units="mm"
      showgrid="false"
      inkscape:zoom="1.1333324"
-     inkscape:cx="129.26481"
-     inkscape:cy="206.47075"
+     inkscape:cx="-14.117659"
+     inkscape:cy="95.294196"
      inkscape:window-width="1280"
-     inkscape:window-height="800"
+     inkscape:window-height="674"
      inkscape:window-x="0"
-     inkscape:window-y="0"
+     inkscape:window-y="25"
      inkscape:window-maximized="0"
      inkscape:current-layer="layer1" />
   <defs
@@ -67,8 +67,8 @@
        height="50"
        x="5.4165564"
        y="7.1396599"
-       rx="6.4057469"
-       ry="6.4057469" />
+       rx="0"
+       ry="0" />
     <g
        style="fill:#ffffff"
        id="g114"
