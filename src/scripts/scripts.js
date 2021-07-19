@@ -24,7 +24,7 @@ export const formatBasic = (num = 0) => {
 };
 
 export const formatPercent = (num = 0) => {
-  return new Intl.NumberFormat('es', {
+  return new Intl.NumberFormat('en', {
     style: 'percent',
   }).format(num);
 };

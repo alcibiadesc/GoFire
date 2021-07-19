@@ -26,14 +26,14 @@ describe('Atom | Goal', () => {
 
   test('Goal NO achieve ', () => {
     const rendered = render(Goal, {goal: 100, balance: 50});
-    const component = rendered.getByText('of 100', {exact: false});
+    const component = rendered.getByText('of $100', {exact: false});
 
     expect(component).toBeDefined();
   });
 
   test('Road works', () => {
     const rendered = render(Goal, {goal: 90, balance: 30});
-    const component = rendered.getByText('to 60', {exact: false});
+    const component = rendered.getByText('to $60', {exact: false});
 
     expect(component).toBeDefined();
   });

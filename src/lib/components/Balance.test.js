@@ -40,7 +40,7 @@ describe('Component | Balance', () => {
     cleanup();
     goal.set(198);
     rendered = render(Balance);
-    component = rendered.getByText('to 198', {exact: false});
+    component = rendered.getByText('to $198', {exact: false});
     expect(component).toBeDefined();
   });
 });

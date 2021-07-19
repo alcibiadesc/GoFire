@@ -10,6 +10,7 @@ import {
 import {user, resetUser} from './../stores/user.js';
 import {getData, setData} from './firebase-firestore.js';
 import {resetData, data} from './../stores/data.js';
+import {currencyStore} from './../i18n/i18n.js';
 
 import {goal, resetGoal} from './../stores/goal.js';
 
@@ -34,15 +35,19 @@ const get = (uid) => {
   getData('data', uid).then((array) => (array ? data.set(array.data) : ''));
 };
 
+const set = (uid) => {
+  goal.subscribe((value) => setData('goal', uid, value));
+  data.subscribe((value) =>
+      value.length > 0 ? setData('data', uid, value) : '',
+  );
+};
+
 onAuthStateChanged(auth, (user) => {
   if (user) {
     console.log('👌 you are logged 👌');
     profile(user);
     get(user.uid);
-    goal.subscribe((value) => setData('goal', user.uid, value));
-    data.subscribe((value) =>
-      value.length > 0 ? setData('data', user.uid, value) : '',
-    );
+    set(user.uid);
   } else {
     console.log('👋 you are not logged 👋');
     reset();
