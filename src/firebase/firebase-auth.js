@@ -33,6 +33,11 @@ const profile = (userData) => {
 const get = (uid) => {
   getData('goal', uid).then((value) => (value ? goal.set(value.goal) : ''));
   getData('data', uid).then((array) => (array ? data.set(array.data) : ''));
+  getData('currency', uid).then(
+      (value) => {
+        currencyStore.set(value.currency); console.log({get: value});
+      },
+  );
 };
 
 const set = (uid) => {
@@ -40,6 +45,11 @@ const set = (uid) => {
   data.subscribe((value) =>
       value.length > 0 ? setData('data', uid, value) : '',
   );
+  setTimeout(() => {
+    currencyStore.subscribe((value) => {
+      setData('currency', uid, value); console.log({set: value});
+    });
+  }, 2000);
 };
 
 onAuthStateChanged(auth, (user) => {
