@@ -54,11 +54,11 @@
 
 <div class="sm:w-96 p-4 w-8/12 ">
   <div>
-    <h5 class="mb-1">Change your language:</h5>
+    <h5 class="mb-1">{$t("PROFILE.OPTIONS.LANGUAGE")}</h5>
     <LangSelect />
   </div>
   <div class="mt-5">
-    <h5 class="mb-1">Select your currency:</h5>
+    <h5 class="mb-1">{$t("PROFILE.OPTIONS.CURRENCY")}</h5>
     <CurrencySelect />
   </div>
 </div>

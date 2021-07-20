@@ -58,6 +58,10 @@ export default {
           LOGOUT: 'log out',
         },
       },
+      OPTIONS: {
+        LANGUAGE: 'Change your language:',
+        CURRENCY: 'Select your currency:',
+      },
     },
   },
 
@@ -121,7 +125,10 @@ export default {
         TOOLTIPS: {
           LOGOUT: 'Cerrar sesión',
         },
-
+      },
+      OPTIONS: {
+        LANGUAGE: 'Cambiar tu idioma:',
+        CURRENCY: 'Selecciona tu moneda:',
       },
     },
   },
@@ -185,6 +192,10 @@ export default {
           LOGOUT: 'Se déconnecter',
         },
       },
+      OPTIONS: {
+        LANGUAGE: 'Changer de langue:',
+        CURRENCY: 'Sélectionnez votre devise:',
+      },
     },
   },
   de: {
@@ -245,6 +256,10 @@ export default {
         TOOLTIPS: {
           LOGOUT: 'Verbindung trennen',
         },
+      },
+      OPTIONS: {
+        LANGUAGE: 'Sprache ändern:',
+        CURRENCY: 'Wähle deine Währung:',
       },
     },
   },
@@ -307,6 +322,10 @@ export default {
           LOGOUT: 'Desconectar',
         },
       },
+      OPTIONS: {
+        LANGUAGE: 'Mudar de idioma:',
+        CURRENCY: 'Selecione sua moeda:',
+      },
     },
   },
   ru: {
@@ -367,6 +386,10 @@ export default {
         TOOLTIPS: {
           LOGOUT: 'Отключиться',
         },
+      },
+      OPTIONS: {
+        LANGUAGE: 'Выбрать язык:',
+        CURRENCY: 'Выберите валюту:',
       },
     },
   },
@@ -430,6 +453,10 @@ export default {
           LOGOUT: 'Wyloguj',
         },
       },
+      OPTIONS: {
+        LANGUAGE: 'Wybierz język:',
+        CURRENCY: 'Wybierz walutę:',
+      },
     },
   },
   it: {
@@ -490,6 +517,10 @@ export default {
         TOOLTIPS: {
           LOGOUT: 'Disconnetti',
         },
+      },
+      OPTIONS: {
+        LANGUAGE: 'Scegli la lingua:',
+        CURRENCY: 'Scegli la valuta:',
       },
     },
   },
