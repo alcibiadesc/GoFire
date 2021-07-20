@@ -8,6 +8,7 @@
   import CurrencySelect from "./../atoms/CurrencySelect.svelte";
   import { t } from "./../../i18n/i18n";
   import Credit from "./../atoms/Credit.svelte";
+  import Feedback from "./../atoms/Feedback.svelte";
 
   const btnsLogin = [
     {
@@ -61,6 +62,10 @@
   <div class="mt-5">
     <h5 class="mb-1">{$t("PROFILE.OPTIONS.CURRENCY")}</h5>
     <CurrencySelect />
+  </div>
+
+  <div class="mt-10">
+    <Feedback />
   </div>
 
   <Credit />

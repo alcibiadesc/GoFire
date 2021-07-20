@@ -1,6 +1,6 @@
-<div class="text-center mt-20">
+<div class="text-center mt-10">
     <h6>
-        created with ❤️ by
+        made with ❤️ by
         <a href="https://www.linkedin.com/in/alcibiadesc/">
             Alcibíades Cabral Díaz
         </a>

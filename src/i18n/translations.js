@@ -61,6 +61,8 @@ export default {
       OPTIONS: {
         LANGUAGE: 'Change your language:',
         CURRENCY: 'Select your currency:',
+        FEEDBACK: 'Do you have any feedback?',
+        CONTACT: 'Contact Us!',
       },
     },
   },
@@ -129,6 +131,8 @@ export default {
       OPTIONS: {
         LANGUAGE: 'Cambiar tu idioma:',
         CURRENCY: 'Selecciona tu moneda:',
+        FEEDBACK: '¿Tienes alguna sugerencia?',
+        CONTACT: 'Contáctanos',
       },
     },
   },
@@ -195,6 +199,8 @@ export default {
       OPTIONS: {
         LANGUAGE: 'Changer de langue:',
         CURRENCY: 'Sélectionnez votre devise:',
+        FEEDBACK: 'Avez-vous des suggestions?',
+        CONTACT: 'Contactez-nous',
       },
     },
   },
@@ -260,6 +266,8 @@ export default {
       OPTIONS: {
         LANGUAGE: 'Sprache ändern:',
         CURRENCY: 'Wähle deine Währung:',
+        FEEDBACK: 'Hast du irgendwelche Vorschläge?',
+        CONTACT: 'Kontaktieren',
       },
     },
   },
@@ -325,6 +333,8 @@ export default {
       OPTIONS: {
         LANGUAGE: 'Mudar de idioma:',
         CURRENCY: 'Selecione sua moeda:',
+        FEEDBACK: 'Tem alguma sugestão?',
+        CONTACT: 'Contatar',
       },
     },
   },
@@ -390,6 +400,8 @@ export default {
       OPTIONS: {
         LANGUAGE: 'Выбрать язык:',
         CURRENCY: 'Выберите валюту:',
+        FEEDBACK: 'Есть какая-то предложение?',
+        CONTACT: 'Связаться',
       },
     },
   },
@@ -456,6 +468,8 @@ export default {
       OPTIONS: {
         LANGUAGE: 'Wybierz język:',
         CURRENCY: 'Wybierz walutę:',
+        FEEDBACK: 'Czy masz jakieś sugestie?',
+        CONTACT: 'Skontaktuj się',
       },
     },
   },
@@ -521,6 +535,8 @@ export default {
       OPTIONS: {
         LANGUAGE: 'Scegli la lingua:',
         CURRENCY: 'Scegli la valuta:',
+        FEEDBACK: 'Ci sono qualche suggesione?',
+        CONTACT: 'Contatta',
       },
     },
   },
