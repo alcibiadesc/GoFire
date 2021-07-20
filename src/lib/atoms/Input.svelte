@@ -1,6 +1,6 @@
 <script>
 	export let style = "primary";
-	export let placeholder = "0€";
+	export let placeholder = "0";
 	export let value = "";
 	export let label = "";
 	export let type = "number";
