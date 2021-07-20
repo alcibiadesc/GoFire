@@ -9,7 +9,11 @@
   export let balance = 0;
   $: name = $user.displayName ? $user.displayName.split(" ")[0] : "crack";
 
-  currency.subscribe((val) => (balance = formatNum(balance)));
+  let balanceFormatted = "";
+
+  $: currency.subscribe((val) => {
+    balanceFormatted = formatNum(balance);
+  });
 </script>
 
 <Card>
@@ -20,7 +24,7 @@
 
   <h3 class="mt-8">{$t("HOME.BALANCE")}</h3>
   <p class="euros">
-    {balance}
+    {balanceFormatted}
   </p>
 
   <Goal {balance} goal={$goal} />

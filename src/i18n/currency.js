@@ -9,7 +9,7 @@ export let currencyProps = {
 };
 
 
-export let formatNum = (num, notation) => {};
+export let formatNum = (num = 0, notation = 'compact') => {};
 
 currency.subscribe((value) => {
   currencyProps = currencyDict[value];

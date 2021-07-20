@@ -1,6 +1,6 @@
 <script>
     import currencyDict from "./../../i18n/currencyDict";
-    import { currency, formatNum } from "./../../i18n/currency";
+    import { currency } from "./../../i18n/currency";
 
     const currencies = Object.keys(currencyDict).sort();
 
@@ -11,11 +11,6 @@
 
         return `${curr} | ${name} - ${symbol}`;
     };
-
-    let num = 9;
-    currency.subscribe((val) => {
-        num = formatNum(900);
-    });
 </script>
 
 <select placeholder="currency" bind:value={$currency}>
@@ -23,8 +18,6 @@
         <option value={curr}>{getCurrencies(curr)}</option>
     {/each}
 </select>
-
-<h2>{num}</h2>
 
 <style>
     select {
