@@ -11,6 +11,7 @@ import {user, resetUser} from './../stores/user.js';
 import {getData, setData} from './firebase-firestore.js';
 import {resetData, data} from './../stores/data.js';
 import {currency} from './../i18n/currency.js';
+import {landing} from './../stores/landing';
 
 import {goal, resetGoal} from './../stores/goal.js';
 
@@ -58,8 +59,10 @@ onAuthStateChanged(auth, (user) => {
     profile(user);
     get(user.uid);
     set(user.uid);
+    landing.set(false);
   } else {
     console.log('👋 you are not logged 👋');
+    landing.set(true);
     reset();
   }
 });

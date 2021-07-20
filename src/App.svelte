@@ -5,9 +5,10 @@
   import Settings from "./lib/pages/Settings.svelte";
   import Navbar from "./lib/components/Navbar.svelte";
   import Chart from "./lib/pages/Chart.svelte";
+  import { landing } from "./stores/landing";
+  import Landing from "./lib/pages/Landing.svelte";
 
   let current = "home";
-
   const selectedBtn = (icon) => {
     current = icon;
   };
@@ -23,5 +24,9 @@
 </script>
 
 <Navbar />
-<svelte:component this={page} />
-<Menu {current} {selectedBtn} />
+{#if $landing}
+  <Landing />
+{:else}
+  <svelte:component this={page} />
+  <Menu {current} {selectedBtn} />
+{/if}
