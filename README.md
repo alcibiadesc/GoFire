@@ -73,6 +73,10 @@ $ npm run test:watch
 ## Why you build this app?
 😴 I was tired of using 300 excels to track my income sources and to see what is my real profits 😴
 
+# Inspiration and Resources
+* **Icons:** [Google Fonts](https://fonts.google.com/icons)
+* **User Interfaces:** [Cuberto Design](https://dribbble.com/shots/15293350-Finance-Dark-theme-UI-Design)
+
 # LICENCE
 [📕 See the licence](https://github.com/Alci6/finanzas/blob/88631d231ac2a8f42bccfa5b254867a469afeafb/LICENSE)
  
