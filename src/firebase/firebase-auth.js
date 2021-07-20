@@ -10,7 +10,7 @@ import {
 import {user, resetUser} from './../stores/user.js';
 import {getData, setData} from './firebase-firestore.js';
 import {resetData, data} from './../stores/data.js';
-import {currencyStore} from './../i18n/i18n.js';
+import {currency} from './../i18n/currency.js';
 
 import {goal, resetGoal} from './../stores/goal.js';
 
@@ -35,7 +35,7 @@ const get = (uid) => {
   getData('data', uid).then((array) => (array ? data.set(array.data) : ''));
   getData('currency', uid).then(
       (value) => {
-        currencyStore.set(value.currency); console.log({get: value});
+        currency.set(value.currency); console.log({get: value});
       },
   );
 };
@@ -46,7 +46,7 @@ const set = (uid) => {
       value.length > 0 ? setData('data', uid, value) : '',
   );
   setTimeout(() => {
-    currencyStore.subscribe((value) => {
+    currency.subscribe((value) => {
       setData('currency', uid, value); console.log({set: value});
     });
   }, 2000);
