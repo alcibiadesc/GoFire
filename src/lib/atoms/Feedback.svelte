@@ -26,8 +26,8 @@
         class="typeform-share button"
         href="https://form.typeform.com/to/x2B9zltX?typeform-medium=embed-snippet"
         data-mode="popup"
-        style="display:inline-block;text-decoration:none;color:white;cursor:pointer;font-family:Helvetica,Arial,sans-serif;font-size:20px;line-height:50px;text-align:center;margin:0;height:50px;padding:0px 33px;border-radius:25px;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:bold;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;"
-        data-size="70"
+        style="display:inline-block;text-decoration:none;background-color:#E84C2B;color:white;cursor:pointer;font-family:Helvetica,Arial,sans-serif;font-size:20px;line-height:50px;text-align:center;margin:0;height:50px;padding:0px 33px;border-radius:25px;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:bold;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;"
+        data-size="100"
         target="_blank"
     >
         {$t("PROFILE.OPTIONS.CONTACT")}
