@@ -17,4 +17,13 @@ describe('Pages | User', () => {
   test('Should render', () => {
     expect(component).toBeDefined();
   });
+
+  test('option language is rendered', () => {
+    component = rendered.getByText('Change your language:');
+    expect(component).toBeDefined();
+  });
+  test('option currency is rendered', () => {
+    component = rendered.getByText('Select your currency:');
+    expect(component).toBeDefined();
+  });
 });
