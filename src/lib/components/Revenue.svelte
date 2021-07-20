@@ -1,6 +1,7 @@
 <script>
-  import { format, formatPercent } from "./../../scripts/scripts.js";
+  import { formatPercent } from "./../../scripts/scripts.js";
   import { t } from "./../../i18n/i18n";
+  import { currency, formatNum } from "./../../i18n/currency";
 
   export let revenue = 0;
   export let percent = 0;
@@ -10,22 +11,23 @@
   };
 
   let { title, hightlight } = props;
+
+  let revenueFormatted = "";
+
+  $: currency.subscribe((val) => {
+    revenueFormatted = formatNum(revenue);
+  });
 </script>
 
 <div class="w-64 m-3 relative m-6" class:hightlight>
   <h6 class="mb-1">{title}</h6>
   <div class="data">
-    <p class="euros">{format(revenue)}</p>
+    <p class="euros">{revenueFormatted}</p>
     <p class="percent">{formatPercent(isNaN(percent) ? 0 : percent)}</p>
   </div>
 </div>
 
 <style>
-  .title {
-    border: none;
-    width: 100%;
-    color: var(--tertiary);
-  }
   .percent {
     color: var(--secondary);
     font-size: 1em;
@@ -45,9 +47,5 @@
     display: flex;
     justify-content: left;
     flex-direction: row;
-  }
-
-  button {
-    color: var(--tertiary);
   }
 </style>

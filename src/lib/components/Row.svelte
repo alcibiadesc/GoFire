@@ -1,9 +1,10 @@
 <script>
-  import { format, formatPercent } from "./../../scripts/scripts.js";
+  import { formatPercent } from "./../../scripts/scripts.js";
   import ModalSavings from "./../components/ModalSavings.svelte";
   import Button from "./../atoms/Button.svelte";
   import Tooltip from "./../atoms/Tooltip.svelte";
   import { t } from "./../../i18n/i18n";
+  import { currency, formatNum } from "./../../i18n/currency";
 
   export let edit = false;
   export let data = [];
@@ -56,6 +57,14 @@
   $: getSaving = saving.reduce((acc, crt) => acc + crt.amount, 0);
   $: revenue = number - getSaving;
   $: percent = (number - getSaving) / getSaving;
+
+  let numberFormatted = "";
+  let revenueFormatted = "";
+
+  $: currency.subscribe((val) => {
+    numberFormatted = formatNum(number);
+    revenueFormatted = formatNum(revenue);
+  });
 </script>
 
 <ModalSavings
@@ -101,7 +110,7 @@
   {:else}
     <h6 class="mb-1">{title}</h6>
     <div class="data">
-      <p class="euros">{format(number)}</p>
+      <p class="euros">{numberFormatted}</p>
 
       {#if isFinite(percent)}
         <p class=" percent">{formatPercent(percent)}</p>
@@ -110,7 +119,7 @@
   {/if}
   {#if saving.length > 0 && !edit}
     <h3 class="mt-1 revenue text-sm">
-      {$t("HOME.PROFITABILITY") + " " + format(revenue)}
+      {$t("HOME.PROFITABILITY") + " " + revenueFormatted}
     </h3>
   {/if}
 </div>
@@ -158,9 +167,5 @@
     display: flex;
     justify-content: left;
     flex-direction: row;
-  }
-
-  button {
-    color: var(--tertiary);
   }
 </style>

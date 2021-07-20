@@ -56,3 +56,5 @@ const createMessageFormatter = (localizedDict) =>
 export const t = derived(localizedDict, ($localizedDict) => {
   return (createMessageFormatter($localizedDict));
 });
+
+export const currencyStore = writable('USD');

@@ -1,12 +1,20 @@
 <script>
-  import { format } from "./../../scripts/scripts.js";
   import { fade } from "svelte/transition";
   import { t } from "./../../i18n/i18n";
+  import { currency, formatNum } from "./../../i18n/currency";
   export let goal = 0;
   export let balance = 0;
 
   $: road = goal - balance;
   $: checkGoal = () => goal > balance;
+
+  let roadFormatted = "";
+  let goalFormatted = "";
+
+  $: currency.subscribe((val) => {
+    roadFormatted = formatNum(road);
+    goalFormatted = formatNum(goal);
+  });
 </script>
 
 <div in:fade class="goal  float-right bg-red-500 p-5 ">
@@ -14,14 +22,14 @@
 
   {#if checkGoal()}
     <p class="euros text-sm text-center">
-      {$t("HOME.TO") + " " + format(road)}
+      {$t("HOME.TO") + " " + roadFormatted}
     </p>
     <h6 class="euros text-xs text-center">
-      {$t("HOME.OF") + " " + format(goal)}
+      {$t("HOME.OF") + " " + goalFormatted}
     </h6>
   {:else}
     <p class="euros text-xs text-center">{$t("HOME.GOAL")}</p>
-    <h6 class="euros text-xs text-center">{format(goal)}</h6>
+    <h6 class="euros text-xs text-center">{roadFormatted}</h6>
   {/if}
 </div>
 

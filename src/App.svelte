@@ -14,7 +14,7 @@
 
   const pages = {
     home: Home,
-    profile: User,
+    tune: User,
     lightning: Settings,
     chart: Chart,
   };

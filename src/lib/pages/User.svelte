@@ -5,6 +5,7 @@
   import Tooltip from "./../atoms/Tooltip.svelte";
   import { user } from "./../../stores/user.js";
   import LangSelect from "./../atoms/LangSelect.svelte";
+  import CurrencySelect from "./../atoms/CurrencySelect.svelte";
   import { t } from "./../../i18n/i18n";
 
   const btnsLogin = [
@@ -25,9 +26,6 @@
 </script>
 
 <Card>
-  <div class="float-right">
-    <LangSelect />
-  </div>
   {#if $user.uid}
     <h1>{$t("PROFILE.ONLINE.TITLE")}</h1>
     <h3 class="mb-5">{$t("PROFILE.ONLINE.SUBTITLE")}</h3>
@@ -53,3 +51,14 @@
     </div>
   {/if}
 </Card>
+
+<div class="sm:w-96 p-4 w-8/12 ">
+  <div>
+    <h5 class="mb-1">Change your language:</h5>
+    <LangSelect />
+  </div>
+  <div class="mt-5">
+    <h5 class="mb-1">Select your currency:</h5>
+    <CurrencySelect />
+  </div>
+</div>

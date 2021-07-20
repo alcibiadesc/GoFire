@@ -18,7 +18,7 @@ describe('Component | Revenue', () => {
   });
 
   test('show correctly the revenue', () => {
-    component = rendered.getByText('52 €');
+    component = rendered.getByText('$52');
     expect(component).toBeDefined();
   });
 

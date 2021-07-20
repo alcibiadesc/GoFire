@@ -1,15 +1,18 @@
-export const format = (num = 0) => {
-  return new Intl.NumberFormat('es', {
-    notation: 'compact',
-    style: 'currency',
-    currency: 'EUR',
-  }).format(num);
-};
+import {currency} from './../i18n/currency.js';
+import currencyDict from './../i18n/currencyDict.js';
+
+let code = 'USD';
+let country = 'en-US';
+currency.subscribe((curr) => {
+  code = curr;
+  country = currencyDict[curr].country;
+});
+
 
 export const formatBasic = (num = 0) => {
-  return new Intl.NumberFormat('es', {
+  return new Intl.NumberFormat(country, {
     style: 'currency',
-    currency: 'EUR',
+    currency: code,
   }).format(num);
 };
 
