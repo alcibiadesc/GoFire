@@ -20,7 +20,7 @@ describe('Component | Balance', () => {
   });
 
   test('Balance value', () => {
-    component = rendered.getByText(104, {exact: false});
+    component = rendered.getAllByText(104, {exact: false});
   });
 
   test('no displayName === crack', () => {
