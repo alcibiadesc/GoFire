@@ -168,8 +168,4 @@
     justify-content: left;
     flex-direction: row;
   }
-
-  button {
-    color: var(--tertiary);
-  }
 </style>
