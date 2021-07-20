@@ -16,7 +16,6 @@
             js.id = id;
             js.src = b + "embed.js";
             q = gt.call(d, "script")[0];
-            q.parentNode.insertBefore(js, q);
         }
     })();
 </script>
