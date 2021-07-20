@@ -52,6 +52,10 @@
       </Tooltip>
     </div>
   {/if}
+
+  <div class="mt-5">
+    <Feedback />
+  </div>
 </Card>
 
 <div class="sm:w-96 p-4 w-8/12 ">
@@ -63,10 +67,5 @@
     <h5 class="mb-1">{$t("PROFILE.OPTIONS.CURRENCY")}</h5>
     <CurrencySelect />
   </div>
-
-  <div class="mt-10">
-    <Feedback />
-  </div>
-
   <Credit />
 </div>
