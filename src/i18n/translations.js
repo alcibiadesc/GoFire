@@ -1,6 +1,18 @@
+/* eslint-disable max-len */
 export default {
   en: {
     VALUE: 'english',
+    LANDING: {
+      TITLE: 'Are you loking for the best way to achieve financial independence?',
+      DESCRIPTION: 'GoFire is a free and open-source app that helps you track your financial activities and your assets.',
+      CALL_TO_ACTION: 'Get started',
+      CALL_TO_ACTION_2: 'Try it for Free',
+      FEATURES: {
+        ADD_INVEST: 'Add your invests',
+        CUSTOMIZE: 'Customize the app',
+        ADD_GOAL: 'Create a goal',
+      },
+    },
     HOME: {
       HI: 'Hi',
       TITLE: 'Hello crack',
@@ -69,6 +81,17 @@ export default {
 
   es: {
     VALUE: 'español',
+    LANDING: {
+      TITLE: '¿Estás buscando la mejor manera de lograr la libertad financiera?',
+      DESCRIPTION: 'GoFire es una aplicación gratuita y de código abierto que ayuda a controlar sus actividades financieras y sus activos.',
+      CALL_TO_ACTION: 'Empezar',
+      CALL_TO_ACTION_2: 'Prueba gratuitamente',
+      FEATURES: {
+        ADD_INVEST: 'Añadir sus inversiones',
+        CUSTOMIZE: 'Personalizar la aplicación',
+        ADD_GOAL: 'Crear una meta',
+      },
+    },
     HOME: {
       HI: 'Hola',
       TITLE: 'Hola crack',
@@ -139,6 +162,17 @@ export default {
 
   fr: {
     VALUE: 'français',
+    LANDING: {
+      TITLE: 'Voulez-vous trouver la meilleure façon de faire évoluer son patrimoine ?',
+      DESCRIPTION: 'GoFire est une application gratuite et open-source qui vous permet de suivre vos opérations financières et vos actifs.',
+      CALL_TO_ACTION: 'Commencer',
+      CALL_TO_ACTION_2: 'Essayez gratuitement',
+      FEATURES: {
+        ADD_INVEST: 'Ajouter vos investissements',
+        CUSTOMIZE: 'Personnaliser l\'application',
+        ADD_GOAL: 'Créer une cible',
+      },
+    },
     HOME: {
       HI: 'Bonjour',
       TITLE: 'Bienvenue sur crack',
@@ -206,6 +240,17 @@ export default {
   },
   de: {
     VALUE: 'deutsche',
+    LANDING: {
+      TITLE: 'Willst du deine Geldkonten selbst verwalten?',
+      DESCRIPTION: 'GoFire ist ein frei und Open-Source-Projekt, das deine Finanzaktivitäten und deine Aktien verfolgt.',
+      CALL_TO_ACTION: 'Los gehts',
+      CALL_TO_ACTION_2: 'Versuche GoFire zu benutzen',
+      FEATURES: {
+        ADD_INVEST: 'Investitionen hinzufügen',
+        CUSTOMIZE: 'Anpassen',
+        ADD_GOAL: 'Ziel hinzufügen',
+      },
+    },
     HOME: {
       HI: 'Hallo',
       TITLE: 'Willkommen auf crack',
@@ -273,6 +318,18 @@ export default {
   },
   pt: {
     VALUE: 'português',
+    LANDING: {
+      TITLE: 'Você quer controlar suas contas pessoais?',
+      DESCRIPTION: 'GoFire é um software livre e aberto que monitora suas contas e seus ativos.',
+      CALL_TO_ACTION: 'Comece agora',
+      CALL_TO_ACTION_2: 'Tente GoFire',
+      FEATURES: {
+        ADD_INVEST: 'Adicionar investimentos',
+        CUSTOMIZE: 'Personalizar',
+        ADD_GOAL: 'Adicionar meta',
+      },
+
+    },
     HOME: {
       HI: 'Olá',
       TITLE: 'Bem-vindo ao crack',
@@ -340,6 +397,17 @@ export default {
   },
   ru: {
     VALUE: 'русский',
+    LANDING: {
+      TITLE: 'Вы хотите контролировать свои счета?',
+      DESCRIPTION: 'GoFire - это бесплатный и открытый программный продукт, который отслеживает ваши счета и ваши активы.',
+      CALL_TO_ACTION: 'Начните сейчас',
+      CALL_TO_ACTION_2: 'Попробуйте GoFire',
+      FEATURES: {
+        ADD_INVEST: 'Добавить инвестиции',
+        CUSTOMIZE: 'Настроить',
+        ADD_GOAL: 'Добавить цель',
+      },
+    },
     HOME: {
       HI: 'Привет',
       TITLE: 'Добро пожаловать на crack',
@@ -407,6 +475,17 @@ export default {
   },
   pl: {
     VALUE: 'polskie',
+    LANDING: {
+      TITLE: 'Czy chcesz kontrolować swoje saldo?',
+      DESCRIPTION: 'GoFire - to otwarte oprogramowanie, które sprawdza twoje saldo i twoje aktywa.',
+      CALL_TO_ACTION: 'Rozpocznij teraz',
+      CALL_TO_ACTION_2: 'Przetestuj GoFire',
+      FEATURES: {
+        ADD_INVEST: 'Dodaj wpłaty',
+        CUSTOMIZE: 'Dostosuj',
+        ADD_GOAL: 'Dodaj cel',
+      },
+    },
     HI: 'Witaj',
     HOME: {
       HI: 'Witaj',
@@ -475,6 +554,17 @@ export default {
   },
   it: {
     VALUE: 'italiano',
+    LANDING: {
+      TITLE: 'Vuoi controllare il tuo saldo?',
+      DESCRIPTION: 'GoFire è un software open-source che controlla il tuo saldo e le tue transazioni.',
+      CALL_TO_ACTION: 'Inizia ora',
+      CALL_TO_ACTION_2: 'Prova GoFire',
+      FEATURES: {
+        ADD_INVEST: 'Aggiungi investimenti',
+        CUSTOMIZE: 'Personalizza',
+        ADD_GOAL: 'Aggiungi obiettivo',
+      },
+    },
     HOME: {
       HI: 'Ciao',
       TITLE: 'Benvenuto in crack',
