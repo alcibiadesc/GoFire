@@ -85,7 +85,7 @@ export default {
       TITLE: '¿Estás buscando la mejor manera de lograr la libertad financiera?',
       DESCRIPTION: 'GoFire es una aplicación gratuita y de código abierto que ayuda a controlar sus actividades financieras y sus activos.',
       CALL_TO_ACTION: 'Empezar',
-      CALL_TO_ACTION_2: 'Prueba gratuitamente',
+      CALL_TO_ACTION_2: 'Prueba GoFire',
       FEATURES: {
         ADD_INVEST: 'Añadir sus inversiones',
         CUSTOMIZE: 'Personalizar la aplicación',
