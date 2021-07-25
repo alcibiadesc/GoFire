@@ -2,6 +2,7 @@
     import { signIn } from "./../../firebase/firebase-auth";
     import LandingCard from "./../atoms/LandingCard.svelte";
     import Credit from "./../atoms/Credit.svelte";
+    import LangSelect from "./../atoms/LangSelect.svelte";
     import { t } from "./../../i18n/i18n";
 
     const cards = [
@@ -57,6 +58,9 @@
 </div>
 
 <Credit />
+<div class="float-right mt-8">
+    <LangSelect />
+</div>
 
 <style>
     .gridding {
