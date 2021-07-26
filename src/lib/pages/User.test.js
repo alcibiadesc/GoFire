@@ -1,3 +1,4 @@
+import './../../test/matchMedia.mock';
 import {render, cleanup} from '@testing-library/svelte';
 import User from './User.svelte';
 

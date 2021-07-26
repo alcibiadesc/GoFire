@@ -3,15 +3,41 @@
   import { signIn } from "./../../firebase/firebase-auth.js";
   import Avatar from "./../atoms/Avatar.svelte";
   import Switch from "./../atoms/Switch.svelte";
+  import { landing } from "./../../stores/landing.js";
 
   $: img = $user.photoURL ? $user.photoURL : "icons/user.svg";
+
+  export let toogleGuide = () => {
+    console.log("click");
+  };
+  export let guide = false;
+
+  const activeLanding = () => {
+    $landing = true;
+    location.reload();
+  };
 </script>
 
 <div class="w-screen p-8">
   <div class="float-left ">
-    <Switch />
+    {#if $landing == false}
+      <button>
+        <img
+          on:click={activeLanding}
+          class="w-10 rounded-lg inline-block"
+          src="/icons/gofire.svg"
+          alt="gofire logo"
+        />
+      </button>
+    {/if}
   </div>
   <div class="float-right">
-    <Avatar onClick={signIn} {img} />
+    <Avatar onClick={signIn} {img} {toogleGuide} {guide} />
   </div>
 </div>
+
+<style>
+  button:hover {
+    opacity: 0.8;
+  }
+</style>

@@ -76,6 +76,13 @@ export default {
         FEEDBACK: 'Do you have any feedback?',
         CONTACT: 'Contact Us!',
       },
+
+    },
+    FAQS: {
+      TITLE: 'Frequently Asked Questions',
+      FAQ_1: {TITLE: 'Where do I start?', DESCRIPTION: 'If this is your first time, it is best to try adding a new objective and some of your investment sources in the configuration tab.'},
+      FAQ_2: {TITLE: 'Where do I add the current value of my investment?', DESCRIPTION: 'For the monitoring of your investments simply updated in the configuration of the section the current value of your investments, the benefit will be calculated based on the contributions that you have added. '},
+      FAQ_3: {TITLE: 'How do I add contributions to my investments?', DESCRIPTION_1: 'In the Configuration section, selecting the piggy bank', DESCRIPTION_2: 'You can add the financial contributions you have made and the date of the same.'},
     },
   },
 
@@ -158,6 +165,12 @@ export default {
         CONTACT: 'Contáctanos',
       },
     },
+    FAQS: {
+      TITLE: 'Preguntas Frecuentes',
+      FAQ_1: {TITLE: '¿Por dónde empiezo?', DESCRIPTION: 'Si es tu primera vez, lo mejor es que pruebes a agregar en la pestaña de settings un nuevo objetivo y algunas de tus fuentes de inversión.'},
+      FAQ_2: {TITLE: '¿Dónde añado el valor actual de mi inversión?', DESCRIPTION: 'Para el seguimiento de tus inversiones simplemente actualiza en el apartado settings el valor actual de tus inversiones, el beneficio se calculará en base a las aportaciones que hayas añadido.'},
+      FAQ_3: {TITLE: '¿Cómo añado aportaciones a mis inversiones?', DESCRIPTION_1: ' En el apartado Settings, seleccionando la hucha', DESCRIPTION_2: ' podrás añadir las aportaciones economicas que hayas realizado y la fecha de la misma.'},
+    },
   },
 
   fr: {
@@ -237,6 +250,12 @@ export default {
         CONTACT: 'Contactez-nous',
       },
     },
+    FAQS: {
+      TITLE: 'Questions fréquentes',
+      FAQ_1: {TITLE: 'Pourquoi suis-je ici?', DESCRIPTION: 'Si vous êtes nouveau sur crack, le meilleur moyen est d\'ajouter un nouvel objet et des fonds dans le panneau de configuration.'},
+      FAQ_2: {TITLE: 'Pourquoi ajoute-t-on le montant actuel de mon argent?', DESCRIPTION: 'Pour suivre vos opérations financières, il suffit de mettre à jour le montant actuel de vos opérations dans le panneau de configuration.'},
+      FAQ_3: {TITLE: 'Pourquoi ajoute-t-on des fonds à mes opérations?', DESCRIPTION_1: 'Dans le panneau de configuration, sélectionnez la catégorie', DESCRIPTION_2: 'puis ajoutez les fonds que vous avez dépensés et la date de la même.'},
+    },
   },
   de: {
     VALUE: 'deutsche',
@@ -314,6 +333,12 @@ export default {
         FEEDBACK: 'Hast du irgendwelche Vorschläge?',
         CONTACT: 'Kontaktieren',
       },
+    },
+    FAQS: {
+      TITLE: 'Häufig gestellte Fragen',
+      FAQ_1: {TITLE: 'Warum bin ich hier?', DESCRIPTION: 'Wenn du neu auf crack bist, ist das ein guter Weg, eine neue Kategorie zu erstellen und deine Geldgelder in das Panel zu legen.'},
+      FAQ_2: {TITLE: 'Warum speichert GoFire deine Geldgelder aktuell?', DESCRIPTION: 'Um deine Finanzaktivitäten zu verfolgen, muss dein Konto aktualisiert werden.'},
+      FAQ_3: {TITLE: 'Warum speichert GoFire deine Geldgelder aktuell?', DESCRIPTION_1: 'Im Panel kannst du die Kategorie auswählen, die du ausgegeben hast und das Datum der gleichen.', DESCRIPTION_2: 'Das ist ein guter Weg, deine Geldgelder zu verfolgen.'},
     },
   },
   pt: {
@@ -394,6 +419,13 @@ export default {
         CONTACT: 'Contatar',
       },
     },
+    FAQS: {
+      TITLE: 'Perguntas frequentes',
+      FAQ_1: {TITLE: 'Por que eu sou aqui?', DESCRIPTION: 'Se você é um novo ao crack, é um bom momento para criar uma nova categoria e adicionar seus dinheiro para o painel.'},
+      FAQ_2: {TITLE: 'Por que salva minhas contas financeiras atualizadas?', DESCRIPTION: 'Para monitorar suas ações, o saldo deve ser atualizado.'},
+      FAQ_3: {TITLE: 'Por que salva minhas contas financeiras atualizadas?', DESCRIPTION_1: 'No painel você pode escolher a categoria que você adicionou e o dia e hora da mesma.', DESCRIPTION_2: 'Isso é um bom modo de monitorar seus dinheiro.'},
+
+    },
   },
   ru: {
     VALUE: 'русский',
@@ -472,6 +504,13 @@ export default {
         CONTACT: 'Связаться',
       },
     },
+    FAQS: {
+      НАЗВАНИЕ: 'Часто задаваемые вопросы',
+      FAQ_1: {НАЗВАНИЕ: 'С чего начать?', ОПИСАНИЕ: 'Если это ваш первый раз, лучше всего попробовать добавить новую цель и некоторые из ваших источников инвестиций на вкладке конфигурации.'},
+      FAQ_2: {НАЗВАНИЕ: 'Куда мне добавить текущую стоимость моих инвестиций?', ОПИСАНИЕ: 'Для мониторинга ваших инвестиций просто обновите в конфигурации раздела текущую стоимость ваших инвестиций, выгода будет рассчитана на основе вклады, которые вы добавили. '},
+      FAQ_3: {TITLE: 'Как мне добавить взносы в мои инвестиции?', DESCRIPTION_1: 'В разделе конфигурации, выбрав копилку', DESCRIPTION_2: 'Вы можете добавить финансовые взносы, которые вы сделали, и дату того же. '},
+    },
+
   },
   pl: {
     VALUE: 'polskie',
@@ -551,6 +590,14 @@ export default {
         CONTACT: 'Skontaktuj się',
       },
     },
+
+    FAQS: {
+      TITLE: 'Często zadawane pytania',
+      FAQ_1: {TITLE: 'Gdzie mam zacząć?', OPIS: 'Jeśli to Twój pierwszy raz, najlepiej spróbuj dodać nowy cel i niektóre źródła inwestycji w zakładce konfiguracji.'},
+      FAQ_2: {TITLE: 'Gdzie mogę dodać aktualną wartość mojej inwestycji?', OPIS: 'W celu monitorowania Twoich inwestycji wystarczy zaktualizować w konfiguracji sekcji aktualną wartość Twoich inwestycji, korzyść zostanie obliczona na podstawie składki, które dodałeś. '},
+      FAQ_3: {TITLE: 'Jak dodać wpłaty do moich inwestycji?', DESCRIPTION_1: 'W sekcji Konfiguracja, wybierz skarbonkę', DESCRIPTION_2: 'Możesz dodać wniesione przez siebie wpłaty finansowe i ich datę. '},
+    },
+
   },
   it: {
     VALUE: 'italiano',
@@ -629,5 +676,12 @@ export default {
         CONTACT: 'Contatta',
       },
     },
+    FAQS: {
+      TITLE: 'Domande frequenti',
+      FAQ_1: {TITLE: 'Dove iniziare?', OPIS: 'Se questa è la tua prima volta con GoFire, consigliamo di aggiungere un nuovo obiettivo e di aggiungere alcuni flussi di denaro.'},
+      FAQ_2: {TITLE: 'Dove aggiungere una nuova transazione?', OPIS: 'Per monitorare le tue transazioni, aggiungi un nuovo flusso di denaro in modo da aggiornare la tua visualizzazione.'},
+      FAQ_3: {TITLE: 'Come aggiungere le wpłaty?', DESCRIPTION_1: 'In sezione Impostazioni, seleziona la scatola', DESCRIPTION_2: 'Puoi aggiungere le wpłaty finte e la data di queste. '},
+    },
   },
+
 };

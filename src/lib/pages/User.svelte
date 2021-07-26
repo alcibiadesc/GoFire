@@ -7,8 +7,8 @@
   import LangSelect from "./../atoms/LangSelect.svelte";
   import CurrencySelect from "./../atoms/CurrencySelect.svelte";
   import { t } from "./../../i18n/i18n";
-  import Credit from "./../atoms/Credit.svelte";
   import Feedback from "./../atoms/Feedback.svelte";
+  import Switch from "./../atoms/Switch.svelte";
 
   const btnsLogin = [
     {
@@ -60,12 +60,16 @@
 
 <div class="sm:w-96 p-4 w-8/12 ">
   <div>
-    <h5 class="mb-1">{$t("PROFILE.OPTIONS.LANGUAGE")}</h5>
+    <h5 class="mb-1">Change the theme:</h5>
+    <Switch />
+  </div>
+
+  <div class="mt-5">
+    <h5 class="mb-5">{$t("PROFILE.OPTIONS.LANGUAGE")}</h5>
     <LangSelect />
   </div>
   <div class="mt-5">
     <h5 class="mb-1">{$t("PROFILE.OPTIONS.CURRENCY")}</h5>
     <CurrencySelect />
   </div>
-  <Credit />
 </div>

@@ -7,8 +7,15 @@
   import Chart from "./lib/pages/Chart.svelte";
   import { landing } from "./stores/landing";
   import Landing from "./lib/pages/Landing.svelte";
+  import Guide from "./lib/components/Guide.svelte";
+  import Switch from "./lib/atoms/Switch.svelte";
 
   let current = "home";
+  let guide = false;
+  const toogleGuide = () => {
+    guide = !guide;
+    $landing = false;
+  };
   const selectedBtn = (icon) => {
     current = icon;
   };
@@ -27,10 +34,12 @@
   $: page = pages[current];
 </script>
 
-<Navbar />
+<Navbar {toogleGuide} {guide} landing={$landing} />
 
-{#if $landing}
-  <Landing />
+{#if guide}
+  <Guide />
+{:else if $landing}
+  <Landing {toogleGuide} />
 {:else}
   <svelte:component this={page} />
   <Menu {current} {selectedBtn} />
