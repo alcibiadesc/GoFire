@@ -24,9 +24,13 @@
 </script>
 
 <Navbar />
-{#if $landing}
+<svelte:component this={page} />
+<Menu {current} {selectedBtn} />
+
+<!-- {#if $landing}
   <Landing />
 {:else}
   <svelte:component this={page} />
   <Menu {current} {selectedBtn} />
 {/if}
+ -->

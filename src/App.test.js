@@ -14,7 +14,7 @@ describe('App', ()=> {
 
   beforeEach( ()=> {
     rendered = render(App);
-    component = rendered.getByText('Try it for Free');
+    component = rendered.getByText('Balance');
   });
 
   afterEach(cleanup);
