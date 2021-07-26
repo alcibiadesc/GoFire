@@ -10,7 +10,12 @@
         {$t("FAQS.FAQ_1.DESCRIPTION")}
     </p>
     <div class="gridding">
-        <img class="gif" src="/gif/add_goal.gif" alt="add goal" />
+        <img
+            loading="lazy"
+            class="gif"
+            src="/gif/add_goal.gif"
+            alt="add goal"
+        />
     </div>
 </div>
 
@@ -20,7 +25,12 @@
         {$t("FAQS.FAQ_2.DESCRIPTION")}
     </p>
     <div class="gridding">
-        <img class="gif" src="/gif/create_invest.gif" alt="gif create invest" />
+        <img
+            loading="lazy"
+            class="gif"
+            src="/gif/create_invest.gif"
+            alt="gif create invest"
+        />
     </div>
 </div>
 
@@ -35,7 +45,12 @@
         {$t("FAQS.FAQ_3.DESCRIPTION_2")}
     </p>
     <div class="gridding">
-        <img class="gif" src="/gif/add_savings.gif" alt="gif add saving " />
+        <img
+            loading="lazy"
+            class="gif"
+            src="/gif/add_savings.gif"
+            alt="gif add saving "
+        />
     </div>
 </div>
 
