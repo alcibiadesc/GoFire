@@ -41,7 +41,7 @@
             <button on:click={signIn}>{$t("LANDING.CALL_TO_ACTION")}</button>
         </div>
     </div>
-    <div class="w-4/12">
+    <div class="md:w-4/12 text-center">
         <LandingCard props={mainImg} />
     </div>
 </div>
@@ -80,5 +80,8 @@
         min-height: 100vh;
         width: 100%;
         background-color: var(--tertiary);
+    }
+    * {
+        max-width: 100vw;
     }
 </style>
