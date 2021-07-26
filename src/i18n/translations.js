@@ -79,6 +79,7 @@ export default {
 
     },
     FAQS: {
+      READ: 'Read the guide',
       TITLE: 'Frequently Asked Questions',
       FAQ_1: {TITLE: 'Where do I start?', DESCRIPTION: 'If this is your first time, it is best to try adding a new objective and some of your investment sources in the configuration tab.'},
       FAQ_2: {TITLE: 'Where do I add the current value of my investment?', DESCRIPTION: 'For the monitoring of your investments simply updated in the configuration of the section the current value of your investments, the benefit will be calculated based on the contributions that you have added. '},
@@ -166,6 +167,7 @@ export default {
       },
     },
     FAQS: {
+      READ: 'Leer la guía',
       TITLE: 'Preguntas Frecuentes',
       FAQ_1: {TITLE: '¿Por dónde empiezo?', DESCRIPTION: 'Si es tu primera vez, lo mejor es que pruebes a agregar en la pestaña de settings un nuevo objetivo y algunas de tus fuentes de inversión.'},
       FAQ_2: {TITLE: '¿Dónde añado el valor actual de mi inversión?', DESCRIPTION: 'Para el seguimiento de tus inversiones simplemente actualiza en el apartado settings el valor actual de tus inversiones, el beneficio se calculará en base a las aportaciones que hayas añadido.'},
@@ -251,6 +253,7 @@ export default {
       },
     },
     FAQS: {
+      READ: 'Lire la guide',
       TITLE: 'Questions fréquentes',
       FAQ_1: {TITLE: 'Pourquoi suis-je ici?', DESCRIPTION: 'Si vous êtes nouveau sur crack, le meilleur moyen est d\'ajouter un nouvel objet et des fonds dans le panneau de configuration.'},
       FAQ_2: {TITLE: 'Pourquoi ajoute-t-on le montant actuel de mon argent?', DESCRIPTION: 'Pour suivre vos opérations financières, il suffit de mettre à jour le montant actuel de vos opérations dans le panneau de configuration.'},
@@ -335,6 +338,7 @@ export default {
       },
     },
     FAQS: {
+      READ: 'Dokumentation lesen',
       TITLE: 'Häufig gestellte Fragen',
       FAQ_1: {TITLE: 'Warum bin ich hier?', DESCRIPTION: 'Wenn du neu auf crack bist, ist das ein guter Weg, eine neue Kategorie zu erstellen und deine Geldgelder in das Panel zu legen.'},
       FAQ_2: {TITLE: 'Warum speichert GoFire deine Geldgelder aktuell?', DESCRIPTION: 'Um deine Finanzaktivitäten zu verfolgen, muss dein Konto aktualisiert werden.'},
@@ -420,6 +424,7 @@ export default {
       },
     },
     FAQS: {
+      READ: 'Ler documentação',
       TITLE: 'Perguntas frequentes',
       FAQ_1: {TITLE: 'Por que eu sou aqui?', DESCRIPTION: 'Se você é um novo ao crack, é um bom momento para criar uma nova categoria e adicionar seus dinheiro para o painel.'},
       FAQ_2: {TITLE: 'Por que salva minhas contas financeiras atualizadas?', DESCRIPTION: 'Para monitorar suas ações, o saldo deve ser atualizado.'},
@@ -498,6 +503,7 @@ export default {
         },
       },
       OPTIONS: {
+        READ: 'Читать документацию',
         LANGUAGE: 'Выбрать язык:',
         CURRENCY: 'Выберите валюту:',
         FEEDBACK: 'Есть какая-то предложение?',
@@ -592,7 +598,7 @@ export default {
     },
 
     FAQS: {
-      TITLE: 'Często zadawane pytania',
+      READ: 'przeczytaj przewodnik',
       FAQ_1: {TITLE: 'Gdzie mam zacząć?', OPIS: 'Jeśli to Twój pierwszy raz, najlepiej spróbuj dodać nowy cel i niektóre źródła inwestycji w zakładce konfiguracji.'},
       FAQ_2: {TITLE: 'Gdzie mogę dodać aktualną wartość mojej inwestycji?', OPIS: 'W celu monitorowania Twoich inwestycji wystarczy zaktualizować w konfiguracji sekcji aktualną wartość Twoich inwestycji, korzyść zostanie obliczona na podstawie składki, które dodałeś. '},
       FAQ_3: {TITLE: 'Jak dodać wpłaty do moich inwestycji?', DESCRIPTION_1: 'W sekcji Konfiguracja, wybierz skarbonkę', DESCRIPTION_2: 'Możesz dodać wniesione przez siebie wpłaty finansowe i ich datę. '},
@@ -677,6 +683,7 @@ export default {
       },
     },
     FAQS: {
+      READ: 'leggi il manuale',
       TITLE: 'Domande frequenti',
       FAQ_1: {TITLE: 'Dove iniziare?', OPIS: 'Se questa è la tua prima volta con GoFire, consigliamo di aggiungere un nuovo obiettivo e di aggiungere alcuni flussi di denaro.'},
       FAQ_2: {TITLE: 'Dove aggiungere una nuova transazione?', OPIS: 'Per monitorare le tue transazioni, aggiungi un nuovo flusso di denaro in modo da aggiornare la tua visualizzazione.'},

@@ -15,7 +15,8 @@
         <img class="inline-block w-6" src="/icons/arrow.svg" alt="launch app" />
     </button>
 
-    <button class="mt-3 btn-guide" on:click={toogleGuide}>Read the guide</button
+    <button class="mt-3 btn-guide" on:click={toogleGuide}
+        >{$t("FAQS.READ")}</button
     >
 </div>
 <div class="absolute inset-x-0 bottom-0 p-8">
