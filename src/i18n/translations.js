@@ -511,9 +511,9 @@ export default {
       },
     },
     FAQS: {
-      НАЗВАНИЕ: 'Часто задаваемые вопросы',
-      FAQ_1: {НАЗВАНИЕ: 'С чего начать?', ОПИСАНИЕ: 'Если это ваш первый раз, лучше всего попробовать добавить новую цель и некоторые из ваших источников инвестиций на вкладке конфигурации.'},
-      FAQ_2: {НАЗВАНИЕ: 'Куда мне добавить текущую стоимость моих инвестиций?', ОПИСАНИЕ: 'Для мониторинга ваших инвестиций просто обновите в конфигурации раздела текущую стоимость ваших инвестиций, выгода будет рассчитана на основе вклады, которые вы добавили. '},
+      READ: 'Часто задаваемые вопросы',
+      FAQ_1: {TITLE: 'С чего начать?', DESCRIPTION: 'Если это ваш первый раз, лучше всего попробовать добавить новую цель и некоторые из ваших источников инвестиций на вкладке конфигурации.'},
+      FAQ_2: {TITLE: 'Куда мне добавить текущую стоимость моих инвестиций?', DESCRIPTION: 'Для мониторинга ваших инвестиций просто обновите в конфигурации раздела текущую стоимость ваших инвестиций, выгода будет рассчитана на основе вклады, которые вы добавили. '},
       FAQ_3: {TITLE: 'Как мне добавить взносы в мои инвестиции?', DESCRIPTION_1: 'В разделе конфигурации, выбрав копилку', DESCRIPTION_2: 'Вы можете добавить финансовые взносы, которые вы сделали, и дату того же. '},
     },
 
@@ -599,8 +599,8 @@ export default {
 
     FAQS: {
       READ: 'przeczytaj przewodnik',
-      FAQ_1: {TITLE: 'Gdzie mam zacząć?', OPIS: 'Jeśli to Twój pierwszy raz, najlepiej spróbuj dodać nowy cel i niektóre źródła inwestycji w zakładce konfiguracji.'},
-      FAQ_2: {TITLE: 'Gdzie mogę dodać aktualną wartość mojej inwestycji?', OPIS: 'W celu monitorowania Twoich inwestycji wystarczy zaktualizować w konfiguracji sekcji aktualną wartość Twoich inwestycji, korzyść zostanie obliczona na podstawie składki, które dodałeś. '},
+      FAQ_1: {TITLE: 'Gdzie mam zacząć?', DESCRIPTION: 'Jeśli to Twój pierwszy raz, najlepiej spróbuj dodać nowy cel i niektóre źródła inwestycji w zakładce konfiguracji.'},
+      FAQ_2: {TITLE: 'Gdzie mogę dodać aktualną wartość mojej inwestycji?', DESCRIPTION: 'W celu monitorowania Twoich inwestycji wystarczy zaktualizować w konfiguracji sekcji aktualną wartość Twoich inwestycji, korzyść zostanie obliczona na podstawie składki, które dodałeś. '},
       FAQ_3: {TITLE: 'Jak dodać wpłaty do moich inwestycji?', DESCRIPTION_1: 'W sekcji Konfiguracja, wybierz skarbonkę', DESCRIPTION_2: 'Możesz dodać wniesione przez siebie wpłaty finansowe i ich datę. '},
     },
 
@@ -685,8 +685,8 @@ export default {
     FAQS: {
       READ: 'leggi il manuale',
       TITLE: 'Domande frequenti',
-      FAQ_1: {TITLE: 'Dove iniziare?', OPIS: 'Se questa è la tua prima volta con GoFire, consigliamo di aggiungere un nuovo obiettivo e di aggiungere alcuni flussi di denaro.'},
-      FAQ_2: {TITLE: 'Dove aggiungere una nuova transazione?', OPIS: 'Per monitorare le tue transazioni, aggiungi un nuovo flusso di denaro in modo da aggiornare la tua visualizzazione.'},
+      FAQ_1: {TITLE: 'Dove iniziare?', DESCRIPTION: 'Se questa è la tua prima volta con GoFire, consigliamo di aggiungere un nuovo obiettivo e di aggiungere alcuni flussi di denaro.'},
+      FAQ_2: {TITLE: 'Dove aggiungere una nuova transazione?', DESCRIPTION: 'Per monitorare le tue transazioni, aggiungi un nuovo flusso di denaro in modo da aggiornare la tua visualizzazione.'},
       FAQ_3: {TITLE: 'Come aggiungere le wpłaty?', DESCRIPTION_1: 'In sezione Impostazioni, seleziona la scatola', DESCRIPTION_2: 'Puoi aggiungere le wpłaty finte e la data di queste. '},
     },
   },
