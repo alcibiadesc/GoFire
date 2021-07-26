@@ -20,17 +20,18 @@
     chart: Chart,
   };
 
+  $: if ($landing === false) {
+    current = "home";
+  }
+
   $: page = pages[current];
 </script>
 
 <Navbar />
-<svelte:component this={page} />
-<Menu {current} {selectedBtn} />
 
-<!-- {#if $landing}
+{#if $landing}
   <Landing />
 {:else}
   <svelte:component this={page} />
   <Menu {current} {selectedBtn} />
 {/if}
- -->
