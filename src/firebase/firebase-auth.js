@@ -35,10 +35,7 @@ const get = (uid) => {
   getData('goal', uid).then((value) => (value ? goal.set(value.goal) : ''));
   getData('data', uid).then((array) => (array ? data.set(array.data) : ''));
   getData('currency', uid).then(
-      (value) => {
-        currency.set(value.currency); console.log({get: value});
-      },
-  );
+      (value) => value ? currency.set(value.currency) : '');
 };
 
 const set = (uid) => {
