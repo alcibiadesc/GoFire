@@ -16,6 +16,7 @@
     guide = !guide;
     $landing = false;
   };
+  const quitGuide = () => (guide = false);
   const selectedBtn = (icon) => {
     current = icon;
   };
@@ -34,7 +35,7 @@
   $: page = pages[current];
 </script>
 
-<Navbar {toogleGuide} {guide} landing={$landing} />
+<Navbar {toogleGuide} {guide} {quitGuide} landing={$landing} />
 
 {#if guide}
   <Guide />

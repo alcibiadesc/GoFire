@@ -2,7 +2,6 @@
   import { user } from "../../stores/user.js";
   import { signIn } from "./../../firebase/firebase-auth.js";
   import Avatar from "./../atoms/Avatar.svelte";
-  import Switch from "./../atoms/Switch.svelte";
   import { landing } from "./../../stores/landing.js";
 
   $: img = $user.photoURL ? $user.photoURL : "icons/user.svg";
@@ -12,9 +11,11 @@
   };
   export let guide = false;
 
+  export let quitGuide = () => {};
+
   const activeLanding = () => {
     $landing = true;
-    location.reload();
+    quitGuide();
   };
 </script>
 

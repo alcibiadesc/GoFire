@@ -1,9 +1,9 @@
 <script>
     import { landing } from "./../../stores/landing";
-    import Credit from "./../atoms/Credit.svelte";
     import { t } from "./../../i18n/i18n";
 
     export let toogleGuide = () => console.log("click");
+    export let quitGuide = () => {};
 </script>
 
 <div class="text-center gridding md:w-6/12">
@@ -14,13 +14,9 @@
 
         <img class="inline-block w-6" src="/icons/arrow.svg" alt="launch app" />
     </button>
-
-    <button class="mt-3 btn-guide" on:click={toogleGuide}
-        >{$t("FAQS.READ")}</button
-    >
-</div>
-<div class="absolute inset-x-0 bottom-0 p-8">
-    <Credit />
+    <div on:click={toogleGuide} class="mb-12">
+        <button class="mt-3 btn-guide">{$t("FAQS.READ")}</button>
+    </div>
 </div>
 
 <style>
