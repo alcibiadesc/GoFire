@@ -8,6 +8,7 @@
 # What is it? [<img src="https://img.shields.io/badge/early-access-red">](https://gofire.app/)
 Gofire is a performance budget tool for management your savings and invests. It give you a secure and secret space to add, edit and follow your invests in real time. 
 
+# Free Access 👉  https://www.gofire.app
 
 ## Last Features
 
@@ -15,7 +16,7 @@ Gofire is a performance budget tool for management your savings and invests. It 
   * español, english, français, deutsche, português, русский and polskie.
 * Add savings and see their profits.
 * Some charts.
-* Sign-In with google account
+* Sign-In and save data with google account
 * Add a goal and see how close you are to achieving it
 * Add, edit, hightligth and remove a category
   * Add and delete savings inside that category 
@@ -35,7 +36,7 @@ You can enter to the 👉 [ **EARLY ACCESS**](https://gofire.app/)
 Tell me via [linkedin](https://es.linkedin.com/in/alcibiadesc) 
 
 ### Developer
-I want to install it, develop it and contribute to the new software increments.
+I want to install it, develop it or contribute to the new software increments.
 
 <details><summary><b>Show instructions</b></summary>
 1. Clone the repo:
