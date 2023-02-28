@@ -6,7 +6,7 @@
   </p>
 
 # What is it? [<img src="https://img.shields.io/badge/early-access-red">](https://gofire.app/)
-Gofire is a performance budget tool your savings and invest. It give you a secure and secret space to add, edit and follow your invests in real time. 
+Gofire is a performance budget tool for management your savings and invests. It give you a secure and secret space to add, edit and follow your invests in real time. 
 
 
 ## Last Features
