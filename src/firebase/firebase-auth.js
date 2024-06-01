@@ -3,7 +3,7 @@ import { firebaseApp } from "./firebase.js";
 import {
   GoogleAuthProvider,
   getAuth,
-  signInWithRedirect,
+  signInWithPopup,
   signOut,
   onAuthStateChanged,
 } from "firebase/auth";
@@ -12,20 +12,20 @@ import { getData, setData } from "./firebase-firestore.js";
 import { resetData, data } from "./../stores/data.js";
 import { currency } from "./../i18n/currency.js";
 import { landing } from "./../stores/landing";
-
 import { goal, resetGoal } from "./../stores/goal.js";
 
+console.log("Initializing Firebase Auth");
 const auth = getAuth();
 const provider = new GoogleAuthProvider();
 
 const signIn = () => {
-  console.log("Attempting to sign in with redirect");
-  signInWithRedirect(auth, provider)
-    .then(() => {
-      console.log("Sign in redirect initiated successfully");
+  console.log("Attempting to sign in with popup");
+  signInWithPopup(auth, provider)
+    .then((result) => {
+      console.log("Sign in successful:", result.user);
     })
     .catch((error) => {
-      console.error("Error during signInWithRedirect:", error);
+      console.error("Error during signInWithPopup:", error);
     });
 };
 
