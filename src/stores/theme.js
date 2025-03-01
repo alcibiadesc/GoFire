@@ -10,7 +10,8 @@ const systemTheme = () => {
   return checkDark ? 'dark' : 'light';
 };
 
-const theme = writable(JSON.parse(themeLocal) || systemTheme());
+const theme = writable(JSON.parse(themeLocal) || 'dark');
+
 
 theme.subscribe((value) => {
   if (themeLocal !== value) {
