@@ -11,7 +11,7 @@
 	"dependencies": {
 		"chart.js": "^3.4.1",
 		"charts.css": "^0.9.0",
-		"firebase": "^9.0.0-beta.2",
+		"firebase": "^11.4.0",
 		"svelte": "^3.32.1",
 		"svelte-chartjs": "^1.0.1",
 		"update": "^0.7.4",
