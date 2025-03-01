@@ -10,7 +10,9 @@ const systemTheme = () => {
   return checkDark ? 'dark' : 'light';
 };
 
+// DEFAULT INIT
 const theme = writable(JSON.parse(themeLocal) || 'dark');
+
 
 
 theme.subscribe((value) => {
