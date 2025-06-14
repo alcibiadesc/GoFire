@@ -6,6 +6,7 @@
     import { theme } from "./../../stores/theme.js";
     import { round } from "./../../scripts/scripts.js";
     import { t } from "./../../i18n/i18n";
+    import { formatNum } from "./../../i18n/currency";
 
     let revenue = 0;
     let saving = 0;
@@ -219,7 +220,7 @@
                 </div>
                 <div class="stat-info">
                     <span class="stat-label">{$t('CHARTS.PORTFOLIO.TOTAL_INVESTMENT')}</span>
-                    <span class="stat-value">€{round(saving, { returnZero: true }).toLocaleString()}</span>
+                    <span class="stat-value">{formatNum(round(saving, { returnZero: true }))}</span>
                 </div>
             </div>
             <div class="stat-item revenue-stat">
@@ -228,7 +229,7 @@
                 </div>
                 <div class="stat-info">
                     <span class="stat-label">{$t('CHARTS.PORTFOLIO.TOTAL_REVENUE')}</span>
-                    <span class="stat-value">€{round(revenue, { returnZero: true }).toLocaleString()}</span>
+                    <span class="stat-value">{formatNum(round(revenue, { returnZero: true }))}</span>
                 </div>
             </div>
         </div>

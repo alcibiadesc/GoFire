@@ -3,6 +3,7 @@
   import { Chart, registerables } from 'chart.js';
   import { t } from "./../../i18n/i18n";
   import { theme } from "./../../stores/theme.js";
+  import { currency, formatNum } from "./../../i18n/currency";
   
   // Register Chart.js components
   Chart.register(...registerables);
@@ -41,6 +42,21 @@
     { key: '5Y', label: '5Y', months: 60 },
     { key: 'ALL', label: 'ALL', months: null }
   ];
+
+  // Currency formatting helper
+  function formatCurrency(value) {
+    if (value >= 1000000) {
+      const amount = (value / 1000000).toFixed(1);
+      const symbol = formatNum(1).replace(/[\d\s.,]/g, ''); // Extract currency symbol
+      return `${amount}M ${symbol}`;
+    } else if (value >= 1000) {
+      const amount = (value / 1000).toFixed(0);
+      const symbol = formatNum(1).replace(/[\d\s.,]/g, ''); // Extract currency symbol
+      return `${amount}K ${symbol}`;
+    } else {
+      return formatNum(value, 'standard');
+    }
+  }
 
   // Theme-aware colors
   $: isDark = $theme === 'dark';
@@ -145,15 +161,8 @@
             // Get change data if available
             const changeData = context.dataset.changeData;
             
-            // Format main value
-            let formatted;
-            if (value >= 1000000) {
-              formatted = '€' + (value / 1000000).toFixed(1) + 'M';
-            } else if (value >= 1000) {
-              formatted = '€' + (value / 1000).toFixed(0) + 'K';
-            } else {
-              formatted = '€' + value.toLocaleString();
-            }
+            // Format main value using dynamic currency
+            const formatted = formatCurrency(value);
             
             // Create tooltip lines
             const lines = [];
@@ -163,23 +172,15 @@
             if (changeData && pointIndex > 0 && changeData[pointIndex]) {
               const change = changeData[pointIndex];
               
-              // Format change amount
-              let changeFormatted;
-              const absChange = Math.abs(change.change);
-              if (absChange >= 1000000) {
-                changeFormatted = (change.change / 1000000).toFixed(1) + 'M';
-              } else if (absChange >= 1000) {
-                changeFormatted = (change.change / 1000).toFixed(0) + 'K';
-              } else {
-                changeFormatted = change.change.toLocaleString();
-              }
+              // Format change amount using dynamic currency
+              const changeFormatted = formatCurrency(Math.abs(change.change));
               
-              const changeSymbol = change.isIncrease ? '+' : '';
+              const changeSymbol = change.isIncrease ? '+' : '-';
               const changeIcon = change.isIncrease ? '📈' : '📉';
               const changePercent = Math.abs(parseFloat(change.changePercent));
               
               lines.push('');
-              lines.push(changeIcon + ' ' + $t("CHARTS.LINE.TOOLTIP_CHANGE") + ': ' + changeSymbol + '€' + changeFormatted);
+              lines.push(changeIcon + ' ' + $t("CHARTS.LINE.TOOLTIP_CHANGE") + ': ' + changeSymbol + changeFormatted);
               lines.push('📊 ' + $t("CHARTS.LINE.TOOLTIP_PERCENTAGE") + ': ' + changeSymbol + changePercent.toFixed(1) + '%');
             }
             
@@ -252,12 +253,7 @@
           },
           padding: 8,
           callback: function(value) {
-            if (value >= 1000000) {
-              return '€' + (value / 1000000).toFixed(1) + 'M';
-            } else if (value >= 1000) {
-              return '€' + (value / 1000).toFixed(0) + 'K';
-            }
-            return '€' + value.toLocaleString();
+            return formatCurrency(value);
           }
         },
         border: {
