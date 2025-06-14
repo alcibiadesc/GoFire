@@ -197,61 +197,82 @@
     </div>
 </div>
 
-<!-- Charts Grid -->
-<div class="charts-container">
-    <!-- Distribution Chart -->
-    <div class="chart-card">
-        <div class="chart-header">
-            <h2 class="chart-title">📊 Portfolio Distribution</h2>
-            <p class="chart-description">Current allocation breakdown</p>
+<!-- Bento Box Grid -->
+<div class="bento-container">
+    <!-- Portfolio Distribution Card -->
+    <div class="bento-card portfolio-card">
+        <div class="card-header">
+            <div class="card-icon">📊</div>
+            <div class="card-title-group">
+                <h2 class="card-title">Portfolio Distribution</h2>
+                <p class="card-subtitle">Current allocation breakdown</p>
+            </div>
         </div>
-        <div class="chart-content">
+        <div class="card-content">
             <ChartDoughnut {metrics} />
         </div>
-        <div class="chart-stats">
-            <div class="stat-item">
-                <span class="stat-label">Total Investment</span>
-                <span class="stat-value">€{round(saving, { returnZero: true }).toLocaleString()}</span>
+        <div class="card-stats">
+            <div class="stat-item investment-stat">
+                <div class="stat-icon">💰</div>
+                <div class="stat-info">
+                    <span class="stat-label">Total Investment</span>
+                    <span class="stat-value">€{round(saving, { returnZero: true }).toLocaleString()}</span>
+                </div>
             </div>
-            <div class="stat-item">
-                <span class="stat-label">Total Revenue</span>
-                <span class="stat-value">€{round(revenue, { returnZero: true }).toLocaleString()}</span>
+            <div class="stat-item revenue-stat">
+                <div class="stat-icon">📈</div>
+                <div class="stat-info">
+                    <span class="stat-label">Total Revenue</span>
+                    <span class="stat-value">€{round(revenue, { returnZero: true }).toLocaleString()}</span>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Temporal Chart -->
+    <!-- Investment Timeline Card -->
     {#if lineChartData.labels && lineChartData.labels.length > 0}
-        <div class="chart-card timeline-chart">
-            <div class="chart-header">
-                <h2 class="chart-title">📈 {$t("CHARTS.LINE.CARD_TITLE")}</h2>
-                <p class="chart-description">Track your investment growth over time with interactive zoom controls</p>
+        <div class="bento-card timeline-card">
+            <div class="card-header">
+                <div class="card-icon">📈</div>
+                <div class="card-title-group">
+                    <h2 class="card-title">{$t("CHARTS.LINE.CARD_TITLE")}</h2>
+                    <p class="card-subtitle">Track your investment growth over time with interactive zoom controls</p>
+                </div>
             </div>
-            <div class="chart-content">
+            <div class="card-content">
                 <ChartLine data={lineChartData} />
             </div>
-            <div class="chart-stats">
+            <div class="card-stats timeline-stats">
                 <div class="stat-item">
-                    <span class="stat-label">Investment Entries</span>
-                    <span class="stat-value">{lineChartData.labels.length}</span>
+                    <div class="stat-icon">📊</div>
+                    <div class="stat-info">
+                        <span class="stat-label">Investment Entries</span>
+                        <span class="stat-value">{lineChartData.labels.length}</span>
+                    </div>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-label">Period</span>
-                    <span class="stat-value">
-                        {#if lineChartData.labels.length > 0}
-                            {lineChartData.labels[0]} - {lineChartData.labels[lineChartData.labels.length - 1]}
-                        {:else}
-                            N/A
-                        {/if}
-                    </span>
+                    <div class="stat-icon">📅</div>
+                    <div class="stat-info">
+                        <span class="stat-label">Period</span>
+                        <span class="stat-value period-value">
+                            {#if lineChartData.labels.length > 0}
+                                {lineChartData.labels[0]} - {lineChartData.labels[lineChartData.labels.length - 1]}
+                            {:else}
+                                N/A
+                            {/if}
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
     {:else}
-        <div class="chart-card empty-chart">
-            <div class="chart-header">
-                <h2 class="chart-title">📈 {$t("CHARTS.LINE.CARD_TITLE")}</h2>
-                <p class="chart-description">Track your investment growth over time with interactive zoom controls</p>
+        <div class="bento-card timeline-card empty-timeline">
+            <div class="card-header">
+                <div class="card-icon">📈</div>
+                <div class="card-title-group">
+                    <h2 class="card-title">{$t("CHARTS.LINE.CARD_TITLE")}</h2>
+                    <p class="card-subtitle">Track your investment growth over time with interactive zoom controls</p>
+                </div>
             </div>
             <div class="empty-state">
                 <div class="empty-icon">📊</div>
@@ -268,8 +289,8 @@
     .charts-header {
         margin-bottom: 2rem;
         text-align: center;
-        padding: 2rem 0;
-        border-radius: 20px;
+        padding: 2rem 1.5rem;
+        border-radius: 24px;
         position: relative;
         overflow: hidden;
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
@@ -279,14 +300,17 @@
     .header-content {
         position: relative;
         z-index: 1;
+        max-width: 600px;
+        margin: 0 auto;
     }
 
     .main-title {
         font-size: 2.5rem;
         font-weight: 800;
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.75rem;
         letter-spacing: -0.025em;
         color: var(--primary);
+        line-height: 1.2;
     }
 
     .main-subtitle {
@@ -295,81 +319,158 @@
         margin: 0;
         font-weight: 400;
         color: var(--tertiary);
+        line-height: 1.5;
     }
 
-    .charts-container {
+    .bento-container {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        grid-template-columns: 1fr 2fr;
+        grid-template-rows: auto;
         gap: 2rem;
-        max-width: 1400px;
+        max-width: 1600px;
         margin: 0 auto;
+        padding: 0 2rem;
+        align-items: start;
     }
 
-    .chart-card {
-        border-radius: 20px;
-        padding: 1.5rem;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    .bento-card {
+        border-radius: 24px;
+        padding: 2rem;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
         border: 1px solid var(--tertiary);
-        transition: all 0.3s ease;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         position: relative;
         overflow: hidden;
         background: var(--card__background);
+        backdrop-filter: blur(10px);
+        display: flex;
+        flex-direction: column;
     }
 
-    .chart-card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+    .bento-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        border-color: var(--accent);
     }
 
-    .timeline-chart {
-        grid-column: 1 / -1; /* Full width for timeline chart */
+    .portfolio-card {
+        grid-column: 1;
+        grid-row: 1;
+        max-height: 600px;
     }
 
-    .chart-header {
-        margin-bottom: 1.5rem;
-        text-align: center;
+    .timeline-card {
+        grid-column: 2;
+        grid-row: 1;
+        max-height: 600px;
     }
 
-    .chart-title {
+    .card-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        text-align: left;
+    }
+
+    .card-icon {
+        font-size: 2rem;
+        width: 3rem;
+        height: 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--background__input);
+        border-radius: 16px;
+        border: 1px solid var(--tertiary);
+    }
+
+    .card-title-group {
+        flex: 1;
+    }
+
+    .card-title {
         font-size: 1.5rem;
         font-weight: 700;
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.25rem;
         letter-spacing: -0.025em;
         color: var(--primary);
+        line-height: 1.3;
     }
 
-    .chart-description {
+    .card-subtitle {
         font-size: 0.875rem;
         margin: 0;
         font-weight: 500;
         color: var(--tertiary);
+        line-height: 1.4;
     }
 
-    .chart-content {
-        height: 400px;
+    .card-content {
+        flex: 1;
         position: relative;
+        margin-bottom: 1rem;
+        height: 300px;
+        max-height: 300px;
+        overflow: hidden;
     }
 
-    .chart-stats {
-        margin-top: 1.5rem;
-        padding-top: 1.5rem;
-        border-top: 1px solid rgba(0, 0, 0, 0.1);
+    .portfolio-card .card-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 280px;
+        max-height: 280px;
+    }
+
+    .timeline-card .card-content {
+        height: 320px;
+        max-height: 320px;
+    }
+
+    .card-stats {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .timeline-stats {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 1rem;
     }
 
     .stat-item {
-        text-align: center;
-        padding: 0.75rem;
-        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+        border-radius: 16px;
         border: 1px solid var(--tertiary);
-        transition: all 0.2s ease;
+        transition: all 0.3s ease;
         background: var(--background__input);
     }
 
     .stat-item:hover {
-        transform: translateY(-1px);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .stat-icon {
+        font-size: 1.5rem;
+        width: 2.5rem;
+        height: 2.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--card__background);
+        border-radius: 12px;
+        border: 1px solid var(--tertiary);
+    }
+
+    .stat-info {
+        flex: 1;
+        text-align: left;
     }
 
     .stat-label {
@@ -387,6 +488,12 @@
         font-size: 1.125rem;
         font-weight: 700;
         color: var(--primary);
+        line-height: 1.2;
+    }
+
+    .period-value {
+        font-size: 0.875rem;
+        font-weight: 600;
     }
 
     .empty-state {
@@ -420,30 +527,81 @@
         color: var(--tertiary);
     }
 
-    @media (max-width: 768px) {
-        .charts-container {
+    @media (max-width: 1200px) {
+        .bento-container {
             grid-template-columns: 1fr;
-            gap: 1.5rem;
+            grid-template-rows: auto auto;
+            padding: 0 1rem;
+            min-height: auto;
         }
 
-        .timeline-chart {
+        .portfolio-card {
             grid-column: 1;
+            grid-row: 1;
+            min-height: 500px;
+        }
+
+        .timeline-card {
+            grid-column: 1;
+            grid-row: 2;
+            min-height: 500px;
+        }
+
+        .portfolio-card .card-content {
+            min-height: 300px;
+        }
+
+        .timeline-card .card-content {
+            min-height: 350px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .bento-container {
+            gap: 1rem;
+            padding: 0;
+        }
+
+        .bento-card {
+            padding: 1.5rem;
+            border-radius: 20px;
+        }
+
+        .card-header {
+            flex-direction: column;
+            text-align: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            font-size: 1.5rem;
+        }
+
+        .card-content {
+            min-height: 250px;
+        }
+
+        .portfolio-card .card-content {
+            min-height: 220px;
+        }
+
+        .timeline-card .card-content {
+            min-height: 280px;
+        }
+
+        .timeline-stats {
+            grid-template-columns: 1fr;
         }
 
         .main-title {
             font-size: 2rem;
         }
 
-        .chart-card {
-            padding: 1rem;
-        }
-
-        .chart-content {
-            height: 300px;
-        }
-
         .empty-state {
-            height: 300px;
+            height: 280px;
             padding: 1rem;
         }
     }
@@ -452,6 +610,7 @@
         .charts-header {
             margin-bottom: 1.5rem;
             padding: 1.5rem 1rem;
+            border-radius: 20px;
         }
 
         .main-title {
@@ -460,6 +619,50 @@
 
         .main-subtitle {
             font-size: 1rem;
+        }
+
+        .bento-card {
+            padding: 1rem;
+            border-radius: 16px;
+        }
+
+        .card-content {
+            min-height: 200px;
+        }
+
+        .portfolio-card .card-content {
+            min-height: 180px;
+        }
+
+        .timeline-card .card-content {
+            min-height: 240px;
+        }
+
+        .timeline-card {
+            min-height: 400px;
+        }
+
+        .stat-item {
+            padding: 0.75rem;
+            gap: 0.75rem;
+        }
+
+        .stat-icon {
+            width: 2rem;
+            height: 2rem;
+            font-size: 1.25rem;
+        }
+
+        .stat-value {
+            font-size: 1rem;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+        }
+
+        .card-subtitle {
+            font-size: 0.8rem;
         }
     }
 </style>
