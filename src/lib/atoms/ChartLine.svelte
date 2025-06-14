@@ -368,23 +368,25 @@
     position: relative;
     height: 100%;
     width: 100%;
-    min-height: 400px;
     border-radius: 16px;
-    padding: 20px;
+    padding: 16px;
     border: 1px solid;
     transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
   }
 
   .period-controls {
     display: flex;
     justify-content: center;
     gap: 0.5rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     flex-wrap: wrap;
-    padding: 0.75rem;
+    padding: 0.5rem;
     background: var(--background__input);
-    border-radius: 16px;
+    border-radius: 12px;
     border: 1px solid var(--tertiary);
+    flex-shrink: 0;
   }
 
   .period-btn {
@@ -429,8 +431,9 @@
   }
 
   .canvas-wrapper {
-    height: calc(100% - 60px);
+    flex: 1;
     position: relative;
+    min-height: 300px;
   }
 
   canvas {

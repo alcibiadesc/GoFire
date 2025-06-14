@@ -324,13 +324,14 @@
 
     .bento-container {
         display: grid;
-        grid-template-columns: 1fr 2fr;
-        grid-template-rows: auto;
+        grid-template-columns: 400px 1fr;
+        grid-template-rows: 1fr;
         gap: 2rem;
         max-width: 1600px;
         margin: 0 auto;
         padding: 0 2rem;
-        align-items: start;
+        align-items: stretch;
+        min-height: 600px;
     }
 
     .bento-card {
@@ -356,13 +357,16 @@
     .portfolio-card {
         grid-column: 1;
         grid-row: 1;
-        max-height: 600px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
     }
 
     .timeline-card {
         grid-column: 2;
         grid-row: 1;
-        max-height: 600px;
+        display: flex;
+        flex-direction: column;
     }
 
     .card-header {
@@ -409,23 +413,19 @@
     .card-content {
         flex: 1;
         position: relative;
-        margin-bottom: 1rem;
-        height: 300px;
-        max-height: 300px;
-        overflow: hidden;
-    }
-
-    .portfolio-card .card-content {
+        margin-bottom: 1.5rem;
         display: flex;
         align-items: center;
         justify-content: center;
-        height: 280px;
-        max-height: 280px;
+    }
+
+    .portfolio-card .card-content {
+        min-height: 320px;
     }
 
     .timeline-card .card-content {
-        height: 320px;
-        max-height: 320px;
+        min-height: 400px;
+        align-items: stretch;
     }
 
     .card-stats {
@@ -532,19 +532,18 @@
             grid-template-columns: 1fr;
             grid-template-rows: auto auto;
             padding: 0 1rem;
+            gap: 1.5rem;
             min-height: auto;
         }
 
         .portfolio-card {
             grid-column: 1;
             grid-row: 1;
-            min-height: 500px;
         }
 
         .timeline-card {
             grid-column: 1;
             grid-row: 2;
-            min-height: 500px;
         }
 
         .portfolio-card .card-content {
@@ -552,7 +551,7 @@
         }
 
         .timeline-card .card-content {
-            min-height: 350px;
+            min-height: 400px;
         }
     }
 
@@ -589,7 +588,7 @@
         }
 
         .timeline-card .card-content {
-            min-height: 280px;
+            min-height: 300px;
         }
 
         .timeline-stats {
@@ -601,7 +600,7 @@
         }
 
         .empty-state {
-            height: 280px;
+            min-height: 280px;
             padding: 1rem;
         }
     }
@@ -635,11 +634,7 @@
         }
 
         .timeline-card .card-content {
-            min-height: 240px;
-        }
-
-        .timeline-card {
-            min-height: 400px;
+            min-height: 260px;
         }
 
         .stat-item {
