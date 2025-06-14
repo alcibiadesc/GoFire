@@ -1,6 +1,7 @@
 <script>
     import ChartDoughnut from "./../atoms/ChartDoughnut.svelte";
     import ChartLine from "./../atoms/ChartLine.svelte";
+    import Card from "./../atoms/Card.svelte";
     import { data } from "./../../stores/data.js";
     import { theme } from "./../../stores/theme.js";
     import { round } from "./../../scripts/scripts.js";
@@ -190,19 +191,19 @@
 </script>
 
 <!-- Header Section -->
-<div class="charts-header">
-    <div class="header-content">
-        <h1 class="main-title">{$t("CHARTS.TITLE")}</h1>
-        <p class="main-subtitle">{$t("CHARTS.SUBTITLE")}</p>
-    </div>
-</div>
+<Card>
+    <h1>{$t("CHARTS.TITLE")}</h1>
+    <h3>{$t("CHARTS.SUBTITLE")}</h3>
+</Card>
 
 <!-- Bento Box Grid -->
 <div class="bento-container">
     <!-- Portfolio Distribution Card -->
     <div class="bento-card portfolio-card">
         <div class="card-header">
-            <div class="card-icon">📊</div>
+            <div class="card-icon">
+                <img src="/icons/chart.svg" alt="Portfolio" />
+            </div>
             <div class="card-title-group">
                 <h2 class="card-title">Portfolio Distribution</h2>
                 <p class="card-subtitle">Current allocation breakdown</p>
@@ -213,14 +214,18 @@
         </div>
         <div class="card-stats">
             <div class="stat-item investment-stat">
-                <div class="stat-icon">💰</div>
+                <div class="stat-icon">
+                    <img src="/icons/saving.svg" alt="Investment" />
+                </div>
                 <div class="stat-info">
                     <span class="stat-label">Total Investment</span>
                     <span class="stat-value">€{round(saving, { returnZero: true }).toLocaleString()}</span>
                 </div>
             </div>
             <div class="stat-item revenue-stat">
-                <div class="stat-icon">📈</div>
+                <div class="stat-icon">
+                    <img src="/icons/up.svg" alt="Revenue" />
+                </div>
                 <div class="stat-info">
                     <span class="stat-label">Total Revenue</span>
                     <span class="stat-value">€{round(revenue, { returnZero: true }).toLocaleString()}</span>
@@ -233,7 +238,9 @@
     {#if lineChartData.labels && lineChartData.labels.length > 0}
         <div class="bento-card timeline-card">
             <div class="card-header">
-                <div class="card-icon">📈</div>
+                <div class="card-icon">
+                    <img src="/icons/history.svg" alt="Timeline" />
+                </div>
                 <div class="card-title-group">
                     <h2 class="card-title">{$t("CHARTS.LINE.CARD_TITLE")}</h2>
                     <p class="card-subtitle">Track your investment growth over time with interactive zoom controls</p>
@@ -244,14 +251,18 @@
             </div>
             <div class="card-stats timeline-stats">
                 <div class="stat-item">
-                    <div class="stat-icon">📊</div>
+                    <div class="stat-icon">
+                        <img src="/icons/chart.svg" alt="Entries" />
+                    </div>
                     <div class="stat-info">
                         <span class="stat-label">Investment Entries</span>
                         <span class="stat-value">{lineChartData.labels.length}</span>
                     </div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-icon">📅</div>
+                    <div class="stat-icon">
+                        <img src="/icons/history.svg" alt="Period" />
+                    </div>
                     <div class="stat-info">
                         <span class="stat-label">Period</span>
                         <span class="stat-value period-value">
@@ -268,14 +279,18 @@
     {:else}
         <div class="bento-card timeline-card empty-timeline">
             <div class="card-header">
-                <div class="card-icon">📈</div>
+                <div class="card-icon">
+                    <img src="/icons/history.svg" alt="Timeline" />
+                </div>
                 <div class="card-title-group">
                     <h2 class="card-title">{$t("CHARTS.LINE.CARD_TITLE")}</h2>
                     <p class="card-subtitle">Track your investment growth over time with interactive zoom controls</p>
                 </div>
             </div>
             <div class="empty-state">
-                <div class="empty-icon">📊</div>
+                <div class="empty-icon">
+                    <img src="/icons/chart.svg" alt="No data" />
+                </div>
                 <h3 class="empty-title">No Investment Timeline Available</h3>
                 <p class="empty-text">
                     Add investment contributions with dates to see your investment progression timeline with zoom controls
@@ -286,41 +301,7 @@
 </div>
 
 <style>
-    .charts-header {
-        margin-bottom: 2rem;
-        text-align: center;
-        padding: 2rem 1.5rem;
-        border-radius: 24px;
-        position: relative;
-        overflow: hidden;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-        background: var(--card__background);
-    }
 
-    .header-content {
-        position: relative;
-        z-index: 1;
-        max-width: 600px;
-        margin: 0 auto;
-    }
-
-    .main-title {
-        font-size: 2.5rem;
-        font-weight: 800;
-        margin-bottom: 0.75rem;
-        letter-spacing: -0.025em;
-        color: var(--primary);
-        line-height: 1.2;
-    }
-
-    .main-subtitle {
-        font-size: 1.125rem;
-        opacity: 0.9;
-        margin: 0;
-        font-weight: 400;
-        color: var(--tertiary);
-        line-height: 1.5;
-    }
 
     .bento-container {
         display: grid;
@@ -378,7 +359,6 @@
     }
 
     .card-icon {
-        font-size: 2rem;
         width: 3rem;
         height: 3rem;
         display: flex;
@@ -387,6 +367,12 @@
         background: var(--background__input);
         border-radius: 16px;
         border: 1px solid var(--tertiary);
+    }
+
+    .card-icon img {
+        width: 1.5rem;
+        height: 1.5rem;
+        filter: var(--filter);
     }
 
     .card-title-group {
@@ -457,7 +443,6 @@
     }
 
     .stat-icon {
-        font-size: 1.5rem;
         width: 2.5rem;
         height: 2.5rem;
         display: flex;
@@ -466,6 +451,12 @@
         background: var(--card__background);
         border-radius: 12px;
         border: 1px solid var(--tertiary);
+    }
+
+    .stat-icon img {
+        width: 1.25rem;
+        height: 1.25rem;
+        filter: var(--filter);
     }
 
     .stat-info {
@@ -507,8 +498,19 @@
     }
 
     .empty-icon {
-        font-size: 3rem;
         margin-bottom: 1rem;
+        opacity: 0.7;
+        width: 3rem;
+        height: 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .empty-icon img {
+        width: 3rem;
+        height: 3rem;
+        filter: var(--filter);
         opacity: 0.7;
     }
 
@@ -576,7 +578,11 @@
         .card-icon {
             width: 2.5rem;
             height: 2.5rem;
-            font-size: 1.5rem;
+        }
+
+        .card-icon img {
+            width: 1.25rem;
+            height: 1.25rem;
         }
 
         .card-content {
