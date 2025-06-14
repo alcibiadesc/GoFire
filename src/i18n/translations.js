@@ -61,7 +61,6 @@ export default {
         DATE_AXIS: 'Date',
         AMOUNT_AXIS: 'Total Invested',
         CARD_TITLE: 'Investment Timeline',
-        CARD_SUBTITLE: 'Track your investment contributions over time',
       },
     },
     PROFILE: {
@@ -158,7 +157,6 @@ export default {
         DATE_AXIS: 'Fecha',
         AMOUNT_AXIS: 'Total Invertido',
         CARD_TITLE: 'Cronología de Inversión',
-        CARD_SUBTITLE: 'Observa cómo crece tu inversión con cada aportación',
       },
     },
     PROFILE: {
@@ -245,6 +243,13 @@ export default {
       DOUGHNUT: {
         SAVING: 'Dépenses',
         PROFIT: 'Rentabilité',
+      },
+      LINE: {
+        TITLE: 'Évolution de l\'Investissement dans le Temps',
+        SAVINGS_PROGRESSION: 'Investissement Cumulé',
+        DATE_AXIS: 'Date',
+        AMOUNT_AXIS: 'Total Investi',
+        CARD_TITLE: 'Chronologie d\'Investissement',
       },
     },
     PROFILE: {
