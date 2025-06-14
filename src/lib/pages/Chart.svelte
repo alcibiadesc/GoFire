@@ -190,54 +190,54 @@
 </script>
 
 <!-- Header Section -->
-<div class="charts-header" style="background: {themeColors.cardBackground}; color: {themeColors.primary};">
+<div class="charts-header">
     <div class="header-content">
         <h1 class="main-title">{$t("CHARTS.TITLE")}</h1>
-        <p class="main-subtitle" style="color: {themeColors.secondary};">{$t("CHARTS.SUBTITLE")}</p>
+        <p class="main-subtitle">{$t("CHARTS.SUBTITLE")}</p>
     </div>
 </div>
 
 <!-- Charts Grid -->
 <div class="charts-container">
     <!-- Distribution Chart -->
-    <div class="chart-card" style="background: {themeColors.cardBackground}; border-color: {isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'};">
+    <div class="chart-card">
         <div class="chart-header">
-            <h2 class="chart-title" style="color: {themeColors.primary};">📊 Portfolio Distribution</h2>
-            <p class="chart-description" style="color: {themeColors.secondary};">Current allocation breakdown</p>
+            <h2 class="chart-title">📊 Portfolio Distribution</h2>
+            <p class="chart-description">Current allocation breakdown</p>
         </div>
         <div class="chart-content">
             <ChartDoughnut {metrics} />
         </div>
         <div class="chart-stats">
-            <div class="stat-item" style="background: {isDark ? 'rgba(59, 130, 246, 0.1)' : 'rgba(35, 142, 228, 0.1)'}; border-color: {isDark ? 'rgba(59, 130, 246, 0.2)' : 'rgba(35, 142, 228, 0.2)'};">
-                <span class="stat-label" style="color: {themeColors.secondary};">Total Investment</span>
-                <span class="stat-value" style="color: {themeColors.primary};">€{round(saving, { returnZero: true }).toLocaleString()}</span>
+            <div class="stat-item">
+                <span class="stat-label">Total Investment</span>
+                <span class="stat-value">€{round(saving, { returnZero: true }).toLocaleString()}</span>
             </div>
-            <div class="stat-item" style="background: {isDark ? 'rgba(232, 76, 43, 0.1)' : 'rgba(35, 142, 228, 0.1)'}; border-color: {isDark ? 'rgba(232, 76, 43, 0.2)' : 'rgba(35, 142, 228, 0.2)'};">
-                <span class="stat-label" style="color: {themeColors.secondary};">Total Revenue</span>
-                <span class="stat-value" style="color: {themeColors.primary};">€{round(revenue, { returnZero: true }).toLocaleString()}</span>
+            <div class="stat-item">
+                <span class="stat-label">Total Revenue</span>
+                <span class="stat-value">€{round(revenue, { returnZero: true }).toLocaleString()}</span>
             </div>
         </div>
     </div>
 
     <!-- Temporal Chart -->
     {#if lineChartData.labels && lineChartData.labels.length > 0}
-        <div class="chart-card timeline-chart" style="background: {themeColors.cardBackground}; border-color: {isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'};">
+        <div class="chart-card timeline-chart">
             <div class="chart-header">
-                <h2 class="chart-title" style="color: {themeColors.primary};">📈 {$t("CHARTS.LINE.CARD_TITLE")}</h2>
-                <p class="chart-description" style="color: {themeColors.secondary};">Track your investment growth over time with interactive zoom controls</p>
+                <h2 class="chart-title">📈 {$t("CHARTS.LINE.CARD_TITLE")}</h2>
+                <p class="chart-description">Track your investment growth over time with interactive zoom controls</p>
             </div>
             <div class="chart-content">
                 <ChartLine data={lineChartData} />
             </div>
             <div class="chart-stats">
-                <div class="stat-item" style="background: {isDark ? 'rgba(59, 130, 246, 0.1)' : 'rgba(35, 142, 228, 0.1)'}; border-color: {isDark ? 'rgba(59, 130, 246, 0.2)' : 'rgba(35, 142, 228, 0.2)'};">
-                    <span class="stat-label" style="color: {themeColors.secondary};">Investment Entries</span>
-                    <span class="stat-value" style="color: {themeColors.primary};">{lineChartData.labels.length}</span>
+                <div class="stat-item">
+                    <span class="stat-label">Investment Entries</span>
+                    <span class="stat-value">{lineChartData.labels.length}</span>
                 </div>
-                <div class="stat-item" style="background: {isDark ? 'rgba(59, 130, 246, 0.1)' : 'rgba(35, 142, 228, 0.1)'}; border-color: {isDark ? 'rgba(59, 130, 246, 0.2)' : 'rgba(35, 142, 228, 0.2)'};">
-                    <span class="stat-label" style="color: {themeColors.secondary};">Period</span>
-                    <span class="stat-value" style="color: {themeColors.primary};">
+                <div class="stat-item">
+                    <span class="stat-label">Period</span>
+                    <span class="stat-value">
                         {#if lineChartData.labels.length > 0}
                             {lineChartData.labels[0]} - {lineChartData.labels[lineChartData.labels.length - 1]}
                         {:else}
@@ -248,15 +248,15 @@
             </div>
         </div>
     {:else}
-        <div class="chart-card empty-chart" style="background: {themeColors.cardBackground}; border-color: {isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'};">
+        <div class="chart-card empty-chart">
             <div class="chart-header">
-                <h2 class="chart-title" style="color: {themeColors.primary};">📈 {$t("CHARTS.LINE.CARD_TITLE")}</h2>
-                <p class="chart-description" style="color: {themeColors.secondary};">Track your investment growth over time with interactive zoom controls</p>
+                <h2 class="chart-title">📈 {$t("CHARTS.LINE.CARD_TITLE")}</h2>
+                <p class="chart-description">Track your investment growth over time with interactive zoom controls</p>
             </div>
             <div class="empty-state">
                 <div class="empty-icon">📊</div>
-                <h3 class="empty-title" style="color: {themeColors.primary};">No Investment Timeline Available</h3>
-                <p class="empty-text" style="color: {themeColors.secondary};">
+                <h3 class="empty-title">No Investment Timeline Available</h3>
+                <p class="empty-text">
                     Add investment contributions with dates to see your investment progression timeline with zoom controls
                 </p>
             </div>
@@ -273,6 +273,7 @@
         position: relative;
         overflow: hidden;
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        background: var(--card__background);
     }
 
     .header-content {
@@ -285,6 +286,7 @@
         font-weight: 800;
         margin-bottom: 0.5rem;
         letter-spacing: -0.025em;
+        color: var(--primary);
     }
 
     .main-subtitle {
@@ -292,6 +294,7 @@
         opacity: 0.9;
         margin: 0;
         font-weight: 400;
+        color: var(--tertiary);
     }
 
     .charts-container {
@@ -306,10 +309,11 @@
         border-radius: 20px;
         padding: 1.5rem;
         box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-        border: 1px solid;
+        border: 1px solid var(--tertiary);
         transition: all 0.3s ease;
         position: relative;
         overflow: hidden;
+        background: var(--card__background);
     }
 
     .chart-card:hover {
@@ -331,12 +335,14 @@
         font-weight: 700;
         margin-bottom: 0.5rem;
         letter-spacing: -0.025em;
+        color: var(--primary);
     }
 
     .chart-description {
         font-size: 0.875rem;
         margin: 0;
         font-weight: 500;
+        color: var(--tertiary);
     }
 
     .chart-content {
@@ -357,8 +363,9 @@
         text-align: center;
         padding: 0.75rem;
         border-radius: 12px;
-        border: 1px solid;
+        border: 1px solid var(--tertiary);
         transition: all 0.2s ease;
+        background: var(--background__input);
     }
 
     .stat-item:hover {
@@ -372,12 +379,14 @@
         text-transform: uppercase;
         letter-spacing: 0.05em;
         margin-bottom: 0.25rem;
+        color: var(--tertiary);
     }
 
     .stat-value {
         display: block;
         font-size: 1.125rem;
         font-weight: 700;
+        color: var(--primary);
     }
 
     .empty-state {
@@ -400,6 +409,7 @@
         font-size: 1.25rem;
         font-weight: 600;
         margin-bottom: 0.5rem;
+        color: var(--primary);
     }
 
     .empty-text {
@@ -407,6 +417,7 @@
         max-width: 300px;
         line-height: 1.5;
         margin: 0;
+        color: var(--tertiary);
     }
 
     @media (max-width: 768px) {

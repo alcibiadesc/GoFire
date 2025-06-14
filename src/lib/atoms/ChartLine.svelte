@@ -130,50 +130,60 @@
         bodyFont: {
           size: 13,
         },
-        padding: 12,
+        padding: 16,
         displayColors: false,
+        titleAlign: 'center',
+        bodyAlign: 'left',
         callbacks: {
           title: function(context) {
-            return context[0].label;
+            return context[0].label || 'Date';
           },
           label: function(context) {
             const value = context.parsed.y;
-            const datasetIndex = context.datasetIndex;
             const pointIndex = context.dataIndex;
             
             // Get change data if available
             const changeData = context.dataset.changeData;
             
+            // Format main value
             let formatted;
             if (value >= 1000000) {
-              formatted = (value / 1000000).toFixed(1) + 'M';
+              formatted = '€' + (value / 1000000).toFixed(1) + 'M';
             } else if (value >= 1000) {
-              formatted = (value / 1000).toFixed(0) + 'K';
+              formatted = '€' + (value / 1000).toFixed(0) + 'K';
             } else {
-              formatted = value.toLocaleString();
+              formatted = '€' + value.toLocaleString();
             }
             
-            let result = $t("CHARTS.LINE.CUMULATIVE_INVESTMENT") + ': €' + formatted;
+            // Create tooltip lines
+            const lines = [];
+            lines.push('💰 Total Investment: ' + formatted);
             
             // Add change information if available and not the first point
             if (changeData && pointIndex > 0 && changeData[pointIndex]) {
               const change = changeData[pointIndex];
-              const changeSymbol = change.isIncrease ? '+' : '';
-              const changeColor = change.isIncrease ? '🟢' : '🔴';
               
+              // Format change amount
               let changeFormatted;
-              if (Math.abs(change.change) >= 1000000) {
+              const absChange = Math.abs(change.change);
+              if (absChange >= 1000000) {
                 changeFormatted = (change.change / 1000000).toFixed(1) + 'M';
-              } else if (Math.abs(change.change) >= 1000) {
+              } else if (absChange >= 1000) {
                 changeFormatted = (change.change / 1000).toFixed(0) + 'K';
               } else {
                 changeFormatted = change.change.toLocaleString();
               }
               
-              result += '\n' + changeColor + ' Change: ' + changeSymbol + '€' + changeFormatted + ' (' + changeSymbol + change.changePercent + '%)';
+              const changeSymbol = change.isIncrease ? '+' : '';
+              const changeIcon = change.isIncrease ? '📈' : '📉';
+              const changePercent = Math.abs(parseFloat(change.changePercent));
+              
+              lines.push('');
+              lines.push(changeIcon + ' Change: ' + changeSymbol + '€' + changeFormatted);
+              lines.push('📊 Percentage: ' + changeSymbol + changePercent.toFixed(1) + '%');
             }
             
-            return result;
+            return lines;
           }
         }
       }
@@ -368,32 +378,54 @@
   .period-controls {
     display: flex;
     justify-content: center;
-    gap: 8px;
-    margin-bottom: 20px;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
     flex-wrap: wrap;
+    padding: 0.75rem;
+    background: var(--background__input);
+    border-radius: 16px;
+    border: 1px solid var(--tertiary);
   }
 
   .period-btn {
-    padding: 8px 16px;
-    border: 1px solid;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 600;
+    padding: 0.6rem 1.2rem;
+    border: 1px solid var(--tertiary);
+    border-radius: 12px;
+    background: var(--card__background);
+    color: var(--primary);
     cursor: pointer;
-    transition: all 0.2s ease;
-    background: transparent;
-    min-width: 44px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    min-width: 55px;
     text-align: center;
+    position: relative;
+    overflow: hidden;
   }
 
   .period-btn:hover {
-    opacity: 0.8;
-    transform: translateY(-1px);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.2);
+    border-color: #3B82F6;
   }
 
   .period-btn.active {
+    background: linear-gradient(135deg, #3B82F6, #1D4ED8);
     color: white !important;
-    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    border-color: #3B82F6;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+  }
+
+  .period-btn.active::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(255,255,255,0.1), transparent);
+    pointer-events: none;
   }
 
   .canvas-wrapper {
