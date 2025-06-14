@@ -55,6 +55,14 @@ export default {
         SAVING: 'Savings',
         PROFIT: 'Profit',
       },
+      LINE: {
+        TITLE: 'Investment Growth Over Time',
+        SAVINGS_PROGRESSION: 'Cumulative Investment',
+        DATE_AXIS: 'Date',
+        AMOUNT_AXIS: 'Total Invested',
+        CARD_TITLE: 'Investment Timeline',
+        CARD_SUBTITLE: 'Track your investment contributions over time',
+      },
     },
     PROFILE: {
       OFFLINE: {
@@ -143,6 +151,14 @@ export default {
       DOUGHNUT: {
         SAVING: 'Aportaciones',
         PROFIT: 'Rentabilidad',
+      },
+      LINE: {
+        TITLE: 'Evolución de Inversión en el Tiempo',
+        SAVINGS_PROGRESSION: 'Inversión Acumulada',
+        DATE_AXIS: 'Fecha',
+        AMOUNT_AXIS: 'Total Invertido',
+        CARD_TITLE: 'Cronología de Inversión',
+        CARD_SUBTITLE: 'Observa cómo crece tu inversión con cada aportación',
       },
     },
     PROFILE: {

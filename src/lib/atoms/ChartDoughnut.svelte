@@ -1,6 +1,10 @@
 <script>
-  import Doughnut from "svelte-chartjs/src/Doughnut.svelte";
+  import { onMount, onDestroy } from 'svelte';
+  import { Chart, registerables } from 'chart.js';
   import { t } from "./../../i18n/i18n";
+  
+  // Register Chart.js components
+  Chart.register(...registerables);
 
   export let metrics = [80, 20];
   export let data = {
@@ -17,6 +21,40 @@
   export let options = {
     responsive: true,
   };
+
+  let canvas;
+  let chart;
+
+  onMount(() => {
+    const ctx = canvas.getContext('2d');
+    chart = new Chart(ctx, {
+      type: 'doughnut',
+      data,
+      options
+    });
+  });
+
+  onDestroy(() => {
+    if (chart) {
+      chart.destroy();
+    }
+  });
+
+  // Reactive update when data changes
+  $: if (chart && data) {
+    chart.data = data;
+    chart.update();
+  }
 </script>
 
-<Doughnut {data} {options} />
+<div class="chart-container">
+  <canvas bind:this={canvas}></canvas>
+</div>
+
+<style>
+  .chart-container {
+    position: relative;
+    height: 300px;
+    width: 100%;
+  }
+</style>
