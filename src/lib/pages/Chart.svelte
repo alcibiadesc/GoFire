@@ -205,8 +205,8 @@
                 <img src="/icons/chart.svg" alt="Portfolio" />
             </div>
             <div class="card-title-group">
-                <h2 class="card-title">Portfolio Distribution</h2>
-                <p class="card-subtitle">Current allocation breakdown</p>
+                        <h2 class="card-title">{$t('CHARTS.PORTFOLIO.TITLE')}</h2>
+        <p class="card-subtitle">{$t('CHARTS.PORTFOLIO.SUBTITLE')}</p>
             </div>
         </div>
         <div class="card-content">
@@ -218,7 +218,7 @@
                     <img src="/icons/saving.svg" alt="Investment" />
                 </div>
                 <div class="stat-info">
-                    <span class="stat-label">Total Investment</span>
+                    <span class="stat-label">{$t('CHARTS.PORTFOLIO.TOTAL_INVESTMENT')}</span>
                     <span class="stat-value">€{round(saving, { returnZero: true }).toLocaleString()}</span>
                 </div>
             </div>
@@ -227,7 +227,7 @@
                     <img src="/icons/up.svg" alt="Revenue" />
                 </div>
                 <div class="stat-info">
-                    <span class="stat-label">Total Revenue</span>
+                    <span class="stat-label">{$t('CHARTS.PORTFOLIO.TOTAL_REVENUE')}</span>
                     <span class="stat-value">€{round(revenue, { returnZero: true }).toLocaleString()}</span>
                 </div>
             </div>
@@ -243,7 +243,7 @@
                 </div>
                 <div class="card-title-group">
                     <h2 class="card-title">{$t("CHARTS.LINE.CARD_TITLE")}</h2>
-                    <p class="card-subtitle">Track your investment growth over time with interactive zoom controls</p>
+                    <p class="card-subtitle">{$t('CHARTS.LINE.CARD_SUBTITLE')}</p>
                 </div>
             </div>
             <div class="card-content">
@@ -255,7 +255,7 @@
                         <img src="/icons/chart.svg" alt="Entries" />
                     </div>
                     <div class="stat-info">
-                        <span class="stat-label">Investment Entries</span>
+                        <span class="stat-label">{$t('CHARTS.PORTFOLIO.INVESTMENT_ENTRIES')}</span>
                         <span class="stat-value">{lineChartData.labels.length}</span>
                     </div>
                 </div>
@@ -264,7 +264,7 @@
                         <img src="/icons/history.svg" alt="Period" />
                     </div>
                     <div class="stat-info">
-                        <span class="stat-label">Period</span>
+                        <span class="stat-label">{$t('CHARTS.PORTFOLIO.PERIOD')}</span>
                         <span class="stat-value period-value">
                             {#if lineChartData.labels.length > 0}
                                 {lineChartData.labels[0]} - {lineChartData.labels[lineChartData.labels.length - 1]}
@@ -284,16 +284,16 @@
                 </div>
                 <div class="card-title-group">
                     <h2 class="card-title">{$t("CHARTS.LINE.CARD_TITLE")}</h2>
-                    <p class="card-subtitle">Track your investment growth over time with interactive zoom controls</p>
+                    <p class="card-subtitle">{$t('CHARTS.LINE.CARD_SUBTITLE')}</p>
                 </div>
             </div>
             <div class="empty-state">
                 <div class="empty-icon">
                     <img src="/icons/chart.svg" alt="No data" />
                 </div>
-                <h3 class="empty-title">No Investment Timeline Available</h3>
+                <h3 class="empty-title">{$t('CHARTS.PORTFOLIO.NO_TIMELINE_TITLE')}</h3>
                 <p class="empty-text">
-                    Add investment contributions with dates to see your investment progression timeline with zoom controls
+                    {$t('CHARTS.PORTFOLIO.NO_TIMELINE_TEXT')}
                 </p>
             </div>
         </div>

@@ -157,7 +157,7 @@
             
             // Create tooltip lines
             const lines = [];
-            lines.push('💰 Total Investment: ' + formatted);
+            lines.push('💰 ' + $t("CHARTS.LINE.TOOLTIP_TOTAL_INVESTMENT") + ': ' + formatted);
             
             // Add change information if available and not the first point
             if (changeData && pointIndex > 0 && changeData[pointIndex]) {
@@ -179,8 +179,8 @@
               const changePercent = Math.abs(parseFloat(change.changePercent));
               
               lines.push('');
-              lines.push(changeIcon + ' Change: ' + changeSymbol + '€' + changeFormatted);
-              lines.push('📊 Percentage: ' + changeSymbol + changePercent.toFixed(1) + '%');
+              lines.push(changeIcon + ' ' + $t("CHARTS.LINE.TOOLTIP_CHANGE") + ': ' + changeSymbol + '€' + changeFormatted);
+              lines.push('📊 ' + $t("CHARTS.LINE.TOOLTIP_PERCENTAGE") + ': ' + changeSymbol + changePercent.toFixed(1) + '%');
             }
             
             return lines;
