@@ -7,9 +7,9 @@ var app = new App({
 
 export default app;
 
-if (import.meta?.hot) {
+if (import.meta.hot) {
 	// Hot Module Replacement (HMR) - Remove this snippet to remove HMR.
-	// Learn more: https://www.snowpack.dev/#hot-module-replacement
+	// Learn more: https://vitejs.dev/guide/features.html#hot-module-replacement
 	import.meta.hot.accept();
 	import.meta.hot.dispose(() => {
 		app.$destroy();
@@ -19,13 +19,15 @@ if (import.meta?.hot) {
 //Type override for Import/env so TS doesn't complain
 declare global {
 	interface ImportMeta {
-		hot: {
-			accept: Function;
-			dispose: Function;
+		hot?: {
+			accept: () => void;
+			dispose: (cb: () => void) => void;
 		};
 		env: {
 			MODE: string;
-			SNOWPACK_PUBLIC_API_URL: string;
+			VITE_API_URL: string;
+			DEV: boolean;
+			PROD: boolean;
 		};
 	}
 }
