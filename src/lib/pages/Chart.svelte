@@ -33,6 +33,7 @@
     let availableCategories = [];
     let selectedCategories = new Set(); // Categories to show (empty = show all)
     let selectedPeriod = 'ALL'; // Track selected period from ChartLine component
+    let hasOriginalData = false; // Track if we have any data at all
 
     // View mode options
     const viewModes = [
@@ -134,6 +135,7 @@
 
         // Store original data for toggle functionality
         originalSavingsData = [...allSavings];
+        hasOriginalData = true;
 
         // Apply filters based on current settings
         return processDataBasedOnSettings(allSavings);
@@ -399,7 +401,7 @@
     </div>
 
     <!-- Investment Timeline Card -->
-    {#if lineChartData.labels && lineChartData.labels.length > 0}
+    {#if hasOriginalData}
         <div class="bento-card timeline-card">
             <div class="card-header">
                 <div class="card-icon">
@@ -426,7 +428,27 @@
                 </div>
             </div>
             <div class="card-content">
-                <ChartLine data={lineChartData} {selectedPeriod} />
+                {#if lineChartData.labels && lineChartData.labels.length > 0}
+                    <ChartLine data={lineChartData} {selectedPeriod} />
+                {:else}
+                    <div class="no-data-message">
+                        <div class="no-data-icon">
+                            <img src="/icons/chart.svg" alt="No data for period" />
+                        </div>
+                        <p class="no-data-text">
+                            {#if selectedPeriod !== 'ALL'}
+                                No hay datos para el período seleccionado
+                            {:else if viewMode === 'current-month'}
+                                No hay datos para este mes
+                            {:else if selectedCategories.size > 0 && selectedCategories.size < availableCategories.length}
+                                No hay datos para las categorías seleccionadas
+                            {:else}
+                                No hay datos para mostrar
+                            {/if}
+                        </p>
+                        <p class="no-data-suggestion">Prueba seleccionando un período diferente o "ALL" para ver todos los datos</p>
+                    </div>
+                {/if}
             </div>
             
             <!-- NEW: Category Filter - Moved to bottom -->
@@ -468,7 +490,7 @@
                     </div>
                     <div class="stat-info">
                         <span class="stat-label">{$t('CHARTS.PORTFOLIO.INVESTMENT_ENTRIES')}</span>
-                        <span class="stat-value">{lineChartData.labels.length}</span>
+                        <span class="stat-value">{lineChartData.labels ? lineChartData.labels.length : 0}</span>
                     </div>
                 </div>
                 <div class="stat-item">
@@ -478,10 +500,10 @@
                     <div class="stat-info">
                         <span class="stat-label">{$t('CHARTS.PORTFOLIO.PERIOD')}</span>
                         <span class="stat-value period-value">
-                            {#if lineChartData.labels.length > 0}
+                            {#if lineChartData.labels && lineChartData.labels.length > 0}
                                 {lineChartData.labels[0]} - {lineChartData.labels[lineChartData.labels.length - 1]}
                             {:else}
-                                N/A
+                                {selectedPeriod !== 'ALL' ? 'Sin datos para ' + selectedPeriod : 'N/A'}
                             {/if}
                         </span>
                     </div>
@@ -960,6 +982,53 @@
         line-height: 1.5;
         margin: 0;
         color: var(--tertiary);
+    }
+
+    /* No data message styles */
+    .no-data-message {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 3rem 2rem;
+        text-align: center;
+        min-height: 300px;
+    }
+
+    .no-data-icon {
+        width: 4rem;
+        height: 4rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--background__input);
+        border-radius: 20px;
+        border: 1px solid var(--tertiary);
+        margin-bottom: 1.5rem;
+        opacity: 0.7;
+    }
+
+    .no-data-icon img {
+        width: 2rem;
+        height: 2rem;
+        filter: var(--filter);
+        opacity: 0.6;
+    }
+
+    .no-data-text {
+        color: var(--primary);
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin: 0 0 0.5rem 0;
+        line-height: 1.4;
+    }
+
+    .no-data-suggestion {
+        color: var(--secondary);
+        font-size: 0.9rem;
+        line-height: 1.5;
+        margin: 0;
+        max-width: 350px;
     }
 
     @media (max-width: 1200px) {
