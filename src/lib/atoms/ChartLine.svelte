@@ -26,11 +26,10 @@
     ],
   };
 
+  export let selectedPeriod = 'ALL';
+  
   let canvas;
   let chart;
-  let selectedPeriod = 'ALL';
-  let originalData = { labels: [], datasets: [] };
-  let filteredData = { labels: [], datasets: [] };
 
   // Time period options
   const periods = [
@@ -71,51 +70,15 @@
     chartFill: isDark ? 'rgba(59, 130, 246, 0.1)' : 'rgba(35, 142, 228, 0.1)'
   };
 
-  // Filter data based on selected period
-  function filterDataByPeriod(period) {
-    if (!originalData.labels || originalData.labels.length === 0) return originalData;
-    
-    if (period === 'ALL') {
-      return originalData;
-    }
-
-    const periodConfig = periods.find(p => p.key === period);
-    if (!periodConfig) return originalData;
-
-    const now = new Date();
-    const cutoffDate = new Date();
-    cutoffDate.setMonth(now.getMonth() - periodConfig.months);
-
-    const filteredLabels = [];
-    const filteredDataPoints = [];
-
-    originalData.labels.forEach((label, index) => {
-      const labelDate = new Date(label);
-      if (labelDate >= cutoffDate) {
-        filteredLabels.push(label);
-        filteredDataPoints.push(originalData.datasets[0].data[index]);
-      }
-    });
-
-    return {
-      labels: filteredLabels,
-      datasets: [{
-        ...originalData.datasets[0],
-        data: filteredDataPoints,
-        borderColor: themeColors.chartLine,
-        backgroundColor: themeColors.chartFill,
-        pointBorderColor: themeColors.primary
-      }]
-    };
-  }
-
-  // Handle period selection
+  // Handle period selection - delegate to parent component
   function selectPeriod(period) {
     selectedPeriod = period;
-    filteredData = filterDataByPeriod(period);
-    if (chart) {
-      chart.data = filteredData;
-      chart.update('active');
+    // Emit event to parent to handle filtering
+    const event = new CustomEvent('period-change', {
+      detail: { period }
+    });
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(event);
     }
   }
 
@@ -304,7 +267,7 @@
     const ctx = canvas.getContext('2d');
     chart = new Chart(ctx, {
       type: 'line',
-      data: filteredData,
+      data: processedData,
       options
     });
   });
@@ -315,34 +278,21 @@
     }
   });
 
-  // Update when data changes
-  $: if (data && data.labels && data.labels.length > 0) {
-    originalData = {
-      ...data,
-      datasets: data.datasets.map(dataset => ({
-        ...dataset,
-        borderColor: themeColors.chartLine,
-        backgroundColor: themeColors.chartFill,
-        pointBorderColor: themeColors.primary
-      }))
-    };
-    filteredData = filterDataByPeriod(selectedPeriod);
-    if (chart) {
-      chart.data = filteredData;
-      chart.options = options;
-      chart.update('none');
-    }
-  }
+  // Process data with theme colors
+  $: processedData = {
+    ...data,
+    datasets: data.datasets.map(dataset => ({
+      ...dataset,
+      borderColor: themeColors.chartLine,
+      backgroundColor: themeColors.chartFill,
+      pointBorderColor: themeColors.primary
+    }))
+  };
 
-  // Update theme colors when theme changes
-  $: if (chart && themeColors) {
+  // Update when data changes
+  $: if (chart && processedData) {
+    chart.data = processedData;
     chart.options = options;
-    if (filteredData.datasets && filteredData.datasets[0]) {
-      filteredData.datasets[0].borderColor = themeColors.chartLine;
-      filteredData.datasets[0].backgroundColor = themeColors.chartFill;
-      filteredData.datasets[0].pointBorderColor = themeColors.primary;
-      chart.data = filteredData;
-    }
     chart.update('none');
   }
 </script>

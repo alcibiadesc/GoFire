@@ -1,4 +1,5 @@
 <script>
+    import { onMount, onDestroy } from 'svelte';
     import ChartDoughnut from "./../atoms/ChartDoughnut.svelte";
     import ChartLine from "./../atoms/ChartLine.svelte";
     import Card from "./../atoms/Card.svelte";
@@ -31,6 +32,7 @@
     let originalSavingsData = [];
     let availableCategories = [];
     let selectedCategories = new Set(); // Categories to show (empty = show all)
+    let selectedPeriod = 'ALL'; // Track selected period from ChartLine component
 
     // View mode options
     const viewModes = [
@@ -146,6 +148,23 @@
             processedSavings = processedSavings.filter(saving => 
                 selectedCategories.has(saving.category)
             );
+        }
+
+        // Filter by period (moved from ChartLine.svelte)
+        if (selectedPeriod !== 'ALL') {
+            const periodConfig = {
+                '1M': 1, '3M': 3, '6M': 6, '1Y': 12, '2Y': 24, '5Y': 60
+            };
+            
+            if (periodConfig[selectedPeriod]) {
+                const now = new Date();
+                const cutoffDate = new Date(now.getFullYear(), now.getMonth() - periodConfig[selectedPeriod], now.getDate());
+                
+                processedSavings = processedSavings.filter(saving => {
+                    const savingDate = new Date(saving.date);
+                    return savingDate >= cutoffDate;
+                });
+            }
         }
 
         // Filter by current month if in current-month mode
@@ -285,12 +304,35 @@
         handleDataUpdate();
     }
 
+    // Handle period change from ChartLine component
+    function handlePeriodChange(event) {
+        selectedPeriod = event.detail.period;
+        handleDataUpdate();
+    }
+
+    // Listen for period change events
+    onMount(() => {
+        if (typeof window !== 'undefined') {
+            window.addEventListener('period-change', handlePeriodChange);
+        }
+    });
+
+    onDestroy(() => {
+        if (typeof window !== 'undefined') {
+            window.removeEventListener('period-change', handlePeriodChange);
+        }
+    });
+
     // NEW: Reactive statements for view and filter changes
     $: if (viewMode !== undefined) {
         handleViewModeChange();
     }
 
     $: if (selectedCategories) {
+        handleDataUpdate();
+    }
+
+    $: if (selectedPeriod) {
         handleDataUpdate();
     }
 
@@ -384,7 +426,7 @@
                 </div>
             </div>
             <div class="card-content">
-                <ChartLine data={lineChartData} />
+                <ChartLine data={lineChartData} {selectedPeriod} />
             </div>
             
             <!-- NEW: Category Filter - Moved to bottom -->
@@ -772,7 +814,7 @@
     .filter-title {
         font-size: 0.75rem;
         font-weight: 600;
-        color: var(--secondary);
+        color: #6B7280;
         text-transform: uppercase;
         letter-spacing: 0.05em;
     }
@@ -788,21 +830,33 @@
         border: none;
         font-size: 0.7rem;
         font-weight: 600;
-        color: var(--accent);
+        color: #3B82F6;
         cursor: pointer;
-        padding: 0;
+        padding: 0.2rem 0.5rem;
         text-transform: uppercase;
         letter-spacing: 0.05em;
-        transition: color 0.2s ease;
+        transition: all 0.2s ease;
+        border-radius: 6px;
+        position: relative;
+        overflow: hidden;
     }
 
     .filter-action:hover {
-        color: var(--primary);
+        color: #1D4ED8;
+        background: rgba(59, 130, 246, 0.1);
+        transform: translateY(-1px);
+    }
+
+    .filter-action:active {
+        transform: translateY(0);
+        background: rgba(59, 130, 246, 0.2);
     }
 
     .filter-separator {
-        color: var(--tertiary);
+        color: rgba(107, 114, 126, 0.6);
         font-size: 0.7rem;
+        font-weight: 400;
+        margin: 0 0.25rem;
     }
 
     .category-chips {
