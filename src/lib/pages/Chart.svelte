@@ -381,43 +381,44 @@
                             </button>
                         {/each}
                     </div>
-
-                    <!-- NEW: Category Filter -->
-                    {#if availableCategories.length > 1}
-                        <div class="category-filter">
-                            <div class="filter-header">
-                                <span class="filter-title">{$t("CHARTS.LINE.FILTER_CATEGORIES")}</span>
-                                <div class="filter-actions">
-                                    <button class="filter-action" on:click={selectAllCategories}>
-                                        {$t("CHARTS.LINE.SELECT_ALL")}
-                                    </button>
-                                    <span class="filter-separator">|</span>
-                                    <button class="filter-action" on:click={deselectAllCategories}>
-                                        {$t("CHARTS.LINE.CLEAR_ALL")}
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="category-chips">
-                                {#each availableCategories as category}
-                                    <button 
-                                        class="category-chip" 
-                                        class:active={selectedCategories.has(category)}
-                                        on:click={() => toggleCategory(category)}
-                                    >
-                                        <span class="chip-icon">
-                                            {selectedCategories.has(category) ? '✓' : '○'}
-                                        </span>
-                                        <span class="chip-text">{category}</span>
-                                    </button>
-                                {/each}
-                            </div>
-                        </div>
-                    {/if}
                 </div>
             </div>
             <div class="card-content">
                 <ChartLine data={lineChartData} />
             </div>
+            
+            <!-- NEW: Category Filter - Moved to bottom -->
+            {#if availableCategories.length > 1}
+                <div class="category-filter bottom-filter">
+                    <div class="filter-header">
+                        <span class="filter-title">{$t("CHARTS.LINE.FILTER_CATEGORIES")}</span>
+                        <div class="filter-actions">
+                            <button class="filter-action" on:click={selectAllCategories}>
+                                {$t("CHARTS.LINE.SELECT_ALL")}
+                            </button>
+                            <span class="filter-separator">|</span>
+                            <button class="filter-action" on:click={deselectAllCategories}>
+                                {$t("CHARTS.LINE.CLEAR_ALL")}
+                            </button>
+                        </div>
+                    </div>
+                    <div class="category-chips">
+                        {#each availableCategories as category}
+                            <button 
+                                class="category-chip" 
+                                class:active={selectedCategories.has(category)}
+                                on:click={() => toggleCategory(category)}
+                            >
+                                <span class="chip-icon">
+                                    {selectedCategories.has(category) ? '✓' : '○'}
+                                </span>
+                                <span class="chip-text">{category}</span>
+                            </button>
+                        {/each}
+                    </div>
+                </div>
+            {/if}
+            
             <div class="card-stats timeline-stats">
                 <div class="stat-item">
                     <div class="stat-icon">
@@ -735,6 +736,32 @@
         max-width: 320px;
     }
 
+    /* Bottom filter styles */
+    .bottom-filter {
+        margin-top: 1.5rem;
+        margin-bottom: 1rem;
+        max-width: none;
+        min-width: 0;
+    }
+
+    /* Optimize category filter for large screens */
+    @media (min-width: 1200px) {
+        .category-filter {
+            max-width: none;
+            min-width: 0;
+            padding: 0.75rem 1rem;
+        }
+        
+        .filter-header {
+            margin-bottom: 0.5rem;
+        }
+        
+        .bottom-filter {
+            margin-top: 1rem;
+            margin-bottom: 0.75rem;
+        }
+    }
+
     .filter-header {
         display: flex;
         justify-content: space-between;
@@ -782,6 +809,23 @@
         display: flex;
         flex-wrap: wrap;
         gap: 0.5rem;
+    }
+
+    /* Make category chips display in single row on larger screens */
+    @media (min-width: 1200px) {
+        .category-chips {
+            flex-wrap: nowrap;
+            gap: 0.375rem;
+        }
+        
+        .category-chip {
+            flex-shrink: 0;
+            min-width: 0;
+        }
+        
+        .chip-text {
+            max-width: 100px;
+        }
     }
 
     .category-chip {
@@ -909,10 +953,14 @@
         }
 
         .category-filter {
-            margin-top: 1rem;
             width: 100%;
             max-width: none;
             min-width: 0;
+        }
+
+        .bottom-filter {
+            margin-top: 1rem;
+            margin-bottom: 1rem;
         }
 
         .filter-header {

@@ -385,27 +385,27 @@
   .period-controls {
     display: flex;
     justify-content: center;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
+    gap: 0.4rem;
+    margin-bottom: 0.75rem;
     flex-wrap: wrap;
-    padding: 0.5rem;
+    padding: 0.3rem 0.5rem;
     background: var(--background__input);
-    border-radius: 12px;
+    border-radius: 10px;
     border: 1px solid var(--tertiary);
     flex-shrink: 0;
   }
 
   .period-btn {
-    padding: 0.6rem 1.2rem;
+    padding: 0.4rem 1rem;
     border: 1px solid var(--tertiary);
-    border-radius: 12px;
+    border-radius: 8px;
     background: var(--card__background);
     color: var(--primary);
     cursor: pointer;
-    font-size: 0.875rem;
+    font-size: 0.8125rem;
     font-weight: 600;
     transition: all 0.3s ease;
-    min-width: 55px;
+    min-width: 50px;
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -453,14 +453,15 @@
     }
 
     .period-controls {
-      gap: 6px;
-      margin-bottom: 16px;
+      gap: 0.25rem;
+      margin-bottom: 0.75rem;
+      padding: 0.25rem 0.4rem;
     }
 
     .period-btn {
-      padding: 6px 12px;
-      font-size: 11px;
-      min-width: 38px;
+      padding: 0.3rem 0.8rem;
+      font-size: 0.75rem;
+      min-width: 42px;
     }
   }
 </style>
