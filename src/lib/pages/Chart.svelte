@@ -26,6 +26,19 @@
         }]
     };
 
+    // NEW: State variables for timeline view modes and filters
+    let viewMode = 'grouped'; // 'grouped', 'individual', 'current-month'
+    let originalSavingsData = [];
+    let availableCategories = [];
+    let selectedCategories = new Set(); // Categories to show (empty = show all)
+
+    // View mode options
+    const viewModes = [
+        { key: 'grouped', label: 'CHARTS.LINE.VIEW_GROUPED', icon: '📊' },
+        { key: 'individual', label: 'CHARTS.LINE.VIEW_INDIVIDUAL', icon: '📈' },
+        { key: 'current-month', label: 'CHARTS.LINE.VIEW_CURRENT_MONTH', icon: '📅' }
+    ];
+
     // Initialize theme colors with defaults
     let themeColors = {
         primary: '#FFFFFF',
@@ -83,35 +96,83 @@
 
         // Collect all savings with dates from all categories
         let allSavings = [];
+        let categories = new Set();
         
         dataArray.forEach(category => {
+            const categoryName = category.title || category.name || '';
+            if (categoryName.trim() !== '') {
+                categories.add(categoryName);
+            }
+            
             if (category.saving && category.saving.length > 0) {
                 category.saving.forEach(savingEntry => {
                     if (savingEntry.today && savingEntry.amount) {
                         allSavings.push({
                             date: savingEntry.today,
-                            amount: parseFloat(savingEntry.amount) || 0
+                            amount: parseFloat(savingEntry.amount) || 0,
+                            category: categoryName // Store category name
                         });
                     }
                 });
             }
         });
 
+        // Update available categories
+        availableCategories = Array.from(categories).sort();
+        
+        // Initialize selectedCategories if empty (show all by default)
+        if (selectedCategories.size === 0 && availableCategories.length > 0) {
+            selectedCategories = new Set(availableCategories);
+        }
+
         if (allSavings.length === 0) return { labels: [], datasets: [] };
 
         // Sort by date
         allSavings.sort((a, b) => new Date(a.date) - new Date(b.date));
 
-        // Determine if we should group by month (for periods longer than 2 years)
-        const firstDate = new Date(allSavings[0].date);
-        const lastDate = new Date(allSavings[allSavings.length - 1].date);
-        const yearsDiff = (lastDate - firstDate) / (1000 * 60 * 60 * 24 * 365);
-        
-        let processedData = allSavings;
-        
-        // Group by month if period is longer than 2 years
-        if (yearsDiff > 2) {
-            processedData = groupDataByPeriod(allSavings);
+        // Store original data for toggle functionality
+        originalSavingsData = [...allSavings];
+
+        // Apply filters based on current settings
+        return processDataBasedOnSettings(allSavings);
+    }
+
+    // NEW: Function to process data based on current view settings
+    function processDataBasedOnSettings(allSavings) {
+        let processedSavings = [...allSavings];
+
+        // Filter by selected categories
+        if (selectedCategories.size > 0 && selectedCategories.size < availableCategories.length) {
+            processedSavings = processedSavings.filter(saving => 
+                selectedCategories.has(saving.category)
+            );
+        }
+
+        // Filter by current month if in current-month mode
+        if (viewMode === 'current-month') {
+            const now = new Date();
+            const currentMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+            const nextMonth = new Date(now.getFullYear(), now.getMonth() + 1, 1);
+            
+            processedSavings = processedSavings.filter(saving => {
+                const savingDate = new Date(saving.date);
+                return savingDate >= currentMonth && savingDate < nextMonth;
+            });
+        }
+
+        let processedData = processedSavings;
+
+        // Group by month unless in individual or current-month mode
+        if (viewMode === 'grouped') {
+            // Determine if we should group by month (auto-group for long periods)
+            const firstDate = new Date(processedSavings[0]?.date);
+            const lastDate = new Date(processedSavings[processedSavings.length - 1]?.date);
+            const yearsDiff = (lastDate - firstDate) / (1000 * 60 * 60 * 24 * 365);
+            
+            // Always group in grouped mode, or auto-group for long periods
+            if (yearsDiff > 2 || viewMode === 'grouped') {
+                processedData = groupDataByPeriod(processedSavings);
+            }
         }
 
         // Create cumulative data with change tracking
@@ -125,19 +186,32 @@
             cumulativeAmount += saving.amount;
             
             // Calculate change from previous point
-            const change = index > 0 ? cumulativeAmount - previousAmount : 0;
+            const change = index > 0 ? saving.amount : 0;
             const changePercent = index > 0 && previousAmount > 0 ? ((change / previousAmount) * 100) : 0;
             
-            // Format label based on period length
+            // Format label based on view mode
             let label;
-            if (yearsDiff > 2) {
-                label = saving.displayDate;
-            } else {
-                label = new Date(saving.date).toLocaleDateString('en-US', { 
+            if (viewMode === 'individual' || viewMode === 'current-month') {
+                // Show individual entry date and category if available
+                const date = new Date(saving.date);
+                label = date.toLocaleDateString('en-US', { 
                     year: 'numeric', 
                     month: 'short', 
                     day: 'numeric' 
                 });
+                if (saving.category && saving.category.trim() !== '') {
+                    label += ` (${saving.category})`;
+                }
+            } else {
+                // Show monthly aggregated view
+                if (saving.displayDate) {
+                    label = saving.displayDate;
+                } else {
+                    label = new Date(saving.date).toLocaleDateString('en-US', { 
+                        year: 'numeric', 
+                        month: 'short' 
+                    });
+                }
             }
             
             labels.push(label);
@@ -147,30 +221,77 @@
                 amount: roundedAmount,
                 change: round(change, { returnZero: true }),
                 changePercent: changePercent.toFixed(2),
-                isIncrease: change >= 0
+                isIncrease: change >= 0,
+                entryAmount: round(saving.amount, { returnZero: true }) // Individual entry amount
             });
         });
 
         const isDark = $theme === 'dark';
+        const yearsDiff = processedSavings.length > 1 ? 
+            (new Date(processedSavings[processedSavings.length - 1].date) - new Date(processedSavings[0].date)) / (1000 * 60 * 60 * 24 * 365) : 0;
         
         return {
             labels,
             datasets: [{
-                label: $t("CHARTS.LINE.SAVINGS_PROGRESSION"),
+                label: (viewMode === 'individual' || viewMode === 'current-month') ? 
+                    $t("CHARTS.LINE.INDIVIDUAL_ENTRIES") || "Individual Entries" : 
+                    $t("CHARTS.LINE.SAVINGS_PROGRESSION"),
                 data: cumulativeData,
                 borderColor: isDark ? "#3B82F6" : "#238EE4",
                 backgroundColor: isDark ? "rgba(59, 130, 246, 0.1)" : "rgba(35, 142, 228, 0.1)",
                 fill: true,
-                tension: 0.3,
+                tension: (viewMode === 'individual' || viewMode === 'current-month') ? 0.1 : 0.3,
                 pointBackgroundColor: isDark ? "#3B82F6" : "#238EE4",
                 pointBorderColor: themeColors.primary,
                 pointBorderWidth: 2,
-                pointRadius: yearsDiff > 5 ? 3 : 4,
+                pointRadius: (viewMode === 'individual' || viewMode === 'current-month') ? 5 : (yearsDiff > 5 ? 3 : 4),
                 pointHoverRadius: 6,
                 // Store change data for tooltips
                 changeData: changeData
             }]
         };
+    }
+
+    // NEW: Functions to handle category filtering
+    function toggleCategory(category) {
+        if (selectedCategories.has(category)) {
+            selectedCategories.delete(category);
+        } else {
+            selectedCategories.add(category);
+        }
+        selectedCategories = new Set(selectedCategories); // Trigger reactivity
+        handleDataUpdate();
+    }
+
+    function selectAllCategories() {
+        selectedCategories = new Set(availableCategories);
+        handleDataUpdate();
+    }
+
+    function deselectAllCategories() {
+        selectedCategories = new Set();
+        handleDataUpdate();
+    }
+
+    // NEW: Function to handle data updates
+    function handleDataUpdate() {
+        if (originalSavingsData.length > 0) {
+            lineChartData = processDataBasedOnSettings(originalSavingsData);
+        }
+    }
+
+    // NEW: Function to handle view mode changes
+    function handleViewModeChange() {
+        handleDataUpdate();
+    }
+
+    // NEW: Reactive statements for view and filter changes
+    $: if (viewMode !== undefined) {
+        handleViewModeChange();
+    }
+
+    $: if (selectedCategories) {
+        handleDataUpdate();
     }
 
     data.subscribe((val) => {
@@ -245,6 +366,53 @@
                 <div class="card-title-group">
                     <h2 class="card-title">{$t("CHARTS.LINE.CARD_TITLE")}</h2>
                     <p class="card-subtitle">{$t('CHARTS.LINE.CARD_SUBTITLE')}</p>
+                </div>
+                <!-- NEW: View Mode Selector -->
+                <div class="timeline-controls">
+                    <div class="view-selector">
+                        {#each viewModes as mode}
+                            <button 
+                                class="view-option" 
+                                class:active={viewMode === mode.key}
+                                on:click={() => viewMode = mode.key}
+                            >
+                                <span class="view-icon">{mode.icon}</span>
+                                <span class="view-label">{$t(mode.label)}</span>
+                            </button>
+                        {/each}
+                    </div>
+
+                    <!-- NEW: Category Filter -->
+                    {#if availableCategories.length > 1}
+                        <div class="category-filter">
+                            <div class="filter-header">
+                                <span class="filter-title">{$t("CHARTS.LINE.FILTER_CATEGORIES")}</span>
+                                <div class="filter-actions">
+                                    <button class="filter-action" on:click={selectAllCategories}>
+                                        {$t("CHARTS.LINE.SELECT_ALL")}
+                                    </button>
+                                    <span class="filter-separator">|</span>
+                                    <button class="filter-action" on:click={deselectAllCategories}>
+                                        {$t("CHARTS.LINE.CLEAR_ALL")}
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="category-chips">
+                                {#each availableCategories as category}
+                                    <button 
+                                        class="category-chip" 
+                                        class:active={selectedCategories.has(category)}
+                                        on:click={() => toggleCategory(category)}
+                                    >
+                                        <span class="chip-icon">
+                                            {selectedCategories.has(category) ? '✓' : '○'}
+                                        </span>
+                                        <span class="chip-text">{category}</span>
+                                    </button>
+                                {/each}
+                            </div>
+                        </div>
+                    {/if}
                 </div>
             </div>
             <div class="card-content">
@@ -357,6 +525,7 @@
         gap: 1rem;
         margin-bottom: 2rem;
         text-align: left;
+        flex-wrap: wrap;
     }
 
     .card-icon {
@@ -488,6 +657,171 @@
         font-weight: 600;
     }
 
+    /* NEW: Timeline Controls Container */
+    .timeline-controls {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-left: auto;
+        align-items: flex-end;
+    }
+
+    /* NEW: View Selector Styles */
+    .view-selector {
+        display: flex;
+        background: var(--background__input);
+        border-radius: 12px;
+        border: 1px solid var(--tertiary);
+        overflow: hidden;
+    }
+
+    .view-option {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.25rem;
+        padding: 0.75rem 1rem;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        min-width: 64px;
+    }
+
+    .view-option:not(:last-child) {
+        border-right: 1px solid var(--tertiary);
+    }
+
+    .view-option:hover {
+        background: var(--tertiary);
+    }
+
+    .view-option.active {
+        background: var(--accent);
+        color: white;
+    }
+
+    .view-option.active .view-icon,
+    .view-option.active .view-label {
+        color: white;
+    }
+
+    .view-icon {
+        font-size: 1.1rem;
+        margin-bottom: 0.125rem;
+    }
+
+    .view-label {
+        font-size: 0.7rem;
+        font-weight: 600;
+        color: var(--secondary);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        line-height: 1;
+    }
+
+    .view-option:hover .view-label {
+        color: var(--primary);
+    }
+
+    /* NEW: Category Filter Styles */
+    .category-filter {
+        background: var(--background__input);
+        border-radius: 12px;
+        border: 1px solid var(--tertiary);
+        padding: 1rem;
+        min-width: 240px;
+        max-width: 320px;
+    }
+
+    .filter-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.75rem;
+    }
+
+    .filter-title {
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: var(--secondary);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    .filter-actions {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .filter-action {
+        background: none;
+        border: none;
+        font-size: 0.7rem;
+        font-weight: 600;
+        color: var(--accent);
+        cursor: pointer;
+        padding: 0;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        transition: color 0.2s ease;
+    }
+
+    .filter-action:hover {
+        color: var(--primary);
+    }
+
+    .filter-separator {
+        color: var(--tertiary);
+        font-size: 0.7rem;
+    }
+
+    .category-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .category-chip {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        padding: 0.4rem 0.75rem;
+        border-radius: 20px;
+        border: 1px solid var(--tertiary);
+        background: transparent;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        font-size: 0.75rem;
+        font-weight: 500;
+        color: var(--secondary);
+    }
+
+    .category-chip:hover {
+        background: var(--tertiary);
+        color: var(--primary);
+    }
+
+    .category-chip.active {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: white;
+    }
+
+    .chip-icon {
+        font-size: 0.7rem;
+        font-weight: bold;
+    }
+
+    .chip-text {
+        max-width: 120px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
     .empty-state {
         display: flex;
         flex-direction: column;
@@ -556,6 +890,36 @@
         .timeline-card .card-content {
             min-height: 400px;
         }
+
+        .timeline-controls {
+            margin-left: 0;
+            align-items: center;
+            width: 100%;
+        }
+
+        .view-selector {
+            margin-top: 1rem;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .view-option {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .category-filter {
+            margin-top: 1rem;
+            width: 100%;
+            max-width: none;
+            min-width: 0;
+        }
+
+        .filter-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
     }
 
     @media (max-width: 768px) {
@@ -574,6 +938,16 @@
             text-align: center;
             gap: 0.75rem;
             margin-bottom: 1.5rem;
+        }
+
+        .view-selector {
+            margin-left: 0;
+            margin-top: 1rem;
+            justify-content: center;
+        }
+
+        .view-label {
+            font-size: 0.65rem;
         }
 
         .card-icon {

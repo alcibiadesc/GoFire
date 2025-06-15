@@ -168,20 +168,30 @@
             const lines = [];
             lines.push('💰 ' + $t("CHARTS.LINE.TOOLTIP_TOTAL_INVESTMENT") + ': ' + formatted);
             
-            // Add change information if available and not the first point
-            if (changeData && pointIndex > 0 && changeData[pointIndex]) {
+            // Add individual entry amount if available
+            if (changeData && changeData[pointIndex]) {
               const change = changeData[pointIndex];
               
-              // Format change amount using dynamic currency
-              const changeFormatted = formatCurrency(Math.abs(change.change));
+                              // Show individual entry amount for individual entries view
+                if (change.entryAmount !== undefined) {
+                  const entryFormatted = formatCurrency(change.entryAmount);
+                  lines.push('');
+                  lines.push('📝 ' + $t("CHARTS.LINE.TOOLTIP_ENTRY_AMOUNT") + ': ' + entryFormatted);
+                }
               
-              const changeSymbol = change.isIncrease ? '+' : '-';
-              const changeIcon = change.isIncrease ? '📈' : '📉';
-              const changePercent = Math.abs(parseFloat(change.changePercent));
-              
-              lines.push('');
-              lines.push(changeIcon + ' ' + $t("CHARTS.LINE.TOOLTIP_CHANGE") + ': ' + changeSymbol + changeFormatted);
-              lines.push('📊 ' + $t("CHARTS.LINE.TOOLTIP_PERCENTAGE") + ': ' + changeSymbol + changePercent.toFixed(1) + '%');
+              // Add change information if not the first point
+              if (pointIndex > 0) {
+                // Format change amount using dynamic currency
+                const changeFormatted = formatCurrency(Math.abs(change.change));
+                
+                const changeSymbol = change.isIncrease ? '+' : '-';
+                const changeIcon = change.isIncrease ? '📈' : '📉';
+                const changePercent = Math.abs(parseFloat(change.changePercent));
+                
+                if (!change.entryAmount) lines.push('');
+                lines.push(changeIcon + ' ' + $t("CHARTS.LINE.TOOLTIP_CHANGE") + ': ' + changeSymbol + changeFormatted);
+                lines.push('📊 ' + $t("CHARTS.LINE.TOOLTIP_PERCENTAGE") + ': ' + changeSymbol + changePercent.toFixed(1) + '%');
+              }
             }
             
             return lines;
