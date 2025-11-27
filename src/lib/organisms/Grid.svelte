@@ -33,10 +33,10 @@
 	};
 </script>
 
-<div class="grid-container" class:edit-mode={edit}>
-	{#if $data && edit}
+<div class="grid-container" class:edit-mode={edit} role="list" aria-label="Portfolio categories">
+	{#if $data && $data.length > 0 && edit}
 		{#each $data as prop, index (prop.id)}
-			<div animate:flip={{ duration: 200 }} in:fade class="grid-item-wrapper">
+			<div animate:flip={{ duration: 200 }} in:fade class="grid-item-wrapper" role="listitem">
 				<div
 					class="list-item"
 					draggable={true}
@@ -45,12 +45,12 @@
 					on:dragover|preventDefault
 					on:dragenter={() => (hovering = index)}
 					class:is-active={hovering === index}
-					role="listitem"
+					aria-grabbed="false"
 				>
 					<Row {edit} {prop} {data} />
 				</div>
 
-				<div class="move-btns">
+				<div class="move-btns" aria-label="Reorder controls">
 					{#if index !== 0}
 						<Button
 							prop={{
@@ -73,12 +73,20 @@
 				</div>
 			</div>
 		{/each}
-	{:else if $data && !edit}
+	{:else if $data && $data.length > 0 && !edit}
 		{#each $data as prop (prop.id)}
-			<div in:fade class="grid-item">
+			<div in:fade class="grid-item" role="listitem">
 				<Row {edit} {prop} {data} />
 			</div>
 		{/each}
+	{:else}
+		<div class="empty-state" in:fade>
+			<div class="empty-icon">
+				<img src="/icons/chart.svg" alt="" />
+			</div>
+			<h3>No categories yet</h3>
+			<p>Add your first investment category to start tracking your portfolio</p>
+		</div>
 	{/if}
 </div>
 
@@ -174,5 +182,49 @@
 		.grid-container.edit-mode {
 			grid-template-columns: repeat(2, 1fr);
 		}
+	}
+
+	/* Empty State */
+	.empty-state {
+		grid-column: 1 / -1;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+		padding: 3rem 1.5rem;
+		background: var(--card__background);
+		border-radius: 16px;
+		border: 1px solid var(--border-color);
+	}
+
+	.empty-icon {
+		width: 4rem;
+		height: 4rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: rgba(255, 255, 255, 0.1);
+		border-radius: 50%;
+		margin-bottom: 1rem;
+	}
+
+	.empty-icon img {
+		width: 2rem;
+		height: 2rem;
+		filter: brightness(0) invert(0.5);
+	}
+
+	.empty-state h3 {
+		font-size: 1.125rem;
+		color: var(--primary);
+		margin: 0 0 0.5rem 0;
+	}
+
+	.empty-state p {
+		font-size: 0.9rem;
+		color: var(--tertiary);
+		margin: 0;
+		max-width: 280px;
 	}
 </style>

@@ -14,10 +14,22 @@
 	--background__input: #3a3d42;
 	--border-color: rgba(255, 255, 255, 0.1);
 	--shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+	--shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
+	--shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.4);
 	--filter: invert(52%) sepia(73%) saturate(4792%) hue-rotate(343deg)
 		brightness(92%) contrast(99%);
 	--filter_primary: invert(6%) sepia(10%) saturate(1293%) hue-rotate(178deg)
 		brightness(101%) contrast(95%);
+
+	/* Semantic colors */
+	--success: #10b981;
+	--success-bg: rgba(16, 185, 129, 0.15);
+	--danger: #ef4444;
+	--danger-bg: rgba(239, 68, 68, 0.15);
+	--warning: #f59e0b;
+	--warning-bg: rgba(245, 158, 11, 0.15);
+	--info: #3b82f6;
+	--info-bg: rgba(59, 130, 246, 0.15);
 }
 
 /* Light Theme (commented out) */
@@ -104,11 +116,21 @@ button:hover {
 }
 
 *:focus {
-	outline: 0 !important;
+	outline: none;
 }
 
 *:focus-visible {
-	outline: 2px solid var(--secondary) !important;
+	outline: 2px solid var(--secondary);
+	outline-offset: 2px;
+	border-radius: 4px;
+}
+
+/* Ensure buttons and interactive elements have visible focus */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible {
+	outline: 2px solid var(--secondary);
 	outline-offset: 2px;
 }
 

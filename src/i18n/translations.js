@@ -25,6 +25,7 @@ export default {
     },
     HOME: {
       HI: 'Hi',
+      GUEST: 'Guest',
       TITLE: 'Hello crack',
       SUBTITLE: 'Today will be a great day',
       BALANCE: 'Balance',
@@ -33,6 +34,9 @@ export default {
       OF: 'of',
       PROFIT: 'Profit',
       PROFITABILITY: 'Profitability:',
+    },
+    APIS: {
+      TITLE: 'Connect your platforms',
     },
     SETTINGS: {
       TITLE: 'Portfolio',
@@ -153,6 +157,7 @@ export default {
     },
     HOME: {
       HI: 'Hola',
+      GUEST: 'Invitado',
       TITLE: 'Hola crack',
       SUBTITLE: 'Hoy será un gran día',
       BALANCE: 'Balance',
@@ -161,8 +166,9 @@ export default {
       OF: 'de',
       PROFIT: 'Beneficios',
       PROFITABILITY: 'Rentabilidad:',
-
-
+    },
+    APIS: {
+      TITLE: 'Conecta tus plataformas',
     },
     SETTINGS: {
       TITLE: 'Cartera',

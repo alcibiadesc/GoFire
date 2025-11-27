@@ -12,9 +12,12 @@
 	bind:checked
 	id="toggle"
 	class="toggle--checkbox"
+	aria-label="Toggle dark/light theme"
+	role="switch"
+	aria-checked={checked}
 />
 
-<label for="toggle" class="toggle--label">
+<label for="toggle" class="toggle--label" aria-hidden="true">
 	<span class="toggle--label-background" />
 </label>
 <div class="background" />

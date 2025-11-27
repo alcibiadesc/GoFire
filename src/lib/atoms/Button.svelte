@@ -14,12 +14,15 @@
 	};
 
 	export let current: string = '';
+	export let disabled: boolean = false;
+	export let loading: boolean = false;
 
 	const dispatch = createEventDispatcher();
 
 	$: isSelected = current === prop.icon;
 
 	const handleClick = () => {
+		if (disabled || loading) return;
 		prop.onClick?.();
 		dispatch('click');
 	};
@@ -28,8 +31,11 @@
 <button
 	class="btn {prop.style}"
 	class:selected={isSelected}
+	class:disabled={disabled || loading}
+	class:loading
 	on:click={handleClick}
 	aria-label={prop.icon}
+	aria-disabled={disabled || loading}
 	type="button"
 >
 	<img
@@ -87,7 +93,9 @@
 	}
 
 	.tertiary {
-		padding: 0.25rem;
+		padding: 0.5rem;
+		min-width: 44px;
+		min-height: 44px;
 	}
 
 	.tertiary .icon {
@@ -100,12 +108,14 @@
 	}
 
 	.move {
-		padding: 0.25rem;
+		padding: 0.5rem;
+		min-width: 44px;
+		min-height: 44px;
 	}
 
 	.move .icon {
-		width: 1rem;
-		height: 1rem;
+		width: 1.25rem;
+		height: 1.25rem;
 	}
 
 	.move:hover .icon {
@@ -129,5 +139,24 @@
 	.selected__icon {
 		opacity: 1;
 		filter: brightness(0) invert(1);
+	}
+
+	.btn.disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
+		pointer-events: none;
+	}
+
+	.btn.loading .icon {
+		animation: spin 1s linear infinite;
+	}
+
+	@keyframes spin {
+		from {
+			transform: rotate(0deg);
+		}
+		to {
+			transform: rotate(360deg);
+		}
 	}
 </style>

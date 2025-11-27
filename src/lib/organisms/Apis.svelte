@@ -1,6 +1,7 @@
 <script>
   import Input from "./../atoms/Input.svelte";
   import { apis } from "./../../stores/apis.js";
+  import { t } from "../../i18n/i18n";
 
   const inputs = [
     {
@@ -19,7 +20,7 @@
   });
 </script>
 
-<h1>Conecta tus plataformas</h1>
+<h1>{$t('APIS.TITLE')}</h1>
 {#each inputs as { label, placeholder, type, icon, api }}
   <Input bind:value={api} {label} {placeholder} {type} />
 {/each}

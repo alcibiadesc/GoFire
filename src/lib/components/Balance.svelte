@@ -6,7 +6,7 @@
 	import { t } from '../../i18n/i18n';
 
 	export let balance: number = 0;
-	$: name = $user?.displayName ? $user.displayName.split(' ')[0] : 'crack';
+	$: name = $user?.displayName ? $user.displayName.split(' ')[0] : $t('HOME.GUEST');
 
 	let balanceFormatted = '';
 
