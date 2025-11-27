@@ -524,16 +524,31 @@
 	/* Stats Row */
 	.stats-row {
 		display: grid;
-		grid-template-columns: repeat(3, 1fr);
+		grid-template-columns: 1fr;
 		gap: 0.75rem;
 		margin-bottom: 1.5rem;
+	}
+
+	@media (min-width: 480px) {
+		.stats-row {
+			grid-template-columns: repeat(3, 1fr);
+		}
 	}
 
 	.stat-card {
 		padding: 1rem;
 		display: flex;
-		flex-direction: column;
-		gap: 0.5rem;
+		flex-direction: row;
+		align-items: center;
+		gap: 0.75rem;
+	}
+
+	@media (min-width: 480px) {
+		.stat-card {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 0.5rem;
+		}
 	}
 
 	.stat-icon-wrap {
@@ -831,11 +846,17 @@
 	.filter-btn {
 		background: none;
 		border: none;
-		font-size: 0.7rem;
+		font-size: 0.75rem;
 		font-weight: 600;
 		color: var(--secondary);
 		cursor: pointer;
-		padding: 0.125rem 0.25rem;
+		padding: 0.25rem 0.5rem;
+		border-radius: 4px;
+		transition: all 0.2s ease;
+	}
+
+	.filter-btn:hover {
+		background: rgba(232, 76, 43, 0.15);
 	}
 
 	.filter-divider {

@@ -50,10 +50,6 @@
 		transition: all 0.2s ease;
 	}
 
-	.btn:hover {
-		opacity: 0.8;
-	}
-
 	.btn:active {
 		transform: scale(0.95);
 	}
@@ -62,8 +58,12 @@
 		width: 1.75rem;
 		height: 1.75rem;
 		filter: brightness(0) invert(1);
-		opacity: 0.7;
+		opacity: 0.8;
 		transition: all 0.2s ease;
+	}
+
+	.btn:hover .icon {
+		opacity: 1;
 	}
 
 	.primary {
