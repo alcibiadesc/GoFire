@@ -27,7 +27,15 @@
 	</div>
 
 	<section class="portfolio-section">
-		<h2 class="section-title">{$t('CHARTS.PORTFOLIO.TITLE')}</h2>
+		<div class="section-header">
+			<div class="section-icon-wrap">
+				<img src="/icons/chart.svg" alt="portfolio" class="section-icon" />
+			</div>
+			<div class="section-text">
+				<h2 class="section-title">{$t('CHARTS.PORTFOLIO.TITLE')}</h2>
+				<p class="section-desc">Your investment categories overview</p>
+			</div>
+		</div>
 		<Grid />
 	</section>
 </div>
@@ -54,8 +62,44 @@
 		align-items: center;
 	}
 
-	.section-title {
+	.section-header {
 		display: none;
+	}
+
+	.section-icon-wrap {
+		width: 2.5rem;
+		height: 2.5rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: linear-gradient(135deg, rgba(232, 76, 43, 0.2), rgba(232, 76, 43, 0.1));
+		border-radius: 10px;
+		flex-shrink: 0;
+	}
+
+	.section-icon {
+		width: 1.25rem;
+		height: 1.25rem;
+		filter: var(--filter);
+	}
+
+	.section-text {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+	}
+
+	.section-title {
+		font-size: 1.25rem;
+		font-weight: 700;
+		color: var(--primary);
+		margin: 0;
+	}
+
+	.section-desc {
+		font-size: 0.9rem;
+		color: var(--tertiary);
+		margin: 0;
 	}
 
 	/* Desktop Layout */
@@ -75,10 +119,14 @@
 			align-items: flex-start;
 		}
 
-		.section-title {
-			display: block;
+		.section-header {
+			display: flex;
+			align-items: flex-start;
+			gap: 1rem;
 			margin-bottom: 1.5rem;
-			color: var(--primary);
+			padding-bottom: 1rem;
+			border-bottom: 1px solid var(--border-color);
+			width: 100%;
 		}
 	}
 </style>

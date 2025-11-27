@@ -330,12 +330,12 @@
 	<!-- Stats Row -->
 	<div class="stats-row">
 		<div class="stat-card card__background">
-			<div class="stat-icon-wrap">
+			<div class="stat-icon-wrap total">
 				<img src="/icons/saving.svg" alt="total" class="stat-icon" />
 			</div>
 			<div class="stat-data">
-				<span class="stat-value">{formatNum(round(total, { returnZero: true }))}</span>
 				<span class="stat-label">Total</span>
+				<span class="stat-value">{formatNum(round(total, { returnZero: true }))}</span>
 			</div>
 		</div>
 		<div class="stat-card card__background">
@@ -343,19 +343,19 @@
 				<img src="/icons/chart.svg" alt="investment" class="stat-icon" />
 			</div>
 			<div class="stat-data">
-				<span class="stat-value">{formatNum(round(saving, { returnZero: true }))}</span>
 				<span class="stat-label">{$t('CHARTS.PORTFOLIO.TOTAL_INVESTMENT')}</span>
+				<span class="stat-value investment">{formatNum(round(saving, { returnZero: true }))}</span>
 			</div>
 		</div>
-		<div class="stat-card card__background" class:positive={isPositive} class:negative={!isPositive}>
+		<div class="stat-card card__background">
 			<div class="stat-icon-wrap profit" class:positive={isPositive} class:negative={!isPositive}>
-				<img src="/icons/up.svg" alt="profit" class="stat-icon" />
+				<img src="/icons/{isPositive ? 'up' : 'down'}.svg" alt="profit" class="stat-icon" />
 			</div>
 			<div class="stat-data">
-				<span class="stat-value" class:positive={isPositive} class:negative={!isPositive}>
-					{formatNum(round(revenue, { returnZero: true }))}
-				</span>
 				<span class="stat-label">{$t('CHARTS.PORTFOLIO.TOTAL_REVENUE')}</span>
+				<span class="stat-value" class:positive={isPositive} class:negative={!isPositive}>
+					{isPositive ? '+' : ''}{formatNum(round(revenue, { returnZero: true }))}
+				</span>
 			</div>
 		</div>
 	</div>
@@ -364,10 +364,12 @@
 	<div class="portfolio-section card__background">
 		<div class="portfolio-header">
 			<div class="portfolio-title">
-				<img src="/icons/chart.svg" alt="portfolio" class="section-icon" />
+				<div class="section-icon-wrap">
+					<img src="/icons/chart.svg" alt="portfolio" class="section-icon" />
+				</div>
 				<div class="title-text">
 					<h2>{$t('CHARTS.PORTFOLIO.TITLE')}</h2>
-					<span class="title-subtitle">{$t('CHARTS.PORTFOLIO.SUBTITLE')}</span>
+					<p class="title-subtitle">{$t('CHARTS.PORTFOLIO.SUBTITLE')}</p>
 				</div>
 			</div>
 		</div>
@@ -382,16 +384,20 @@
 			</div>
 			<div class="portfolio-legend">
 				<div class="legend-item">
-					<div class="legend-dot investment"></div>
-					<span class="legend-label">{$t('CHARTS.PORTFOLIO.TOTAL_INVESTMENT')}</span>
-					<span class="legend-value">{formatNum(round(saving, { returnZero: true }))}</span>
+					<div class="legend-color investment"></div>
+					<div class="legend-text">
+						<span class="legend-label">{$t('CHARTS.PORTFOLIO.TOTAL_INVESTMENT')}</span>
+						<span class="legend-value">{formatNum(round(saving, { returnZero: true }))}</span>
+					</div>
 				</div>
 				<div class="legend-item">
-					<div class="legend-dot" class:positive={isPositive} class:negative={!isPositive}></div>
-					<span class="legend-label">{$t('CHARTS.PORTFOLIO.TOTAL_REVENUE')}</span>
-					<span class="legend-value" class:positive={isPositive} class:negative={!isPositive}>
-						{formatNum(round(revenue, { returnZero: true }))}
-					</span>
+					<div class="legend-color" class:positive={isPositive} class:negative={!isPositive}></div>
+					<div class="legend-text">
+						<span class="legend-label">{$t('CHARTS.PORTFOLIO.TOTAL_REVENUE')}</span>
+						<span class="legend-value" class:positive={isPositive} class:negative={!isPositive}>
+							{isPositive ? '+' : ''}{formatNum(round(revenue, { returnZero: true }))}
+						</span>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -552,31 +558,40 @@
 	}
 
 	.stat-icon-wrap {
-		width: 2rem;
-		height: 2rem;
+		width: 2.5rem;
+		height: 2.5rem;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		background: rgba(255, 255, 255, 0.1);
-		border-radius: 8px;
+		border-radius: 10px;
+		flex-shrink: 0;
+	}
+
+	.stat-icon-wrap.total {
+		background: linear-gradient(135deg, rgba(232, 76, 43, 0.2), rgba(232, 76, 43, 0.1));
 	}
 
 	.stat-icon-wrap.investment {
-		background: rgba(59, 130, 246, 0.15);
+		background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(59, 130, 246, 0.1));
 	}
 
 	.stat-icon-wrap.profit.positive {
-		background: rgba(16, 185, 129, 0.15);
+		background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(16, 185, 129, 0.1));
 	}
 
 	.stat-icon-wrap.profit.negative {
-		background: rgba(239, 68, 68, 0.15);
+		background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(239, 68, 68, 0.1));
 	}
 
 	.stat-icon {
-		width: 1rem;
-		height: 1rem;
+		width: 1.25rem;
+		height: 1.25rem;
 		filter: brightness(0) invert(0.6);
+	}
+
+	.stat-icon-wrap.total .stat-icon {
+		filter: var(--filter);
 	}
 
 	.stat-icon-wrap.investment .stat-icon {
@@ -594,71 +609,97 @@
 	.stat-data {
 		display: flex;
 		flex-direction: column;
-	}
-
-	.stat-value {
-		font-size: 1rem;
-		font-weight: 700;
-		color: var(--primary);
-	}
-
-	.stat-value.positive {
-		color: #10b981;
-	}
-
-	.stat-value.negative {
-		color: #ef4444;
+		gap: 0.125rem;
 	}
 
 	.stat-label {
-		font-size: 0.6rem;
+		font-size: 0.7rem;
 		color: var(--tertiary);
 		text-transform: uppercase;
 		letter-spacing: 0.5px;
-		white-space: nowrap;
-		overflow: hidden;
-		text-overflow: ellipsis;
+		font-weight: 500;
+	}
+
+	.stat-value {
+		font-size: 1.25rem;
+		font-weight: 700;
+		color: var(--primary);
+		line-height: 1.2;
+	}
+
+	.stat-value.investment {
+		color: var(--info);
+	}
+
+	.stat-value.positive {
+		color: var(--success);
+	}
+
+	.stat-value.negative {
+		color: var(--danger);
 	}
 
 	/* Portfolio Section */
 	.portfolio-section {
-		padding: 1.25rem;
+		padding: 1.5rem;
 		margin-bottom: 1.5rem;
 	}
 
 	.portfolio-header {
-		margin-bottom: 1rem;
+		margin-bottom: 1.5rem;
+		padding-bottom: 1rem;
+		border-bottom: 1px solid var(--border-color);
 	}
 
 	.portfolio-title,
 	.timeline-title {
 		display: flex;
+		align-items: flex-start;
+		gap: 1rem;
+	}
+
+	.section-icon-wrap {
+		width: 2.5rem;
+		height: 2.5rem;
+		display: flex;
 		align-items: center;
-		gap: 0.75rem;
+		justify-content: center;
+		background: linear-gradient(135deg, rgba(232, 76, 43, 0.2), rgba(232, 76, 43, 0.1));
+		border-radius: 10px;
+		flex-shrink: 0;
 	}
 
 	.section-icon {
-		width: 1.5rem;
-		height: 1.5rem;
+		width: 1.25rem;
+		height: 1.25rem;
 		filter: var(--filter);
 	}
 
+	.title-text {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+	}
+
 	.title-text h2 {
-		font-size: 1rem;
+		font-size: 1.125rem;
 		font-weight: 700;
 		color: var(--primary);
 		margin: 0;
+		line-height: 1.3;
 	}
 
 	.title-subtitle {
-		font-size: 0.75rem;
+		font-size: 0.85rem;
 		color: var(--tertiary);
+		margin: 0;
+		line-height: 1.4;
 	}
 
 	.portfolio-content {
 		display: flex;
 		flex-direction: column;
-		gap: 1rem;
+		gap: 1.5rem;
 	}
 
 	.doughnut-wrapper {
@@ -670,53 +711,65 @@
 	.portfolio-legend {
 		display: flex;
 		flex-direction: column;
-		gap: 0.5rem;
+		gap: 0.75rem;
 	}
 
 	.legend-item {
 		display: flex;
 		align-items: center;
-		gap: 0.5rem;
-		padding: 0.5rem 0;
+		gap: 0.75rem;
+		padding: 0.875rem 1rem;
+		background: rgba(255, 255, 255, 0.03);
+		border-radius: 10px;
+		border: 1px solid var(--border-color);
 	}
 
-	.legend-dot {
-		width: 10px;
-		height: 10px;
-		border-radius: 50%;
+	.legend-color {
+		width: 4px;
+		height: 2.5rem;
+		border-radius: 2px;
 		background: var(--tertiary);
+		flex-shrink: 0;
 	}
 
-	.legend-dot.investment {
-		background: #3B82F6;
+	.legend-color.investment {
+		background: var(--info);
 	}
 
-	.legend-dot.positive {
-		background: #10b981;
+	.legend-color.positive {
+		background: var(--success);
 	}
 
-	.legend-dot.negative {
-		background: #ef4444;
+	.legend-color.negative {
+		background: var(--danger);
+	}
+
+	.legend-text {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		gap: 0.125rem;
 	}
 
 	.legend-label {
-		flex: 1;
-		font-size: 0.85rem;
+		font-size: 0.75rem;
 		color: var(--tertiary);
+		text-transform: uppercase;
+		letter-spacing: 0.5px;
 	}
 
 	.legend-value {
-		font-weight: 600;
-		font-size: 0.9rem;
+		font-weight: 700;
+		font-size: 1.125rem;
 		color: var(--primary);
 	}
 
 	.legend-value.positive {
-		color: #10b981;
+		color: var(--success);
 	}
 
 	.legend-value.negative {
-		color: #ef4444;
+		color: var(--danger);
 	}
 
 	/* Timeline Section */
