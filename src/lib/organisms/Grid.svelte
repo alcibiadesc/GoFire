@@ -1,98 +1,178 @@
-<script>
-  import Row from "../components/Row.svelte";
-  import { data } from "./../../stores/data.js";
-  import { flip } from "svelte/animate";
-  import Button from "./../atoms/Button.svelte";
-  import { fade } from "svelte/transition";
+<script lang="ts">
+	import Row from '../components/Row.svelte';
+	import { data } from '../../stores/data.js';
+	import { flip } from 'svelte/animate';
+	import Button from '../atoms/Button.svelte';
+	import { fade } from 'svelte/transition';
 
-  export let edit = false;
-  let hovering = -1;
+	export let edit = false;
+	let hovering = -1;
 
-  const drop = (event, target) => {
-    event.dataTransfer.dropEffect = "move";
-    const start = parseInt(event.dataTransfer.getData("text/plain"));
-    const newTracklist = $data;
+	const drop = (event: DragEvent, target: number) => {
+		if (!event.dataTransfer) return;
+		event.dataTransfer.dropEffect = 'move';
+		const start = parseInt(event.dataTransfer.getData('text/plain'));
+		const newTracklist = [...$data];
 
-    if (start < target) {
-      newTracklist.splice(target + 1, 0, newTracklist[start]);
-      newTracklist.splice(start, 1);
-    } else {
-      newTracklist.splice(target, 0, newTracklist[start]);
-      newTracklist.splice(start + 1, 1);
-    }
-    data.set(newTracklist);
+		if (start < target) {
+			newTracklist.splice(target + 1, 0, newTracklist[start]);
+			newTracklist.splice(start, 1);
+		} else {
+			newTracklist.splice(target, 0, newTracklist[start]);
+			newTracklist.splice(start + 1, 1);
+		}
+		data.set(newTracklist);
+		hovering = -1;
+	};
 
-    hovering = -1;
-  };
-
-  const dragstart = (event, i) => {
-    event.dataTransfer.effectAllowed = "move";
-    event.dataTransfer.dropEffect = "move";
-    const start = i;
-    event.dataTransfer.setData("text/plain", start);
-  };
+	const dragstart = (event: DragEvent, i: number) => {
+		if (!event.dataTransfer) return;
+		event.dataTransfer.effectAllowed = 'move';
+		event.dataTransfer.dropEffect = 'move';
+		event.dataTransfer.setData('text/plain', i.toString());
+	};
 </script>
 
-{#if $data && edit}
-  {#each $data as prop, index (prop.id)}
-    <div animate:flip in:fade class="relative">
-      <div
-        class="list-item"
-        draggable={true}
-        on:dragstart={(event) => dragstart(event, index)}
-        on:drop|preventDefault={(event) => drop(event, index)}
-        ondragover="return false"
-        on:dragenter={() => (hovering = index)}
-        class:is-active={hovering === index}
-      >
-        <Row {edit} {prop} {data} />
-      </div>
+<div class="grid-container" class:edit-mode={edit}>
+	{#if $data && edit}
+		{#each $data as prop, index (prop.id)}
+			<div animate:flip={{ duration: 200 }} in:fade class="grid-item-wrapper">
+				<div
+					class="list-item"
+					draggable={true}
+					on:dragstart={(event) => dragstart(event, index)}
+					on:drop|preventDefault={(event) => drop(event, index)}
+					on:dragover|preventDefault
+					on:dragenter={() => (hovering = index)}
+					class:is-active={hovering === index}
+					role="listitem"
+				>
+					<Row {edit} {prop} {data} />
+				</div>
 
-      <div class="move_btns">
-        {#if index !== 0}
-          <Button
-            prop={{
-              icon: "up",
-              style: "move",
-              onClick: () => data.moveUp(index),
-            }}
-          />
-        {/if}
+				<div class="move-btns">
+					{#if index !== 0}
+						<Button
+							prop={{
+								icon: 'up',
+								style: 'move',
+								onClick: () => data.moveUp(index),
+							}}
+						/>
+					{/if}
 
-        {#if index !== $data.length - 1}
-          <Button
-            prop={{
-              icon: "down",
-              style: "move",
-              onClick: () => data.moveDown(index),
-            }}
-          />
-        {/if}
-      </div>
-    </div>
-  {/each}
-{:else if $data && !edit}
-  {#each $data as prop (prop.id)}
-    <div in:fade>
-      <Row {edit} {prop} {data} />
-    </div>
-  {/each}
-{/if}
+					{#if index !== $data.length - 1}
+						<Button
+							prop={{
+								icon: 'down',
+								style: 'move',
+								onClick: () => data.moveDown(index),
+							}}
+						/>
+					{/if}
+				</div>
+			</div>
+		{/each}
+	{:else if $data && !edit}
+		{#each $data as prop (prop.id)}
+			<div in:fade class="grid-item">
+				<Row {edit} {prop} {data} />
+			</div>
+		{/each}
+	{/if}
+</div>
 
 <style>
-  .list-item {
-    display: block;
-    padding: 0.5em 1em;
-  }
+	.grid-container {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+		width: 100%;
+	}
 
-  .list-item.is-active {
-    background-color: var(--secondary);
-    color: #fff;
-  }
+	.grid-item-wrapper {
+		position: relative;
+	}
 
-  .move_btns {
-    position: absolute;
-    top: 1rem;
-    left: -1rem;
-  }
+	.grid-item {
+		padding: 0.75rem 1rem;
+		background: var(--card__background);
+		border-radius: 16px;
+		border: 1px solid var(--border-color);
+		transition: all 0.2s ease;
+	}
+
+	.grid-item:hover {
+		border-color: rgba(255, 255, 255, 0.15);
+	}
+
+	.list-item {
+		padding: 1rem;
+		border-radius: 16px;
+		transition: all 0.2s ease;
+		background: var(--card__background);
+		border: 1px solid var(--border-color);
+	}
+
+	.list-item:hover {
+		background: rgba(255, 255, 255, 0.05);
+	}
+
+	.list-item.is-active {
+		background: var(--secondary);
+		border-color: var(--secondary);
+	}
+
+	.move-btns {
+		display: none;
+	}
+
+	/* Desktop Layout */
+	@media (min-width: 1024px) {
+		.grid-container {
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+			gap: 1.25rem;
+		}
+
+		.grid-container.edit-mode {
+			grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+		}
+
+		.grid-item {
+			padding: 1.25rem 1.5rem;
+			min-height: 100px;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+		}
+
+		.grid-item:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+		}
+
+		.list-item {
+			padding: 1.25rem 1.5rem;
+		}
+
+		.move-btns {
+			display: flex;
+			position: absolute;
+			top: 1rem;
+			left: -3rem;
+			flex-direction: column;
+			gap: 0.25rem;
+		}
+	}
+
+	@media (min-width: 1280px) {
+		.grid-container {
+			grid-template-columns: repeat(3, 1fr);
+		}
+
+		.grid-container.edit-mode {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
 </style>

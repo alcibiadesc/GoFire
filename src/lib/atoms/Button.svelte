@@ -1,61 +1,133 @@
-<script>
-	export let prop = {
-		icon: "menu",
-		style: "primary",
-		onClick: () => console.log("click"),
+<script lang="ts">
+	import { createEventDispatcher } from 'svelte';
+
+	interface ButtonProp {
+		icon: string;
+		style: 'primary' | 'secondary' | 'tertiary' | 'move' | 'modal';
+		onClick?: () => void;
+	}
+
+	export let prop: ButtonProp = {
+		icon: 'menu',
+		style: 'primary',
+		onClick: () => {},
 	};
 
-	export let current = "profile";
+	export let current: string = '';
 
-	let { icon, style, onClick } = prop;
+	const dispatch = createEventDispatcher();
+
+	$: isSelected = current === prop.icon;
+
+	const handleClick = () => {
+		prop.onClick?.();
+		dispatch('click');
+	};
 </script>
 
-<div class={style} on:click class:selected={current === icon}>
-	<button on:click={onClick}>
-		<img
-			class:selected__icon={current === icon}
-			src={`icons/${icon}.svg`}
-			alt={icon}
-		/>
-	</button>
-</div>
+<button
+	class="btn {prop.style}"
+	class:selected={isSelected}
+	on:click={handleClick}
+	aria-label={prop.icon}
+	type="button"
+>
+	<img
+		class="icon"
+		class:selected__icon={isSelected}
+		src="/icons/{prop.icon}.svg"
+		alt={prop.icon}
+	/>
+</button>
 
 <style>
-	img {
-		width: 2rem;
-		height: 2rem;
-	}
-	.primary {
-		padding: 0.5rem;
+	.btn {
 		display: grid;
 		place-items: center;
-		border-radius: 10px;
+		border: none;
+		background: transparent;
+		cursor: pointer;
+		transition: all 0.2s ease;
+	}
 
+	.btn:hover {
+		opacity: 0.8;
+	}
+
+	.btn:active {
+		transform: scale(0.95);
+	}
+
+	.icon {
+		width: 1.75rem;
+		height: 1.75rem;
+		filter: brightness(0) invert(1);
+		opacity: 0.7;
+		transition: all 0.2s ease;
+	}
+
+	.primary {
+		padding: 0.75rem;
+		border-radius: 12px;
 		background: var(--card__background);
+	}
+
+	.primary .icon {
+		width: 1.5rem;
+		height: 1.5rem;
 	}
 
 	.secondary {
-		padding: 0.5rem;
-		display: grid;
-		place-items: center center;
-		border-radius: 10px;
+		padding: 0.75rem;
+		border-radius: 12px;
+	}
+
+	.secondary:hover {
+		background: rgba(255, 255, 255, 0.1);
 	}
 
 	.tertiary {
-		width: 1.75rem;
+		padding: 0.25rem;
+	}
+
+	.tertiary .icon {
+		width: 1.25rem;
+		height: 1.25rem;
+	}
+
+	.tertiary:hover .icon {
+		filter: var(--filter);
+	}
+
+	.move {
+		padding: 0.25rem;
+	}
+
+	.move .icon {
+		width: 1rem;
+		height: 1rem;
+	}
+
+	.move:hover .icon {
+		filter: var(--filter);
+	}
+
+	.modal {
+		padding: 0.5rem;
+	}
+
+	.modal:hover .icon {
+		filter: var(--filter);
 	}
 
 	.selected {
-		background: var(--card__background);
+		background: var(--secondary);
 		border-radius: 50%;
 	}
-	.move {
-		width: 1.2rem;
-	}
-	.selected__icon,
-	.tertiary:hover,
-	.modal:hover,
-	.move:hover {
-		filter: var(--filter);
+
+	.selected .icon,
+	.selected__icon {
+		opacity: 1;
+		filter: brightness(0) invert(1);
 	}
 </style>

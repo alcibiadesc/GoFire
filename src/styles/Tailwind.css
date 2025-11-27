@@ -2,50 +2,61 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Dark Theme */
-
+/* CSS Variables - Theme */
 :root {
-	--background: #2a2c31;
-	--card__background: linear-gradient(to bottom, #3b4044, #2f3138);
+	--background: #1a1b1e;
+	--background-secondary: #2a2c31;
+	--card__background: linear-gradient(145deg, #2d3035, #25272b);
 	--primary: #ffffff;
 	--secondary: #e84c2b;
-	--tertiary: #7e858d;
-	--background__input: #656565;
+	--tertiary: #8b919a;
+	--background__input: #3a3d42;
+	--border-color: rgba(255, 255, 255, 0.08);
+	--shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
 	--filter: invert(52%) sepia(73%) saturate(4792%) hue-rotate(343deg)
 		brightness(92%) contrast(99%);
 	--filter_primary: invert(6%) sepia(10%) saturate(1293%) hue-rotate(178deg)
 		brightness(101%) contrast(95%);
 }
 
-/* Light Theme */
-
+/* Light Theme (commented out) */
 /*
 :root {
-	--background: #e1eaf9;
-	--card__background: linear-gradient(to bottom, #f0faff, #cdd9ec);
+	--background: #f5f7fa;
+	--background-secondary: #ffffff;
+	--card__background: linear-gradient(145deg, #ffffff, #f0f2f5);
 	--primary: #12151a;
-	--secondary: #5573c2;
-	--tertiary: #7d8ca2;
-	--background__input: #eaf3fd;
-	--filter: invert(42%) sepia(43%) saturate(698%) hue-rotate(185deg) brightness(96%) contrast(87%);
+	--secondary: #e84c2b;
+	--tertiary: #6b7280;
+	--background__input: #e5e7eb;
+	--border-color: rgba(0, 0, 0, 0.08);
+	--shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+}
+*/
 
-	--filter_primary: invert(100%) sepia(0%) saturate(1%) hue-rotate(281deg) brightness(103%) contrast(101%);
+* {
+	box-sizing: border-box;
 }
 
-*/
+html {
+	scroll-behavior: smooth;
+}
 
 body {
 	background: var(--background);
 	margin: 0;
-	display: grid;
-	place-items: center;
-	padding-bottom: 10rem;
+	font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+		Oxygen, Ubuntu, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
+/* Typography */
 h1,
 h2,
 p {
 	color: var(--primary);
+	margin: 0;
 }
 
 h3,
@@ -53,37 +64,135 @@ h4,
 h5,
 h6 {
 	color: var(--tertiary);
+	margin: 0;
 }
 
 h1 {
-	font-size: 2em;
+	font-size: 2rem;
+	font-weight: 700;
+	line-height: 1.2;
+}
+
+h2 {
+	font-size: 1.5rem;
+	font-weight: 600;
+}
+
+h3 {
+	font-size: 1.125rem;
+	font-weight: 500;
 }
 
 @layer base {
 	p {
-		@apply text-2xl font-semibold;
+		@apply text-lg font-medium;
 	}
 }
 
+/* Interactive Elements */
 button {
 	outline: none;
+	cursor: pointer;
+	transition: all 0.2s ease;
 }
+
+button:hover {
+	opacity: 0.9;
+}
+
 *:focus {
 	outline: 0 !important;
 }
 
-.noselect,
-button {
-	-webkit-touch-callout: none; /* iOS Safari */
-	-webkit-user-select: none; /* Safari */
-	-khtml-user-select: none; /* Konqueror HTML */
-	-moz-user-select: none; /* Old versions of Firefox */
-	-ms-user-select: none; /* Internet Explorer/Edge */
-	user-select: none; /* Non-prefixed version, currently
-                                  supported by Chrome, Edge, Opera and Firefox */
+*:focus-visible {
+	outline: 2px solid var(--secondary) !important;
+	outline-offset: 2px;
 }
 
+/* Selection Prevention */
+.noselect,
+button {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+/* Card Styles */
 .card__background {
 	background: var(--card__background);
-	border-radius: 50px;
+	border-radius: 24px;
+	border: 1px solid var(--border-color);
+	box-shadow: var(--shadow);
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+
+::-webkit-scrollbar-track {
+	background: var(--background);
+	border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+	background: var(--tertiary);
+	border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: var(--secondary);
+}
+
+/* Responsive Utilities */
+@layer utilities {
+	.desktop-only {
+		@apply hidden lg:block;
+	}
+
+	.mobile-only {
+		@apply block lg:hidden;
+	}
+
+	.container-desktop {
+		@apply w-full max-w-7xl mx-auto px-4 lg:px-8;
+	}
+
+	.grid-desktop {
+		@apply grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6;
+	}
+
+	.card-hover {
+		@apply transition-transform duration-200 hover:scale-[1.02];
+	}
+}
+
+/* Animation Classes */
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.animate-fade-in-up {
+	animation: fadeInUp 0.4s ease-out forwards;
+}
+
+/* Desktop Layout Adjustments */
+@media (min-width: 1024px) {
+	h1 {
+		font-size: 2.5rem;
+	}
+
+	h2 {
+		font-size: 1.75rem;
+	}
 }

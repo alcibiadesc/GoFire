@@ -2,6 +2,16 @@
 export default {
   en: {
     VALUE: 'english',
+    NAV: {
+      HOME: 'Home',
+      CHART: 'Charts',
+      PORTFOLIO: 'Portfolio',
+      PROFILE: 'Profile',
+    },
+    AUTH: {
+      LOGIN: 'Sign in',
+      LOGOUT: 'Sign out',
+    },
     LANDING: {
       TITLE: 'Are you loking for the best way to achieve financial independence?',
       DESCRIPTION: 'GoFire is a free and open-source app that helps you track your financial activities and your assets.',
@@ -25,9 +35,9 @@ export default {
       PROFITABILITY: 'Profitability:',
     },
     SETTINGS: {
-      TITLE: 'Settings',
+      TITLE: 'Portfolio',
       HEADER: 'Title',
-      SUBTITLE: 'Configure your sources of income',
+      SUBTITLE: 'Manage your investments and track contributions',
       GOAL: 'Goal',
       TOOLTIPS: {
         ADD: 'Add new category',
@@ -120,6 +130,16 @@ export default {
 
   es: {
     VALUE: 'español',
+    NAV: {
+      HOME: 'Inicio',
+      CHART: 'Gráficos',
+      PORTFOLIO: 'Cartera',
+      PROFILE: 'Perfil',
+    },
+    AUTH: {
+      LOGIN: 'Iniciar sesión',
+      LOGOUT: 'Cerrar sesión',
+    },
     LANDING: {
       TITLE: '¿Estás buscando la mejor manera de lograr la libertad financiera?',
       DESCRIPTION: 'GoFire es una aplicación gratuita y de código abierto que ayuda a controlar sus actividades financieras y sus activos.',
@@ -145,9 +165,9 @@ export default {
 
     },
     SETTINGS: {
-      TITLE: 'Edición',
+      TITLE: 'Cartera',
       HEADER: 'Título',
-      SUBTITLE: 'Configura tus fuentes de ingresos',
+      SUBTITLE: 'Gestiona tus inversiones y aportaciones',
       GOAL: 'Objetivo',
       TOOLTIPS: {
         ADD: 'Añadir nueva categoría',
