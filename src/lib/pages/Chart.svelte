@@ -429,7 +429,7 @@
 				{:else}
 					<div class="no-data">
 						<img src="/icons/chart.svg" alt="No data" class="no-data-icon" />
-						<p>No hay datos para el periodo seleccionado</p>
+						<p>{$t('CHARTS.PORTFOLIO.NO_TIMELINE_TEXT')}</p>
 					</div>
 				{/if}
 			</div>

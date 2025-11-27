@@ -1,5 +1,5 @@
 <script>
-	export let label = "Soy un tooltip";
+	export let label = "Tooltip";
 </script>
 
 <div class="tooltip">
@@ -10,23 +10,30 @@
 <style>
 	.tooltip {
 		position: relative;
+		display: inline-flex;
 	}
 
 	.tooltip .tooltiptext {
 		visibility: hidden;
-		width: 120px;
-		background-color: #555;
-		color: #fff;
+		min-width: 100px;
+		max-width: 200px;
+		background: var(--background-secondary);
+		color: var(--primary);
 		text-align: center;
-		border-radius: 6px;
-		padding: 5px 0;
+		border-radius: 8px;
+		padding: 0.5rem 0.75rem;
+		font-size: 0.8rem;
+		font-weight: 500;
 		position: absolute;
-		z-index: 1;
-		bottom: 125%;
+		z-index: 100;
+		bottom: calc(100% + 8px);
 		left: 50%;
-		margin-left: -60px;
+		transform: translateX(-50%);
 		opacity: 0;
-		transition: opacity 0.3s;
+		transition: opacity 0.2s ease;
+		border: 1px solid var(--border-color);
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+		white-space: nowrap;
 	}
 
 	.tooltip .tooltiptext::after {
@@ -34,15 +41,15 @@
 		position: absolute;
 		top: 100%;
 		left: 50%;
-		margin-left: -5px;
-		border-width: 5px;
+		transform: translateX(-50%);
+		border-width: 6px;
 		border-style: solid;
-		border-color: #555 transparent transparent transparent;
+		border-color: var(--background-secondary) transparent transparent transparent;
 	}
 
 	.tooltip:hover .tooltiptext {
-		transition: opacity 0s linear 1s;
 		visibility: visible;
 		opacity: 1;
+		transition-delay: 0.5s;
 	}
 </style>
