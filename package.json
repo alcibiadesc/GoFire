@@ -2,6 +2,9 @@
 	"name": "gofire",
 	"version": "2.0.0",
 	"type": "module",
+	"engines": {
+		"node": ">=20.x"
+	},
 	"scripts": {
 		"dev": "vite",
 		"build": "vite build",

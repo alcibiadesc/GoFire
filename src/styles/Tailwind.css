@@ -9,9 +9,10 @@
 	--card__background: linear-gradient(145deg, #2d3035, #25272b);
 	--primary: #ffffff;
 	--secondary: #e84c2b;
-	--tertiary: #8b919a;
+	--tertiary: #a1a7b0;
+	--muted: #6b7280;
 	--background__input: #3a3d42;
-	--border-color: rgba(255, 255, 255, 0.08);
+	--border-color: rgba(255, 255, 255, 0.1);
 	--shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
 	--filter: invert(52%) sepia(73%) saturate(4792%) hue-rotate(343deg)
 		brightness(92%) contrast(99%);
@@ -54,16 +55,16 @@ body {
 /* Typography */
 h1,
 h2,
-p {
-	color: var(--primary);
-	margin: 0;
-}
-
 h3,
 h4,
 h5,
 h6 {
-	color: var(--tertiary);
+	color: var(--primary);
+	margin: 0;
+}
+
+p {
+	color: var(--primary);
 	margin: 0;
 }
 
@@ -83,10 +84,12 @@ h3 {
 	font-weight: 500;
 }
 
-@layer base {
-	p {
-		@apply text-lg font-medium;
-	}
+/* Disabled state for buttons */
+button:disabled,
+button.disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+	pointer-events: none;
 }
 
 /* Interactive Elements */
