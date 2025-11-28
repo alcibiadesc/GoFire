@@ -8,6 +8,7 @@
 	import Chart from './lib/pages/Chart.svelte';
 	import Sidebar from './lib/components/Sidebar.svelte';
 	import { landing } from './stores/landing';
+	import { sidebarCollapsed } from './stores/sidebar.js';
 	import Landing from './lib/pages/Landing.svelte';
 	import Guide from './lib/components/Guide.svelte';
 
@@ -59,7 +60,7 @@
 		<Sidebar {current} onNavigate={navigate} />
 	{/if}
 
-	<main class="main-content" class:with-sidebar={isDesktop && !$landing && !guide}>
+	<main class="main-content" class:with-sidebar={isDesktop && !$landing && !guide} class:sidebar-collapsed={$sidebarCollapsed}>
 		{#if !isDesktop || $landing || guide}
 			<Navbar toggleGuide={toggleGuide} {guide} {quitGuide} landing={$landing} />
 		{/if}
@@ -83,15 +84,12 @@
 <style>
 	.app-container {
 		min-height: 100vh;
-		display: flex;
 	}
 
 	.main-content {
-		flex: 1;
 		display: flex;
 		flex-direction: column;
 		min-height: 100vh;
-		width: 100%;
 		transition: margin-left 0.3s ease;
 	}
 
@@ -99,26 +97,19 @@
 		margin-left: 280px;
 	}
 
+	.main-content.with-sidebar.sidebar-collapsed {
+		margin-left: 88px;
+	}
+
 	.page-container {
 		flex: 1;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
 		padding: 1rem;
 		padding-bottom: 6rem;
+		box-sizing: border-box;
 	}
 
 	.desktop .page-container {
-		padding: 2rem 3rem;
+		padding: 2rem;
 		padding-bottom: 2rem;
-		max-width: 1400px;
-		margin: 0 auto;
-		width: 100%;
-	}
-
-	@media (min-width: 1024px) {
-		.page-container {
-			align-items: flex-start;
-		}
 	}
 </style>

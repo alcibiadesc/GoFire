@@ -96,10 +96,15 @@
 		flex-direction: column;
 		gap: 0.75rem;
 		width: 100%;
+		list-style: none;
+		padding: 0;
+		margin: 0;
 	}
 
 	.grid-item-wrapper {
 		position: relative;
+		list-style: none;
+		display: block;
 	}
 
 	.grid-item {
@@ -108,6 +113,8 @@
 		border-radius: 16px;
 		border: 1px solid var(--border-color);
 		transition: all 0.2s ease;
+		list-style: none;
+		display: block;
 	}
 
 	.grid-item:hover {
@@ -136,15 +143,15 @@
 	}
 
 	/* Desktop Layout */
-	@media (min-width: 1024px) {
+	@media (min-width: 768px) {
 		.grid-container {
 			display: grid;
-			grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-			gap: 1.25rem;
+			grid-template-columns: repeat(2, 1fr);
+			gap: 1rem;
 		}
 
 		.grid-container.edit-mode {
-			grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+			grid-template-columns: repeat(2, 1fr);
 		}
 
 		.grid-item {
@@ -165,16 +172,11 @@
 		}
 
 		.move-btns {
-			display: flex;
-			position: absolute;
-			top: 1rem;
-			left: -3rem;
-			flex-direction: column;
-			gap: 0.25rem;
+			display: none;
 		}
 	}
 
-	@media (min-width: 1280px) {
+	@media (min-width: 1200px) {
 		.grid-container {
 			grid-template-columns: repeat(3, 1fr);
 		}

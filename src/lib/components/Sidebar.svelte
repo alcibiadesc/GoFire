@@ -1,10 +1,17 @@
 <script lang="ts">
 	import { user } from '../../stores/user.js';
+	import { sidebarCollapsed } from '../../stores/sidebar.js';
 	import { signIn, actionSignOut } from '../../firebase/firebase-auth.js';
 	import { t } from '../../i18n/i18n';
 
 	export let current: string = 'home';
 	export let onNavigate: (page: string) => void = () => {};
+
+	$: collapsed = $sidebarCollapsed;
+
+	function toggleCollapse() {
+		sidebarCollapsed.update(v => !v);
+	}
 
 	interface NavItem {
 		id: string;
@@ -24,10 +31,20 @@
 	$: userName = $user?.displayName || 'Guest';
 </script>
 
-<aside class="sidebar">
+<aside class="sidebar" class:collapsed>
+	<button class="collapse-btn" on:click={toggleCollapse} title={collapsed ? 'Expand' : 'Collapse'}>
+		<img
+			src="/icons/arrow.svg"
+			alt="toggle"
+			class="collapse-icon"
+			class:rotated={collapsed}
+		/>
+	</button>
 	<div class="sidebar-header">
 		<img src="/icons/gofire.svg" alt="GoFire" class="logo" />
-		<span class="logo-text">GoFire</span>
+		{#if !collapsed}
+			<span class="logo-text">GoFire</span>
+		{/if}
 	</div>
 
 	<nav class="nav-menu">
@@ -36,6 +53,7 @@
 				class="nav-item"
 				class:active={current === item.id}
 				on:click={() => onNavigate(item.id)}
+				title={collapsed ? $t(item.labelKey) : ''}
 			>
 				<img
 					src="/icons/{item.icon}.svg"
@@ -43,7 +61,9 @@
 					class="nav-icon"
 					class:active={current === item.id}
 				/>
-				<span class="nav-label">{$t(item.labelKey)}</span>
+				{#if !collapsed}
+					<span class="nav-label">{$t(item.labelKey)}</span>
+				{/if}
 			</button>
 		{/each}
 	</nav>
@@ -52,24 +72,30 @@
 		{#if isLoggedIn}
 			<div class="user-info">
 				<img src={userImg} alt={userName} class="user-avatar" />
-				<div class="user-details">
-					<span class="user-name">{userName}</span>
-					<button class="auth-btn logout" on:click={actionSignOut}>
-						<img src="/icons/logout.svg" alt="logout" class="auth-icon" />
-						{$t('AUTH.LOGOUT')}
-					</button>
-				</div>
+				{#if !collapsed}
+					<div class="user-details">
+						<span class="user-name">{userName}</span>
+						<button class="auth-btn logout" on:click={actionSignOut}>
+							<img src="/icons/logout.svg" alt="logout" class="auth-icon" />
+							{$t('AUTH.LOGOUT')}
+						</button>
+					</div>
+				{/if}
 			</div>
 		{:else}
-			<button class="login-card" on:click={signIn}>
+			<button class="login-card" on:click={signIn} title={collapsed ? $t('AUTH.LOGIN') : ''}>
 				<div class="login-content">
 					<img src="/icons/user.svg" alt="guest" class="guest-avatar" />
-					<div class="login-text">
-						<span class="guest-label">Guest</span>
-						<span class="login-hint">{$t('AUTH.LOGIN')}</span>
-					</div>
+					{#if !collapsed}
+						<div class="login-text">
+							<span class="guest-label">Guest</span>
+							<span class="login-hint">{$t('AUTH.LOGIN')}</span>
+						</div>
+					{/if}
 				</div>
-				<img src="/icons/login.svg" alt="login" class="login-arrow" />
+				{#if !collapsed}
+					<img src="/icons/login.svg" alt="login" class="login-arrow" />
+				{/if}
 			</button>
 		{/if}
 	</div>
@@ -88,6 +114,12 @@
 		top: 0;
 		z-index: 50;
 		border-right: 1px solid var(--border-color);
+		transition: width 0.3s ease;
+	}
+
+	.sidebar.collapsed {
+		width: 88px;
+		padding: 1.5rem 1rem;
 	}
 
 	.sidebar-header {
@@ -98,16 +130,58 @@
 		margin-bottom: 2rem;
 	}
 
+	.sidebar.collapsed .sidebar-header {
+		justify-content: center;
+	}
+
 	.logo {
 		width: 40px;
 		height: 40px;
 		border-radius: 12px;
+		flex-shrink: 0;
 	}
 
 	.logo-text {
 		font-size: 1.5rem;
 		font-weight: 700;
 		color: var(--primary);
+		white-space: nowrap;
+		overflow: hidden;
+	}
+
+	.collapse-btn {
+		position: absolute;
+		right: -14px;
+		top: 2rem;
+		width: 28px;
+		height: 28px;
+		border-radius: 50%;
+		background: var(--secondary);
+		border: 2px solid var(--background);
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition: all 0.2s ease;
+		box-shadow: 0 2px 8px rgba(232, 76, 43, 0.3);
+		z-index: 60;
+	}
+
+	.collapse-btn:hover {
+		transform: scale(1.1);
+		box-shadow: 0 4px 12px rgba(232, 76, 43, 0.4);
+	}
+
+	.collapse-icon {
+		width: 14px;
+		height: 14px;
+		filter: brightness(0) invert(1);
+		transform: rotate(180deg);
+		transition: transform 0.3s ease;
+	}
+
+	.collapse-icon.rotated {
+		transform: rotate(0deg);
 	}
 
 	.nav-menu {
@@ -161,6 +235,16 @@
 	.nav-item.active .nav-label {
 		opacity: 1;
 		font-weight: 600;
+	}
+
+	/* Collapsed nav items */
+	.sidebar.collapsed .nav-item {
+		justify-content: center;
+		padding: 1rem;
+	}
+
+	.sidebar.collapsed .nav-icon {
+		margin: 0;
 	}
 
 	.sidebar-footer {
@@ -282,5 +366,26 @@
 		width: 20px;
 		height: 20px;
 		filter: var(--filter);
+	}
+
+	/* Collapsed footer */
+	.sidebar.collapsed .user-info {
+		justify-content: center;
+	}
+
+	.sidebar.collapsed .user-avatar {
+		width: 40px;
+		height: 40px;
+	}
+
+	.sidebar.collapsed .login-card {
+		justify-content: center;
+		padding: 0.75rem;
+	}
+
+	.sidebar.collapsed .guest-avatar {
+		width: 36px;
+		height: 36px;
+		padding: 6px;
 	}
 </style>
