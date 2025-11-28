@@ -17,10 +17,6 @@
 		balanceFormatted = formatNum(balance);
 		goalFormatted = formatNum($goal);
 	});
-
-	// Arc calculation (semicircle from left to right, 180 degrees)
-	$: arcLength = 251.2; // π * r * 2 * 0.5 for r=80
-	$: filledLength = (arcLength * progress) / 100;
 </script>
 
 <div class="balance-card card__background">
@@ -30,56 +26,31 @@
 			<p class="subtitle">{$t('HOME.SUBTITLE')}</p>
 		</div>
 
-		<div class="balance-section">
-			{#if hasGoal}
-				<svg class="goal-arc" viewBox="0 0 200 110" preserveAspectRatio="xMidYMax meet">
-					<defs>
-						<linearGradient id="arcGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-							<stop offset="0%" stop-color="#e84c2b" />
-							<stop offset="100%" stop-color="#ff8c42" />
-						</linearGradient>
-						<linearGradient id="arcGradientComplete" x1="0%" y1="0%" x2="100%" y2="0%">
-							<stop offset="0%" stop-color="#10b981" />
-							<stop offset="100%" stop-color="#34d399" />
-						</linearGradient>
-					</defs>
-					<path
-						class="arc-bg"
-						d="M 10 100 A 80 80 0 0 1 190 100"
-						fill="none"
-						stroke-width="6"
-						stroke-linecap="round"
-					/>
-					<path
-						class="arc-fill"
-						d="M 10 100 A 80 80 0 0 1 190 100"
-						fill="none"
-						stroke={isComplete ? "url(#arcGradientComplete)" : "url(#arcGradient)"}
-						stroke-width="6"
-						stroke-linecap="round"
-						stroke-dasharray="{filledLength} {arcLength}"
-					/>
-				</svg>
-			{/if}
-
-			<div class="balance-display">
-				<span class="balance-label">{$t('HOME.BALANCE')}</span>
-				<span class="balance-amount">{balanceFormatted}</span>
-
-				{#if hasGoal}
-					<div class="goal-indicator">
-						<span class="goal-percent" class:complete={isComplete}>{progress.toFixed(0)}%</span>
-						<span class="goal-text">
-							{#if isComplete}
-								🔥 FIRE
-							{:else}
-								→ {goalFormatted}
-							{/if}
-						</span>
-					</div>
-				{/if}
-			</div>
+		<div class="balance-display">
+			<span class="balance-label">{$t('HOME.BALANCE')}</span>
+			<span class="balance-amount">{balanceFormatted}</span>
 		</div>
+
+		{#if hasGoal}
+			<div class="goal-section">
+				<div class="goal-text-row">
+					<span class="goal-progress-text">
+						{#if isComplete}
+							Goal reached
+						{:else}
+							<strong>{progress.toFixed(0)}%</strong> of {goalFormatted} goal
+						{/if}
+					</span>
+				</div>
+				<div class="goal-bar">
+					<div
+						class="goal-bar-fill"
+						class:complete={isComplete}
+						style="width: {progress}%"
+					></div>
+				</div>
+			</div>
+		{/if}
 	</div>
 </div>
 
@@ -95,7 +66,7 @@
 	.balance-content {
 		display: flex;
 		flex-direction: column;
-		gap: 1.25rem;
+		gap: 1.5rem;
 	}
 
 	.greeting h1 {
@@ -109,41 +80,10 @@
 		font-weight: 400;
 	}
 
-	.balance-section {
-		position: relative;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-	}
-
-	.goal-arc {
-		position: absolute;
-		bottom: -8px;
-		left: 50%;
-		transform: translateX(-50%);
-		width: 100%;
-		max-width: 240px;
-		height: auto;
-		opacity: 0.9;
-	}
-
-	.arc-bg {
-		stroke: rgba(255, 255, 255, 0.08);
-	}
-
-	.arc-fill {
-		transition: stroke-dasharray 0.8s ease;
-	}
-
 	.balance-display {
 		display: flex;
 		flex-direction: column;
-		align-items: center;
 		gap: 0.25rem;
-		text-align: center;
-		position: relative;
-		z-index: 1;
-		padding-bottom: 0.5rem;
 	}
 
 	.balance-label {
@@ -156,42 +96,56 @@
 	.balance-amount {
 		color: var(--primary);
 		font-size: 2.25rem;
-		font-weight: 700;
+		font-weight: 600;
 		line-height: 1.1;
+		letter-spacing: -0.02em;
 	}
 
-	.goal-indicator {
+	/* Goal - Airbnb style: minimal, typography-focused */
+	.goal-section {
+		display: flex;
+		flex-direction: column;
+		gap: 0.625rem;
+	}
+
+	.goal-text-row {
 		display: flex;
 		align-items: center;
-		gap: 0.5rem;
-		margin-top: 0.5rem;
-		padding: 0.375rem 0.875rem;
-		background: rgba(255, 255, 255, 0.05);
-		border-radius: 20px;
+		justify-content: space-between;
 	}
 
-	.goal-percent {
-		font-size: 0.9rem;
-		font-weight: 700;
-		color: var(--secondary);
-	}
-
-	.goal-percent.complete {
-		color: var(--success);
-	}
-
-	.goal-text {
-		font-size: 0.8rem;
+	.goal-progress-text {
+		font-size: 0.875rem;
 		color: var(--tertiary);
+		font-weight: 400;
+	}
+
+	.goal-progress-text strong {
+		color: var(--secondary);
+		font-weight: 600;
+	}
+
+	.goal-bar {
+		height: 4px;
+		background: rgba(255, 255, 255, 0.1);
+		border-radius: 2px;
+		overflow: hidden;
+	}
+
+	.goal-bar-fill {
+		height: 100%;
+		background: linear-gradient(90deg, var(--secondary), #ff8a5c);
+		border-radius: 2px;
+		transition: width 0.6s ease;
+	}
+
+	.goal-bar-fill.complete {
+		background: linear-gradient(90deg, var(--success), #34d399);
 	}
 
 	@media (min-width: 768px) {
 		.balance-card {
 			padding: 2rem;
-		}
-
-		.balance-content {
-			gap: 1.5rem;
 		}
 
 		.greeting h1 {
@@ -200,10 +154,6 @@
 
 		.balance-amount {
 			font-size: 2.5rem;
-		}
-
-		.goal-arc {
-			max-width: 280px;
 		}
 	}
 
@@ -224,21 +174,12 @@
 			font-size: 3rem;
 		}
 
-		.goal-arc {
-			max-width: 320px;
-			bottom: -10px;
+		.goal-progress-text {
+			font-size: 0.9375rem;
 		}
 
-		.goal-indicator {
-			padding: 0.5rem 1rem;
-		}
-
-		.goal-percent {
-			font-size: 1rem;
-		}
-
-		.goal-text {
-			font-size: 0.85rem;
+		.goal-bar {
+			height: 5px;
 		}
 	}
 </style>
