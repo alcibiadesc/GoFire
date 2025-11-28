@@ -45,7 +45,7 @@
 		width: 100%;
 		display: flex;
 		flex-direction: column;
-		gap: 2rem;
+		gap: 1.5rem;
 	}
 
 	.dashboard-header {
@@ -105,13 +105,13 @@
 	/* Desktop Layout */
 	@media (min-width: 1024px) {
 		.home-container {
-			gap: 3rem;
+			gap: 2.5rem;
 		}
 
 		.dashboard-header {
 			flex-direction: row;
 			align-items: stretch;
-			gap: 2rem;
+			gap: 1.5rem;
 			width: 100%;
 		}
 
